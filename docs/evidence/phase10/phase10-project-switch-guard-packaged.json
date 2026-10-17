@@ -1,0 +1,32 @@
+{
+  "success": true,
+  "version": "0.8.0",
+  "packaged": true,
+  "baseline": false,
+  "checks": [
+    {
+      "text": "普通素材导入在busy期间完成合法内部编辑，片段可加入时间线并保存"
+    },
+    {
+      "text": "800ms异步打开期间拒绝程序化属性change、改名、快捷键与按钮撤销，取消后内容完整"
+    },
+    {
+      "text": "取消打开恢复所有交互，原有撤销／重做历史没有被消耗"
+    },
+    {
+      "text": "成功替换只载入目标工程，等待期间的事件不产生被静默覆盖的新编辑"
+    },
+    {
+      "text": "异步打开错误后保留当前工程，并解除名称、属性、时间线和素材库锁定"
+    },
+    {
+      "text": "替换和错误恢复后普通导入仍成功，合法内部edit没有被busy守卫误阻断"
+    }
+  ],
+  "errors": [],
+  "createdAt": "2026-10-17T05:35:58.096Z",
+  "sourceHashes": {
+    "src/renderer/app.js": "2d99227347a672e43395be74ac50719c6882386d0ffec289155718bab1aa32b0",
+    "src/main/main.cjs": "0f266b9fb50dba5ffbad68d8c2f05cbe528df2c517b623418f22131ee599bf5c"
+  }
+}

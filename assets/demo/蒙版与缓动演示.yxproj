@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "id": "project-715a9585-6f1d-44e3-a211-f753a2ee52d1",
+  "name": "蒙版与缓动演示",
+  "width": 1280,
+  "height": 720,
+  "fps": 30,
+  "videoTrackCount": 2,
+  "assets": [
+    {
+      "id": "demo-light",
+      "name": "light.mp4",
+      "path": "light.mp4",
+      "kind": "video",
+      "duration": 4,
+      "width": 1280,
+      "height": 720,
+      "hasAudio": false,
+      "pathMode": "relative"
+    },
+    {
+      "id": "demo-texture",
+      "name": "texture.png",
+      "path": "texture.png",
+      "kind": "image",
+      "duration": 0,
+      "width": 1600,
+      "height": 900,
+      "hasAudio": false,
+      "pathMode": "relative"
+    },
+    {
+      "id": "demo-tone",
+      "name": "tone.wav",
+      "path": "tone.wav",
+      "kind": "audio",
+      "duration": 9,
+      "width": 0,
+      "height": 0,
+      "hasAudio": true,
+      "pathMode": "relative"
+    }
+  ],
+  "clips": [
+    {
+      "id": "clip-f86d1233-c4a7-4ed2-9711-504602fd8898",
+      "assetId": "demo-light",
+      "track": "video",
+      "start": 0,
+      "duration": 4,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 1
+    },
+    {
+      "id": "clip-e53c5356-f221-4de4-b6dd-b7168b9d26a6",
+      "assetId": "demo-texture",
+      "track": "video",
+      "start": 3.4,
+      "duration": 4,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 1,
+      "color": {
+        "brightness": -0.1,
+        "contrast": 0.1,
+        "saturation": -0.2
+      },
+      "transition": {
+        "type": "crossfade",
+        "duration": 0.6
+      }
+    },
+    {
+      "id": "clip-105329ee-b3a2-4b08-9875-07a1c1f88832",
+      "assetId": "demo-texture",
+      "track": "video",
+      "start": 0,
+      "duration": 7.4,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 1,
+      "layer": 1,
+      "mask": {
+        "type": "ellipse",
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "width": 0.84,
+        "height": 0.9,
+        "rotation": 15,
+        "feather": 0.12,
+        "invert": false
+      },
+      "transform": {
+        "x": -0.25,
+        "y": 0,
+        "scale": 0.55,
+        "rotation": -10,
+        "opacity": 0.95
+      },
+      "color": {
+        "brightness": 0.12,
+        "contrast": 0.2,
+        "saturation": 0.3
+      },
+      "keyframes": [
+        {
+          "time": 3,
+          "x": 0.25,
+          "y": -0.08,
+          "scale": 0.7,
+          "rotation": 15,
+          "opacity": 0.95,
+          "easing": "ease-in-out"
+        },
+        {
+          "time": 7.4,
+          "x": -0.1,
+          "y": 0.02,
+          "scale": 0.48,
+          "rotation": -20,
+          "opacity": 0.75,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "id": "clip-586da4bb-881f-40b4-b324-ca69073aef4a",
+      "assetId": "demo-tone",
+      "track": "audio",
+      "start": 0,
+      "duration": 7.4,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 0.12,
+      "audioFade": {
+        "in": 1,
+        "out": 1
+      }
+    }
+  ],
+  "subtitles": [
+    {
+      "id": "subtitle-733204ce-8d33-43bd-9169-bb52a63f7805",
+      "start": 0.3,
+      "end": 3.3,
+      "text": "柔边蒙版，让画面自然融入。"
+    },
+    {
+      "id": "subtitle-73c8418f-3929-4a49-8eaa-5f4129615e4d",
+      "start": 3.7,
+      "end": 7.2,
+      "text": "缓入缓出，让移动更从容。"
+    }
+  ],
+  "subtitleStyle": {
+    "fontSize": 36,
+    "color": "#ffffff"
+  },
+  "createdAt": "2026-10-15T09:04:40.366Z",
+  "updatedAt": "2026-10-15T09:04:40.382Z"
+}

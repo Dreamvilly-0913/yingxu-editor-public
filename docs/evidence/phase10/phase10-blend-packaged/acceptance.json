@@ -1,0 +1,1609 @@
+{
+  "createdAt": "2026-10-17T05:28:55.068Z",
+  "version": "0.8.0",
+  "packaged": true,
+  "sourceHashes": {
+    "src/main/media.cjs": "5633bdcef5e90d50b27cfb40b190eb766c604109b0215c255e943471efb80468",
+    "src/main/visual-tools.cjs": "d2d698c1b7f5223916c30b92917887d8027b643090bf90296b055c4c05a7fd68",
+    "src/shared/project.js": "9239874c5dc8203f286cd6b31243e0b48af89ccdd2547f0f9fe2912484907515",
+    "src/shared/visual-effects.js": "3c8e53fa5035b00ff71fdf2bb8f480df64828fdceff142ee70cb6ec7d336793f",
+    "src/renderer/app.js": "2d99227347a672e43395be74ac50719c6882386d0ffec289155718bab1aa32b0"
+  },
+  "checks": [
+    {
+      "name": "native FFmpeg normal alpha formula",
+      "max": 0,
+      "pixelsChecked": 8,
+      "pass": true
+    },
+    {
+      "name": "native FFmpeg multiply alpha formula",
+      "max": 1,
+      "pixelsChecked": 8,
+      "pass": true
+    },
+    {
+      "name": "native FFmpeg screen alpha formula",
+      "max": 1,
+      "pixelsChecked": 8,
+      "pass": true
+    },
+    {
+      "name": "native FFmpeg overlay alpha formula",
+      "max": 1,
+      "pixelsChecked": 8,
+      "pass": true
+    },
+    {
+      "name": "native FFmpeg darken alpha formula",
+      "max": 0,
+      "pixelsChecked": 8,
+      "pass": true
+    },
+    {
+      "name": "native FFmpeg lighten alpha formula",
+      "max": 0,
+      "pixelsChecked": 8,
+      "pass": true
+    },
+    {
+      "name": "native FFmpeg difference alpha formula",
+      "max": 0,
+      "pixelsChecked": 8,
+      "pass": true
+    },
+    {
+      "name": "native FFmpeg exclusion alpha formula",
+      "max": 1,
+      "pixelsChecked": 8,
+      "pass": true
+    },
+    {
+      "name": "native FFmpeg hard-light alpha formula",
+      "max": 1,
+      "pixelsChecked": 8,
+      "pass": true
+    },
+    {
+      "name": "native FFmpeg soft-light alpha formula",
+      "max": 1,
+      "pixelsChecked": 8,
+      "pass": true
+    },
+    {
+      "name": "native FFmpeg color-dodge alpha formula",
+      "max": 1,
+      "pixelsChecked": 8,
+      "pass": true
+    },
+    {
+      "name": "native FFmpeg color-burn alpha formula",
+      "max": 1,
+      "pixelsChecked": 8,
+      "pass": true
+    },
+    {
+      "name": "actual Media.exportProject transparent normal and nonframe boundaries",
+      "frames": 30,
+      "activeFrames": 16,
+      "start": 0.137,
+      "end": 0.763,
+      "max": 3,
+      "outsideMax": 2,
+      "samples": [
+        {
+          "frame": 0,
+          "band": 0,
+          "active": false,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 0,
+          "band": 4,
+          "active": false,
+          "expected": [
+            80,
+            90,
+            100
+          ],
+          "pixel": [
+            79,
+            89,
+            100
+          ]
+        },
+        {
+          "frame": 0,
+          "band": 7,
+          "active": false,
+          "expected": [
+            120,
+            75,
+            160
+          ],
+          "pixel": [
+            119,
+            75,
+            159
+          ]
+        },
+        {
+          "frame": 3,
+          "band": 0,
+          "active": false,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 3,
+          "band": 4,
+          "active": false,
+          "expected": [
+            80,
+            90,
+            100
+          ],
+          "pixel": [
+            79,
+            89,
+            100
+          ]
+        },
+        {
+          "frame": 3,
+          "band": 7,
+          "active": false,
+          "expected": [
+            120,
+            75,
+            160
+          ],
+          "pixel": [
+            119,
+            75,
+            159
+          ]
+        },
+        {
+          "frame": 4,
+          "band": 0,
+          "active": true,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 4,
+          "band": 4,
+          "active": true,
+          "expected": [
+            108,
+            90,
+            91
+          ],
+          "pixel": [
+            108,
+            89,
+            88
+          ]
+        },
+        {
+          "frame": 4,
+          "band": 7,
+          "active": true,
+          "expected": [
+            183,
+            141,
+            97
+          ],
+          "pixel": [
+            183,
+            141,
+            96
+          ]
+        },
+        {
+          "frame": 10,
+          "band": 0,
+          "active": true,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 10,
+          "band": 4,
+          "active": true,
+          "expected": [
+            108,
+            90,
+            91
+          ],
+          "pixel": [
+            108,
+            89,
+            88
+          ]
+        },
+        {
+          "frame": 10,
+          "band": 7,
+          "active": true,
+          "expected": [
+            183,
+            141,
+            97
+          ],
+          "pixel": [
+            183,
+            141,
+            96
+          ]
+        },
+        {
+          "frame": 19,
+          "band": 0,
+          "active": true,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 19,
+          "band": 4,
+          "active": true,
+          "expected": [
+            108,
+            90,
+            91
+          ],
+          "pixel": [
+            108,
+            89,
+            88
+          ]
+        },
+        {
+          "frame": 19,
+          "band": 7,
+          "active": true,
+          "expected": [
+            183,
+            141,
+            97
+          ],
+          "pixel": [
+            183,
+            141,
+            96
+          ]
+        },
+        {
+          "frame": 20,
+          "band": 0,
+          "active": false,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 20,
+          "band": 4,
+          "active": false,
+          "expected": [
+            80,
+            90,
+            100
+          ],
+          "pixel": [
+            79,
+            89,
+            100
+          ]
+        },
+        {
+          "frame": 20,
+          "band": 7,
+          "active": false,
+          "expected": [
+            120,
+            75,
+            160
+          ],
+          "pixel": [
+            119,
+            75,
+            159
+          ]
+        },
+        {
+          "frame": 29,
+          "band": 0,
+          "active": false,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 29,
+          "band": 4,
+          "active": false,
+          "expected": [
+            80,
+            90,
+            100
+          ],
+          "pixel": [
+            79,
+            89,
+            100
+          ]
+        },
+        {
+          "frame": 29,
+          "band": 7,
+          "active": false,
+          "expected": [
+            120,
+            75,
+            160
+          ],
+          "pixel": [
+            119,
+            75,
+            159
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "actual Media.exportProject transparent multiply and nonframe boundaries",
+      "frames": 30,
+      "activeFrames": 16,
+      "start": 0.137,
+      "end": 0.763,
+      "max": 2,
+      "outsideMax": 2,
+      "samples": [
+        {
+          "frame": 0,
+          "band": 0,
+          "active": false,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 0,
+          "band": 4,
+          "active": false,
+          "expected": [
+            80,
+            90,
+            100
+          ],
+          "pixel": [
+            79,
+            89,
+            100
+          ]
+        },
+        {
+          "frame": 0,
+          "band": 7,
+          "active": false,
+          "expected": [
+            120,
+            75,
+            160
+          ],
+          "pixel": [
+            119,
+            75,
+            159
+          ]
+        },
+        {
+          "frame": 3,
+          "band": 0,
+          "active": false,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 3,
+          "band": 4,
+          "active": false,
+          "expected": [
+            80,
+            90,
+            100
+          ],
+          "pixel": [
+            79,
+            89,
+            100
+          ]
+        },
+        {
+          "frame": 3,
+          "band": 7,
+          "active": false,
+          "expected": [
+            120,
+            75,
+            160
+          ],
+          "pixel": [
+            119,
+            75,
+            159
+          ]
+        },
+        {
+          "frame": 4,
+          "band": 0,
+          "active": true,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 4,
+          "band": 4,
+          "active": true,
+          "expected": [
+            72,
+            72,
+            77
+          ],
+          "pixel": [
+            71,
+            70,
+            76
+          ]
+        },
+        {
+          "frame": 4,
+          "band": 7,
+          "active": true,
+          "expected": [
+            110,
+            61,
+            83
+          ],
+          "pixel": [
+            109,
+            61,
+            82
+          ]
+        },
+        {
+          "frame": 10,
+          "band": 0,
+          "active": true,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 10,
+          "band": 4,
+          "active": true,
+          "expected": [
+            72,
+            72,
+            77
+          ],
+          "pixel": [
+            71,
+            70,
+            76
+          ]
+        },
+        {
+          "frame": 10,
+          "band": 7,
+          "active": true,
+          "expected": [
+            110,
+            61,
+            83
+          ],
+          "pixel": [
+            109,
+            61,
+            82
+          ]
+        },
+        {
+          "frame": 19,
+          "band": 0,
+          "active": true,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 19,
+          "band": 4,
+          "active": true,
+          "expected": [
+            72,
+            72,
+            77
+          ],
+          "pixel": [
+            71,
+            70,
+            76
+          ]
+        },
+        {
+          "frame": 19,
+          "band": 7,
+          "active": true,
+          "expected": [
+            110,
+            61,
+            83
+          ],
+          "pixel": [
+            109,
+            61,
+            82
+          ]
+        },
+        {
+          "frame": 20,
+          "band": 0,
+          "active": false,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 20,
+          "band": 4,
+          "active": false,
+          "expected": [
+            80,
+            90,
+            100
+          ],
+          "pixel": [
+            79,
+            89,
+            100
+          ]
+        },
+        {
+          "frame": 20,
+          "band": 7,
+          "active": false,
+          "expected": [
+            120,
+            75,
+            160
+          ],
+          "pixel": [
+            119,
+            75,
+            159
+          ]
+        },
+        {
+          "frame": 29,
+          "band": 0,
+          "active": false,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 29,
+          "band": 4,
+          "active": false,
+          "expected": [
+            80,
+            90,
+            100
+          ],
+          "pixel": [
+            79,
+            89,
+            100
+          ]
+        },
+        {
+          "frame": 29,
+          "band": 7,
+          "active": false,
+          "expected": [
+            120,
+            75,
+            160
+          ],
+          "pixel": [
+            119,
+            75,
+            159
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "actual Media.exportProject transparent screen and nonframe boundaries",
+      "frames": 30,
+      "activeFrames": 16,
+      "start": 0.137,
+      "end": 0.763,
+      "max": 2,
+      "outsideMax": 2,
+      "samples": [
+        {
+          "frame": 0,
+          "band": 0,
+          "active": false,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 0,
+          "band": 4,
+          "active": false,
+          "expected": [
+            80,
+            90,
+            100
+          ],
+          "pixel": [
+            79,
+            89,
+            100
+          ]
+        },
+        {
+          "frame": 0,
+          "band": 7,
+          "active": false,
+          "expected": [
+            120,
+            75,
+            160
+          ],
+          "pixel": [
+            119,
+            75,
+            159
+          ]
+        },
+        {
+          "frame": 3,
+          "band": 0,
+          "active": false,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 3,
+          "band": 4,
+          "active": false,
+          "expected": [
+            80,
+            90,
+            100
+          ],
+          "pixel": [
+            79,
+            89,
+            100
+          ]
+        },
+        {
+          "frame": 3,
+          "band": 7,
+          "active": false,
+          "expected": [
+            120,
+            75,
+            160
+          ],
+          "pixel": [
+            119,
+            75,
+            159
+          ]
+        },
+        {
+          "frame": 4,
+          "band": 0,
+          "active": true,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 4,
+          "band": 4,
+          "active": true,
+          "expected": [
+            117,
+            108,
+            113
+          ],
+          "pixel": [
+            116,
+            107,
+            111
+          ]
+        },
+        {
+          "frame": 4,
+          "band": 7,
+          "active": true,
+          "expected": [
+            193,
+            155,
+            174
+          ],
+          "pixel": [
+            192,
+            154,
+            173
+          ]
+        },
+        {
+          "frame": 10,
+          "band": 0,
+          "active": true,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 10,
+          "band": 4,
+          "active": true,
+          "expected": [
+            117,
+            108,
+            113
+          ],
+          "pixel": [
+            116,
+            107,
+            111
+          ]
+        },
+        {
+          "frame": 10,
+          "band": 7,
+          "active": true,
+          "expected": [
+            193,
+            155,
+            174
+          ],
+          "pixel": [
+            192,
+            154,
+            173
+          ]
+        },
+        {
+          "frame": 19,
+          "band": 0,
+          "active": true,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 19,
+          "band": 4,
+          "active": true,
+          "expected": [
+            117,
+            108,
+            113
+          ],
+          "pixel": [
+            116,
+            107,
+            111
+          ]
+        },
+        {
+          "frame": 19,
+          "band": 7,
+          "active": true,
+          "expected": [
+            193,
+            155,
+            174
+          ],
+          "pixel": [
+            192,
+            154,
+            173
+          ]
+        },
+        {
+          "frame": 20,
+          "band": 0,
+          "active": false,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 20,
+          "band": 4,
+          "active": false,
+          "expected": [
+            80,
+            90,
+            100
+          ],
+          "pixel": [
+            79,
+            89,
+            100
+          ]
+        },
+        {
+          "frame": 20,
+          "band": 7,
+          "active": false,
+          "expected": [
+            120,
+            75,
+            160
+          ],
+          "pixel": [
+            119,
+            75,
+            159
+          ]
+        },
+        {
+          "frame": 29,
+          "band": 0,
+          "active": false,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 29,
+          "band": 4,
+          "active": false,
+          "expected": [
+            80,
+            90,
+            100
+          ],
+          "pixel": [
+            79,
+            89,
+            100
+          ]
+        },
+        {
+          "frame": 29,
+          "band": 7,
+          "active": false,
+          "expected": [
+            120,
+            75,
+            160
+          ],
+          "pixel": [
+            119,
+            75,
+            159
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "actual Media.exportProject transparent overlay and nonframe boundaries",
+      "frames": 30,
+      "activeFrames": 16,
+      "start": 0.137,
+      "end": 0.763,
+      "max": 2,
+      "outsideMax": 2,
+      "samples": [
+        {
+          "frame": 0,
+          "band": 0,
+          "active": false,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 0,
+          "band": 4,
+          "active": false,
+          "expected": [
+            80,
+            90,
+            100
+          ],
+          "pixel": [
+            79,
+            89,
+            100
+          ]
+        },
+        {
+          "frame": 0,
+          "band": 7,
+          "active": false,
+          "expected": [
+            120,
+            75,
+            160
+          ],
+          "pixel": [
+            119,
+            75,
+            159
+          ]
+        },
+        {
+          "frame": 3,
+          "band": 0,
+          "active": false,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 3,
+          "band": 4,
+          "active": false,
+          "expected": [
+            80,
+            90,
+            100
+          ],
+          "pixel": [
+            79,
+            89,
+            100
+          ]
+        },
+        {
+          "frame": 3,
+          "band": 7,
+          "active": false,
+          "expected": [
+            120,
+            75,
+            160
+          ],
+          "pixel": [
+            119,
+            75,
+            159
+          ]
+        },
+        {
+          "frame": 4,
+          "band": 0,
+          "active": true,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 4,
+          "band": 4,
+          "active": true,
+          "expected": [
+            88,
+            82,
+            86
+          ],
+          "pixel": [
+            87,
+            80,
+            84
+          ]
+        },
+        {
+          "frame": 4,
+          "band": 7,
+          "active": true,
+          "expected": [
+            175,
+            94,
+            128
+          ],
+          "pixel": [
+            175,
+            93,
+            128
+          ]
+        },
+        {
+          "frame": 10,
+          "band": 0,
+          "active": true,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 10,
+          "band": 4,
+          "active": true,
+          "expected": [
+            88,
+            82,
+            86
+          ],
+          "pixel": [
+            87,
+            80,
+            84
+          ]
+        },
+        {
+          "frame": 10,
+          "band": 7,
+          "active": true,
+          "expected": [
+            175,
+            94,
+            128
+          ],
+          "pixel": [
+            175,
+            93,
+            128
+          ]
+        },
+        {
+          "frame": 19,
+          "band": 0,
+          "active": true,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 19,
+          "band": 4,
+          "active": true,
+          "expected": [
+            88,
+            82,
+            86
+          ],
+          "pixel": [
+            87,
+            80,
+            84
+          ]
+        },
+        {
+          "frame": 19,
+          "band": 7,
+          "active": true,
+          "expected": [
+            175,
+            94,
+            128
+          ],
+          "pixel": [
+            175,
+            93,
+            128
+          ]
+        },
+        {
+          "frame": 20,
+          "band": 0,
+          "active": false,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 20,
+          "band": 4,
+          "active": false,
+          "expected": [
+            80,
+            90,
+            100
+          ],
+          "pixel": [
+            79,
+            89,
+            100
+          ]
+        },
+        {
+          "frame": 20,
+          "band": 7,
+          "active": false,
+          "expected": [
+            120,
+            75,
+            160
+          ],
+          "pixel": [
+            119,
+            75,
+            159
+          ]
+        },
+        {
+          "frame": 29,
+          "band": 0,
+          "active": false,
+          "expected": [
+            70,
+            110,
+            180
+          ],
+          "pixel": [
+            70,
+            109,
+            181
+          ]
+        },
+        {
+          "frame": 29,
+          "band": 4,
+          "active": false,
+          "expected": [
+            80,
+            90,
+            100
+          ],
+          "pixel": [
+            79,
+            89,
+            100
+          ]
+        },
+        {
+          "frame": 29,
+          "band": 7,
+          "active": false,
+          "expected": [
+            120,
+            75,
+            160
+          ],
+          "pixel": [
+            119,
+            75,
+            159
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "actual editor preview normal transparent PNG and nonframe boundaries",
+      "max": 1,
+      "observations": [
+        {
+          "time": 0.12,
+          "active": false,
+          "max": 0,
+          "opaqueBand": [
+            120,
+            75,
+            160,
+            255
+          ]
+        },
+        {
+          "time": 0.16,
+          "active": true,
+          "max": 1,
+          "opaqueBand": [
+            183,
+            142,
+            97,
+            255
+          ]
+        },
+        {
+          "time": 0.76,
+          "active": true,
+          "max": 1,
+          "opaqueBand": [
+            183,
+            142,
+            97,
+            255
+          ]
+        },
+        {
+          "time": 0.8,
+          "active": false,
+          "max": 0,
+          "opaqueBand": [
+            120,
+            75,
+            160,
+            255
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "actual editor preview multiply transparent PNG and nonframe boundaries",
+      "max": 1,
+      "observations": [
+        {
+          "time": 0.12,
+          "active": false,
+          "max": 0,
+          "opaqueBand": [
+            120,
+            75,
+            160,
+            255
+          ]
+        },
+        {
+          "time": 0.16,
+          "active": true,
+          "max": 1,
+          "opaqueBand": [
+            110,
+            61,
+            83,
+            255
+          ]
+        },
+        {
+          "time": 0.76,
+          "active": true,
+          "max": 1,
+          "opaqueBand": [
+            110,
+            61,
+            83,
+            255
+          ]
+        },
+        {
+          "time": 0.8,
+          "active": false,
+          "max": 0,
+          "opaqueBand": [
+            120,
+            75,
+            160,
+            255
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "actual editor preview screen transparent PNG and nonframe boundaries",
+      "max": 1,
+      "observations": [
+        {
+          "time": 0.12,
+          "active": false,
+          "max": 0,
+          "opaqueBand": [
+            120,
+            75,
+            160,
+            255
+          ]
+        },
+        {
+          "time": 0.16,
+          "active": true,
+          "max": 1,
+          "opaqueBand": [
+            194,
+            155,
+            174,
+            255
+          ]
+        },
+        {
+          "time": 0.76,
+          "active": true,
+          "max": 1,
+          "opaqueBand": [
+            194,
+            155,
+            174,
+            255
+          ]
+        },
+        {
+          "time": 0.8,
+          "active": false,
+          "max": 0,
+          "opaqueBand": [
+            120,
+            75,
+            160,
+            255
+          ]
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "actual editor preview overlay transparent PNG and nonframe boundaries",
+      "max": 1,
+      "observations": [
+        {
+          "time": 0.12,
+          "active": false,
+          "max": 0,
+          "opaqueBand": [
+            120,
+            75,
+            160,
+            255
+          ]
+        },
+        {
+          "time": 0.16,
+          "active": true,
+          "max": 1,
+          "opaqueBand": [
+            175,
+            94,
+            128,
+            255
+          ]
+        },
+        {
+          "time": 0.76,
+          "active": true,
+          "max": 1,
+          "opaqueBand": [
+            175,
+            94,
+            128,
+            255
+          ]
+        },
+        {
+          "time": 0.8,
+          "active": false,
+          "max": 0,
+          "opaqueBand": [
+            120,
+            75,
+            160,
+            255
+          ]
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "pageErrors": [],
+  "success": true,
+  "sourceHashesAfter": {
+    "src/main/media.cjs": "5633bdcef5e90d50b27cfb40b190eb766c604109b0215c255e943471efb80468",
+    "src/main/visual-tools.cjs": "d2d698c1b7f5223916c30b92917887d8027b643090bf90296b055c4c05a7fd68",
+    "src/shared/project.js": "9239874c5dc8203f286cd6b31243e0b48af89ccdd2547f0f9fe2912484907515",
+    "src/shared/visual-effects.js": "3c8e53fa5035b00ff71fdf2bb8f480df64828fdceff142ee70cb6ec7d336793f",
+    "src/renderer/app.js": "2d99227347a672e43395be74ac50719c6882386d0ffec289155718bab1aa32b0"
+  },
+  "sourceStable": true,
+  "finishedAt": "2026-10-17T05:29:38.053Z"
+}

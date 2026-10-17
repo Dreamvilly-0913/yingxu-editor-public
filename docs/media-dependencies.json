@@ -1,0 +1,12 @@
+{
+  "verifiedAt": "2026-10-17",
+  "ffmpegOfficialDownloadPage": "https://ffmpeg.org/download.html",
+  "windowsBuildProvider": "https://www.gyan.dev/ffmpeg/builds/",
+  "description": "FFmpeg upstream provides source; Gyan Windows builds are linked by the upstream download page. This manifest pins the provider package and checksum, not a guarantee of bit-identical output to previous local builds.",
+  "version": "9.0.2",
+  "url": "https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-9.0.2-essentials_build.zip",
+  "checksumUrl": "https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-9.0.2-essentials_build.zip.sha256",
+  "bytes": 114768076,
+  "sha256": "60f467265b1e312373dbcd92200c2618a74850f98d3d078e94296bb3fa2047ba",
+  "license": "GPL-3.0; preserve the provider package license when redistributing binaries"
+}

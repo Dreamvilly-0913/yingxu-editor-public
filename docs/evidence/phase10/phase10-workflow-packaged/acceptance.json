@@ -1,0 +1,86 @@
+{
+  "success": true,
+  "version": "0.8.0",
+  "packaged": true,
+  "checks": [
+    {
+      "name": "540p preview and full-resolution caches are distinct and retain verified working color",
+      "evidence": {
+        "preview": [
+          360,
+          540
+        ],
+        "full": [
+          640,
+          960
+        ]
+      }
+    },
+    {
+      "name": "Export uses originals and emits an exact 12-frame one-second requested range with both media endpoints",
+      "evidence": {
+        "result": {
+          "output": "<project-root>/outputs/phase10-workflow-packaged/range.mp4",
+          "duration": 1,
+          "rangeStart": 0.5,
+          "rangeEnd": 1.5,
+          "encoder": "libx264",
+          "fallbackReason": null,
+          "renderedDuration": 1,
+          "width": 320,
+          "height": 180,
+          "fps": 12
+        },
+        "frames": "12",
+        "duration": "1.000000"
+      }
+    },
+    {
+      "name": "WAV interval export is sample-accurate 48k stereo",
+      "evidence": {
+        "frames": 48000,
+        "sampleRate": "48000"
+      }
+    },
+    {
+      "name": "Actual encoder capability is probed and automatic output is independently verified",
+      "evidence": {
+        "capabilities": {
+          "software": true,
+          "nvenc": false,
+          "reason": "[h264_nvenc @ 000001ecefdc4380] InitializeEncoder failed: invalid param (8): Frame Dimension less than the minimum supported value.\r\n[vost#0:0/h264_nvenc @ 000001ecefdc4000] Error while opening encoder - maybe incorrect parameters such as bit_rate, rate, width or height.\r\n[vf#0:0 @ 000001ecefde0480] Error sending frames to consumers: Invalid argument\r\n[vf#0:0 @ 000001ecefde0480] Task finished with error code: -22 (Invalid argument)\r\n[vf#0:0 @ 000001ecefde0480] Terminating thread with return code -22 (Invalid argument)\r\n[vost#0:0/h264_nvenc @ 000001ecefdc4000] Could not open encoder before EOF\r\n[vost#0:0/h264_nvenc @ 000001ecefdc4000] Task finished with error code: -22 (Invalid argument)\r\n[vost#0:0/h264_nvenc @ 000001ecefdc4000] Terminating thread with return code -22 (Invalid argument)\r\n[out#0/null @ 000001ecefdc2440] Nothing was written into output file, because at least one of its streams received no packets.",
+          "checkedAt": "2026-10-17T05:29:39.483Z"
+        },
+        "encoder": "libx264",
+        "fallbackReason": null
+      }
+    },
+    {
+      "name": "Expanded static video mask uses cached coverage and preserves center/corner alpha"
+    },
+    {
+      "name": "All preview, range and processing operations leave original bytes unchanged",
+      "evidence": {
+        "sha256": "553943824d0338fc22e56688a061632a8655301bae7900e3c49e4386acb8296b"
+      }
+    }
+  ],
+  "sourceHashes": {
+    "src/main/media.cjs": "5633bdcef5e90d50b27cfb40b190eb766c604109b0215c255e943471efb80468",
+    "src/main/export-options.cjs": "c973822bd7ded7125f461637d0b6841f1eef2fca77d8ae80fc75b94c822dcb96",
+    "src/main/color-space.cjs": "41347afccd4d8583c4c6765cfbded9a14dc47467bce09892f20fb47873c050cd",
+    "src/shared/project.js": "9239874c5dc8203f286cd6b31243e0b48af89ccdd2547f0f9fe2912484907515"
+  },
+  "sourceHashesAfter": {
+    "src/main/media.cjs": "5633bdcef5e90d50b27cfb40b190eb766c604109b0215c255e943471efb80468",
+    "src/main/export-options.cjs": "c973822bd7ded7125f461637d0b6841f1eef2fca77d8ae80fc75b94c822dcb96",
+    "src/main/color-space.cjs": "41347afccd4d8583c4c6765cfbded9a14dc47467bce09892f20fb47873c050cd",
+    "src/shared/project.js": "9239874c5dc8203f286cd6b31243e0b48af89ccdd2547f0f9fe2912484907515"
+  },
+  "sourceStable": true,
+  "toolPaths": {
+    "ffmpeg": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/ffmpeg.exe",
+    "ffprobe": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/ffprobe.exe"
+  },
+  "createdAt": "2026-10-17T05:29:42.803Z"
+}

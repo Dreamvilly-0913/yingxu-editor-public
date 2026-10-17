@@ -1,0 +1,20 @@
+{
+  "model": "u2netp",
+  "bytes": 4574861,
+  "sha256": "309c8469258dda742793dce0ebea8e6dd393174f89934733ecc8b14c76f4ddd8",
+  "md5": "8e83ca70e441ab06c318d82300c84806",
+  "url": "https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2netp.onnx",
+  "upstream": "https://github.com/xuebinqin/U-2-Net",
+  "license": "Apache-2.0",
+  "runtime": "onnxruntime-node@1.30.0",
+  "runtimeLicense": "MIT",
+  "inferenceSize": [
+    320,
+    320
+  ],
+  "mode": "CPU salient-object segmentation; per-frame video, no temporal tracking",
+  "sourceReferences": [
+    "https://raw.githubusercontent.com/danielgatis/rembg/main/rembg/sessions/u2netp.py",
+    "https://github.com/microsoft/onnxruntime/blob/main/js/node/README.md"
+  ]
+}

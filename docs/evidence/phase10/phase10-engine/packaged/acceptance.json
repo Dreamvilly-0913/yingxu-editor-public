@@ -1,0 +1,146 @@
+{
+  "success": true,
+  "checkedAt": "2026-10-17T05:29:47.799Z",
+  "version": "0.8.0",
+  "packaged": true,
+  "checks": [
+    {
+      "name": "main gaps decode black and timeline WAV gaps decode silence",
+      "frames": 54,
+      "gapDecodedChannels": 516096,
+      "gapMax": 0,
+      "audioRanges": [
+        {
+          "start": 0.04,
+          "end": 0.16,
+          "silent": true,
+          "max": 0,
+          "rms": 0
+        },
+        {
+          "start": 0.3,
+          "end": 0.65,
+          "silent": false,
+          "max": 2900,
+          "rms": 2046.3613242690758
+        },
+        {
+          "start": 0.84,
+          "end": 1.26,
+          "silent": true,
+          "max": 0,
+          "rms": 0
+        },
+        {
+          "start": 1.4,
+          "end": 1.7,
+          "silent": false,
+          "max": 2899,
+          "rms": 2046.2699198277012
+        }
+      ]
+    },
+    {
+      "name": "explicit main transition remains correct beside absolute gaps",
+      "samples": {
+        "before": [
+          254,
+          0,
+          0
+        ],
+        "middle": [
+          127,
+          0,
+          125
+        ],
+        "after": [
+          0,
+          0,
+          253
+        ],
+        "gap": [
+          0,
+          0,
+          0
+        ],
+        "last": [
+          254,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "non-frame head and tail trim preserve curve global frame mapping",
+      "start": 0.31,
+      "duration": 1.490185179738648,
+      "sourceIn": 0.304303937462904,
+      "sourceSpan": 2.2074366024069647,
+      "mapError": 8.881784197001252e-16,
+      "checkedFrames": 44,
+      "wrong": 0,
+      "maxSourceFrameError": 0,
+      "observations": [
+        {
+          "outputFrame": 16,
+          "expected": 14,
+          "actual": 14
+        },
+        {
+          "outputFrame": 24,
+          "expected": 27,
+          "actual": 27
+        },
+        {
+          "outputFrame": 32,
+          "expected": 46,
+          "actual": 46
+        },
+        {
+          "outputFrame": 40,
+          "expected": 60,
+          "actual": 60
+        },
+        {
+          "outputFrame": 48,
+          "expected": 70,
+          "actual": 70
+        }
+      ]
+    },
+    {
+      "name": "head source extension preserves retained curve frames and extrapolates endpoint speed",
+      "extensionSeconds": 0.12,
+      "prefixFrames": 4,
+      "retainedFrames": 44,
+      "wrong": 0
+    },
+    {
+      "name": "unused offline asset permits MP4 and ASR WAV",
+      "success": true
+    },
+    {
+      "name": "legacy magnetic output matches 0.6 MP4 SHA-256",
+      "currentHash": "a708ffb10372061ab43924c38219fc11d0697c7f2b21cf4eff7f5b7ac02be43e",
+      "referenceHash": "a708ffb10372061ab43924c38219fc11d0697c7f2b21cf4eff7f5b7ac02be43e"
+    },
+    {
+      "name": "cancel preserves existing output and original source, removes job and partial files",
+      "success": true
+    }
+  ],
+  "sourceHashes": {
+    "src/main/media.cjs": "5633bdcef5e90d50b27cfb40b190eb766c604109b0215c255e943471efb80468",
+    "src/shared/project.js": "9239874c5dc8203f286cd6b31243e0b48af89ccdd2547f0f9fe2912484907515",
+    "src/shared/time-map.js": "4bfc94e0358bcc2eca7d8da0b950ffd23ff206d9904cace9c2378a4ffece3113",
+    "src/main/color-space.cjs": "41347afccd4d8583c4c6765cfbded9a14dc47467bce09892f20fb47873c050cd"
+  },
+  "toolPaths": {
+    "ffmpeg": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/ffmpeg.exe",
+    "ffprobe": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/ffprobe.exe"
+  },
+  "toolHashes": {
+    "ffmpeg": "2ce797a0f88d7f067180338fb227f7b1928ea727bd9a4d7a1d022f7c52af71a3",
+    "ffprobe": "4303ec85855340689b1f8aa5d9c1dc06ef3e3090682de3034edc3fca2b0798d5"
+  }
+}

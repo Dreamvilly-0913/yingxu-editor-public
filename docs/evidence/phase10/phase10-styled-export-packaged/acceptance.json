@@ -1,0 +1,76 @@
+{
+  "success": true,
+  "version": "0.8.0",
+  "packaged": true,
+  "createdAt": "2026-10-17T05:30:23.084Z",
+  "sourceHashes": {
+    "src/main/main.cjs": "0f266b9fb50dba5ffbad68d8c2f05cbe528df2c517b623418f22131ee599bf5c",
+    "src/main/media.cjs": "5633bdcef5e90d50b27cfb40b190eb766c604109b0215c255e943471efb80468",
+    "src/main/text-render.cjs": "871485a9c28150297a185c63abe620dfa51bf8bab67bb4f27491bc578c763903",
+    "src/main/text-raster.html": "e974f50b040379f6762d7705fee55765eb5a798f2eaf02e6c3754b7dca1e4150",
+    "src/shared/project.js": "9239874c5dc8203f286cd6b31243e0b48af89ccdd2547f0f9fe2912484907515",
+    "src/shared/text-style.js": "077d49385b3c3ab94c0528c035055e6ffc4e48ab9706e826342937f83fc0f1f6",
+    "src/renderer/app.js": "2d99227347a672e43395be74ac50719c6882386d0ffec289155718bab1aa32b0"
+  },
+  "sourceChangedDuringRun": [],
+  "checks": [
+    {
+      "name": "Text-only project exports real MP4 through desktop IPC with zero clips, correct silent audio index, size, frame count and explicit working tags",
+      "evidence": {
+        "path": "<project-root>/outputs/phase10-styled-export-packaged/独立文字与样式字幕-320x180.mp4",
+        "clips": 0,
+        "frames": 30,
+        "width": 320,
+        "height": 180,
+        "audioChannels": 2,
+        "silentBytes": 233472
+      }
+    },
+    {
+      "name": "Applying smaller canvas in the actual UI scales every pixel style, preserves normalized geometry and resolves implicit independent title defaults",
+      "evidence": {
+        "width": 320,
+        "height": 180,
+        "scaleRatio": 0.5,
+        "implicitTitleFontSize": 36,
+        "pixelFields": [
+          "fontSize",
+          "letterSpacing",
+          "padding",
+          "outlineWidth",
+          "shadowBlur",
+          "shadowX",
+          "shadowY"
+        ],
+        "path": "<project-root>/outputs/phase10-styled-export-packaged/样式字幕-缩放后实际预览.png"
+      }
+    },
+    {
+      "name": "Direct export scaling and actual renderer canvas scaling produce matching layout and bounded final H264 RGB differences",
+      "evidence": {
+        "meanAbsoluteRgbError": 1.2405844907407408,
+        "maxRgbError": 91,
+        "p95": 8,
+        "psnrDb": 34.33997894803603,
+        "sharedCanvasRgbaMaxError": 0,
+        "comparison": "actual full-size renderer canvas RGB vs decoded final H264 4:2:0 frame",
+        "uiExportMatchesDirectExport": true,
+        "path": "<project-root>/outputs/phase10-styled-export-packaged/界面缩放后同尺寸再次导出.mp4"
+      }
+    },
+    {
+      "name": "Styled titles over a real visual clip preserve final input/audio mapping and agree with preview composition",
+      "evidence": {
+        "meanAbsoluteRgbError": 2.135011574074074,
+        "maxRgbError": 75,
+        "p95": 8,
+        "psnrDb": 34.58579982740794,
+        "path": "<project-root>/outputs/phase10-styled-export-packaged/画面与完整文字样式.mp4",
+        "clips": 1,
+        "audioPresent": true
+      }
+    }
+  ],
+  "failures": [],
+  "pageErrors": []
+}

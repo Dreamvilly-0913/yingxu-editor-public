@@ -1,0 +1,59 @@
+{
+  "success": true,
+  "version": "0.8.0",
+  "packaged": true,
+  "checks": [
+    {
+      "name": "Proxy URL is private; audio references unchanged source; work space declared",
+      "evidence": "assumed"
+    },
+    {
+      "name": "Both proxy and original-audio URLs support exact Range/HEAD",
+      "evidence": {
+        "proxy": {
+          "length": 1548341,
+          "head": 200,
+          "range": 206,
+          "bytes": 157
+        },
+        "audio": {
+          "length": 156296,
+          "head": 200,
+          "range": 206,
+          "bytes": 157
+        }
+      }
+    },
+    {
+      "name": "Neutral preview uses canvas; original audio is synchronized and fade gain applied once",
+      "evidence": {
+        "videoTime": 0.5,
+        "audioTime": 0.5,
+        "videoVolume": 0,
+        "audioVolume": 0.2,
+        "canvasVisible": true,
+        "videoVisible": "hidden"
+      }
+    },
+    {
+      "name": "Play/pause keeps original sound and proxy video together",
+      "evidence": {
+        "v": 2.507138,
+        "a": 2.438067,
+        "audioPaused": true
+      }
+    },
+    {
+      "name": "Saved project contains source-relative paths with no proxy tokens",
+      "evidence": "video-with-audio.mp4"
+    },
+    {
+      "name": "Real import cancellation leaves the project unchanged and removes partial proxy files",
+      "evidence": {
+        "tempFiles": []
+      }
+    }
+  ],
+  "errors": [],
+  "createdAt": "2026-10-17T05:31:47.012Z"
+}

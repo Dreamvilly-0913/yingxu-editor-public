@@ -1,0 +1,168 @@
+{
+  "createdAt": "2026-10-17T05:28:54.484Z",
+  "version": "0.8.0",
+  "packaged": true,
+  "sourceHashes": {
+    "src/shared/advanced-color.js": "b214725fec6b7c14b04d4d7ccd76a3c8dba484d22da0f62133a7cdcd064e14c1",
+    "src/shared/visual-effects.js": "3c8e53fa5035b00ff71fdf2bb8f480df64828fdceff142ee70cb6ec7d336793f",
+    "src/renderer/color-preview.js": "c139a44f84366ef5861a7c8e5a2f48d8e0fed82b907794c98cf80389a2a011ee",
+    "src/renderer/visual-controls.js": "b4eec69595b0d702e4e49d960aa31d2dfb0d203fdd8c2d227d460146a357d131",
+    "src/renderer/visual-controls.css": "afd2ef99a245e07235799e1132c6a04924545bf6be567f32c9f24540a192cf7b",
+    "src/main/visual-tools.cjs": "d2d698c1b7f5223916c30b92917887d8027b643090bf90296b055c4c05a7fd68"
+  },
+  "checks": [
+    {
+      "name": "FFmpeg key/despill/edge equals shared CPU at radius 0",
+      "pixels": 1536,
+      "max": 1,
+      "mean": 0.08121744791666667,
+      "pass": true
+    },
+    {
+      "name": "FFmpeg key/despill/edge equals shared CPU at radius 2",
+      "pixels": 1536,
+      "max": 1,
+      "mean": 0.10611979166666667,
+      "pass": true
+    },
+    {
+      "name": "FFmpeg animated rounded/expanded mask equals shared CPU at five times",
+      "frames": 5,
+      "max": 1,
+      "mean": 0.11197916666666667,
+      "pass": true
+    },
+    {
+      "name": "Actual Electron GPU professional-default",
+      "pixels": 6144,
+      "maxStraightRgb": 0,
+      "meanStraightRgb": 0,
+      "maxPremultipliedRgb": 0,
+      "maxAlpha": 0,
+      "maxVersusFfmpeg65Tetrahedral": null,
+      "milliseconds": 846.9000000003725,
+      "pass": true
+    },
+    {
+      "name": "Actual Electron GPU Bezier-independent-Y",
+      "pixels": 6144,
+      "maxStraightRgb": 1,
+      "meanStraightRgb": 0.18798828125,
+      "maxPremultipliedRgb": 1.3769124884009898,
+      "maxAlpha": 0,
+      "maxVersusFfmpeg65Tetrahedral": null,
+      "milliseconds": 167,
+      "pass": true
+    },
+    {
+      "name": "Actual Electron GPU four-wheels-tonal-balance",
+      "pixels": 6144,
+      "maxStraightRgb": 1,
+      "meanStraightRgb": 0.1893988715277778,
+      "maxPremultipliedRgb": 1.3955067540612447,
+      "maxAlpha": 0,
+      "maxVersusFfmpeg65Tetrahedral": null,
+      "milliseconds": 379.79999999981374,
+      "pass": true
+    },
+    {
+      "name": "Actual Electron GPU six-dimensional-HSL",
+      "pixels": 6144,
+      "maxStraightRgb": 14,
+      "meanStraightRgb": 0.22840711805555555,
+      "maxPremultipliedRgb": 13.98292878062233,
+      "maxAlpha": 0,
+      "maxVersusFfmpeg65Tetrahedral": 1,
+      "milliseconds": 265.5,
+      "pass": true
+    },
+    {
+      "name": "Actual Electron GPU 1D-Cube",
+      "pixels": 6144,
+      "maxStraightRgb": 1,
+      "meanStraightRgb": 0.07134331597222222,
+      "maxPremultipliedRgb": 1,
+      "maxAlpha": 0,
+      "maxVersusFfmpeg65Tetrahedral": null,
+      "milliseconds": 355.69999999925494,
+      "pass": true
+    },
+    {
+      "name": "Actual Electron GPU 3D-Cube",
+      "pixels": 6144,
+      "maxStraightRgb": 1,
+      "meanStraightRgb": 0.1676974826388889,
+      "maxPremultipliedRgb": 1,
+      "maxAlpha": 0,
+      "maxVersusFfmpeg65Tetrahedral": null,
+      "milliseconds": 391.90000000037253,
+      "pass": true
+    },
+    {
+      "name": "Actual Electron GPU combined-professional-and-legacy",
+      "pixels": 6144,
+      "maxStraightRgb": 2,
+      "meanStraightRgb": 0.15576171875,
+      "maxPremultipliedRgb": 1.6116403757861415,
+      "maxAlpha": 0,
+      "maxVersusFfmpeg65Tetrahedral": null,
+      "milliseconds": 507.59999999962747,
+      "pass": true
+    },
+    {
+      "name": "Actual Electron GPU key-raw-before-grade",
+      "pixels": 6144,
+      "maxStraightRgb": 116,
+      "meanStraightRgb": 1.0346137152777777,
+      "maxPremultipliedRgb": 2.2300033514059407,
+      "maxAlpha": 1,
+      "maxVersusFfmpeg65Tetrahedral": null,
+      "milliseconds": 290.1000000005588,
+      "pass": true
+    },
+    {
+      "name": "Actual Electron GPU key-edge-two-pixels",
+      "pixels": 6144,
+      "maxStraightRgb": 2,
+      "meanStraightRgb": 0.12489149305555555,
+      "maxPremultipliedRgb": 1.9058823529411768,
+      "maxAlpha": 1,
+      "maxVersusFfmpeg65Tetrahedral": null,
+      "milliseconds": 17.200000000186265,
+      "pass": true
+    },
+    {
+      "name": "Canvas blend modes match shared straight-alpha source-over",
+      "modes": [
+        "normal",
+        "multiply",
+        "screen",
+        "overlay",
+        "darken",
+        "lighten",
+        "difference",
+        "exclusion",
+        "hard-light",
+        "soft-light",
+        "color-dodge",
+        "color-burn"
+      ],
+      "pixelsPerMode": 8,
+      "maxPremultipliedRgb": 1.8138408304498341,
+      "maxAlpha": 0.7352941176470722,
+      "pass": true
+    }
+  ],
+  "success": true,
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) 映序剪辑/0.8.0 Chrome/152.0.7977.130 Electron/44.7.0 Safari/537.36",
+  "sourceHashesAfter": {
+    "src/shared/advanced-color.js": "b214725fec6b7c14b04d4d7ccd76a3c8dba484d22da0f62133a7cdcd064e14c1",
+    "src/shared/visual-effects.js": "3c8e53fa5035b00ff71fdf2bb8f480df64828fdceff142ee70cb6ec7d336793f",
+    "src/renderer/color-preview.js": "c139a44f84366ef5861a7c8e5a2f48d8e0fed82b907794c98cf80389a2a011ee",
+    "src/renderer/visual-controls.js": "b4eec69595b0d702e4e49d960aa31d2dfb0d203fdd8c2d227d460146a357d131",
+    "src/renderer/visual-controls.css": "afd2ef99a245e07235799e1132c6a04924545bf6be567f32c9f24540a192cf7b",
+    "src/main/visual-tools.cjs": "d2d698c1b7f5223916c30b92917887d8027b643090bf90296b055c4c05a7fd68"
+  },
+  "sourceStable": true,
+  "finishedAt": "2026-10-17T05:29:05.813Z"
+}

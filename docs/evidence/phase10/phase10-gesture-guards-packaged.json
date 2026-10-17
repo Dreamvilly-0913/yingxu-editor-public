@@ -1,0 +1,124 @@
+{
+  "success": true,
+  "version": "0.8.0",
+  "launchedVersion": "0.8.0",
+  "packaged": true,
+  "executable": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/映序剪辑.exe",
+  "executableSha256": "2529b494f4123f152bce346051f7bd855ef95006424a561953cf17c49a3d1ba8",
+  "createdAt": "2026-10-17T05:33:16.411Z",
+  "checks": [
+    {
+      "name": "Dropping a moved clip over the preview rejects the draft without changing project or history",
+      "evidence": {
+        "dirty": false,
+        "undoEntries": 0,
+        "projectBytesIdentical": true,
+        "start": {
+          "x": 243,
+          "y": 767
+        },
+        "destination": "preview"
+      }
+    },
+    {
+      "name": "Dropping over the timeline toolbar rejects the draft without changing project or history",
+      "evidence": {
+        "dirty": false,
+        "undoEntries": 0,
+        "projectBytesIdentical": true,
+        "destination": "timeline toolbar"
+      }
+    },
+    {
+      "name": "Opening a modal after pointerdown and releasing without another move cannot commit",
+      "evidence": {
+        "dirty": false,
+        "undoEntries": 0,
+        "projectBytesIdentical": true,
+        "modal": "projectToolsDialog"
+      }
+    },
+    {
+      "name": "Clamping at the timeline head and neighboring clip tail leaves no empty undo record",
+      "evidence": {
+        "dirty": false,
+        "undoEntries": 0,
+        "projectBytesIdentical": true,
+        "head": 0,
+        "tail": 2
+      }
+    },
+    {
+      "name": "A same-position vertical drag within its existing track leaves no dirty state or undo",
+      "evidence": {
+        "dirty": false,
+        "undoEntries": 0,
+        "projectBytesIdentical": true,
+        "horizontalDelta": 0,
+        "verticalDelta": 8
+      }
+    },
+    {
+      "name": "Escape cancels an otherwise valid move and pointerup cannot revive the canceled draft",
+      "evidence": {
+        "dirty": false,
+        "undoEntries": 0,
+        "projectBytesIdentical": true,
+        "canceledDelta": 0.4
+      }
+    },
+    {
+      "name": "An asynchronous project replacement cannot be overwritten by the old gesture pointerup",
+      "evidence": {
+        "dirty": false,
+        "undoEntries": 0,
+        "projectBytesIdentical": true,
+        "delayMs": 500,
+        "loadedProject": "切换后的独立空工程",
+        "originalFileUnchanged": true
+      }
+    },
+    {
+      "name": "Free-main transition controls explain and enforce the magnetic prerequisite",
+      "evidence": {
+        "typeDisabled": true,
+        "durationDisabled": true,
+        "explanation": true
+      }
+    }
+  ],
+  "failures": [],
+  "pageErrors": [],
+  "sourceStable": true,
+  "sourceHashes": {
+    "src/shared/project.js": "9239874c5dc8203f286cd6b31243e0b48af89ccdd2547f0f9fe2912484907515",
+    "src/shared/time-map.js": "4bfc94e0358bcc2eca7d8da0b950ffd23ff206d9904cace9c2378a4ffece3113",
+    "src/shared/advanced-color.js": "b214725fec6b7c14b04d4d7ccd76a3c8dba484d22da0f62133a7cdcd064e14c1",
+    "src/renderer/app.js": "2d99227347a672e43395be74ac50719c6882386d0ffec289155718bab1aa32b0",
+    "src/renderer/timeline-editing.js": "7c3195b3cd83133617e0a51c70f7f9345a82ef8447e633c10bc9212a0b7177f9",
+    "src/renderer/timeline-editing.css": "9fbf2962cfef30e9c5414ca4014f79d0a56469cca09488c7c4d364787336a7cf",
+    "src/renderer/index.html": "db1166d36202e1deae6737efa90602628b03203b565af8852c436e5425007991",
+    "src/renderer/styles.css": "d9a347dfe2e43905b2a25e25fc7013c86a9a2bd4df278a6e76ae3e6a22897e8c",
+    "src/renderer/advanced-controls.js": "ae8522dfe1308d2d4ae7e902a74f98d8463247bc4a7430a5789d0f1be9d6c094",
+    "src/renderer/color-preview.js": "c139a44f84366ef5861a7c8e5a2f48d8e0fed82b907794c98cf80389a2a011ee",
+    "src/main/main.cjs": "0f266b9fb50dba5ffbad68d8c2f05cbe528df2c517b623418f22131ee599bf5c",
+    "src/main/preload.cjs": "5dc9403e557f46e07361e700f67a03504560e2968fe6a5f3708af7af724e93d4",
+    "src/main/project-files.cjs": "9e90ec581eb41b46f82c003b46e4a7c9974d90804686cea3aa0a44ebd2f48c2e"
+  },
+  "sourceHashesAfter": {
+    "src/shared/project.js": "9239874c5dc8203f286cd6b31243e0b48af89ccdd2547f0f9fe2912484907515",
+    "src/shared/time-map.js": "4bfc94e0358bcc2eca7d8da0b950ffd23ff206d9904cace9c2378a4ffece3113",
+    "src/shared/advanced-color.js": "b214725fec6b7c14b04d4d7ccd76a3c8dba484d22da0f62133a7cdcd064e14c1",
+    "src/renderer/app.js": "2d99227347a672e43395be74ac50719c6882386d0ffec289155718bab1aa32b0",
+    "src/renderer/timeline-editing.js": "7c3195b3cd83133617e0a51c70f7f9345a82ef8447e633c10bc9212a0b7177f9",
+    "src/renderer/timeline-editing.css": "9fbf2962cfef30e9c5414ca4014f79d0a56469cca09488c7c4d364787336a7cf",
+    "src/renderer/index.html": "db1166d36202e1deae6737efa90602628b03203b565af8852c436e5425007991",
+    "src/renderer/styles.css": "d9a347dfe2e43905b2a25e25fc7013c86a9a2bd4df278a6e76ae3e6a22897e8c",
+    "src/renderer/advanced-controls.js": "ae8522dfe1308d2d4ae7e902a74f98d8463247bc4a7430a5789d0f1be9d6c094",
+    "src/renderer/color-preview.js": "c139a44f84366ef5861a7c8e5a2f48d8e0fed82b907794c98cf80389a2a011ee",
+    "src/main/main.cjs": "0f266b9fb50dba5ffbad68d8c2f05cbe528df2c517b623418f22131ee599bf5c",
+    "src/main/preload.cjs": "5dc9403e557f46e07361e700f67a03504560e2968fe6a5f3708af7af724e93d4",
+    "src/main/project-files.cjs": "9e90ec581eb41b46f82c003b46e4a7c9974d90804686cea3aa0a44ebd2f48c2e"
+  },
+  "work": "<project-root>/work/phase10-gesture-guards-packaged-1792215047038"
+}

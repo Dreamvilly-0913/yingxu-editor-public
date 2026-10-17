@@ -1,0 +1,9 @@
+/* Dedicated CPU inference worker. Preprocessing follows U2NetP's published RGB normalization. */
+'use strict';
+const {parentPort,workerData}=require('node:worker_threads'),path=require('node:path');
+(async()=>{
+ const ort=require(path.join(workerData.toolsDir,'runtime/node_modules/onnxruntime-node'));
+ const session=await ort.InferenceSession.create(path.join(workerData.toolsDir,'u2netp.onnx'),{executionProviders:['cpu'],intraOpNumThreads:2,interOpNumThreads:1,graphOptimizationLevel:'all'});
+ parentPort.postMessage({type:'ready',input:session.inputNames[0],output:session.outputNames[0]});
+ parentPort.on('message',async message=>{if(message.type!=='frame')return;try{const bytes=new Uint8Array(message.rgb),size=320*320,values=new Float32Array(size*3),mean=[.485,.456,.406],std=[.229,.224,.225];let maximum=0;for(const value of bytes)maximum=Math.max(maximum,value);maximum=Math.max(maximum,1e-6);for(let c=0;c<3;c++)for(let i=0;i<size;i++)values[c*size+i]=(bytes[i*3+c]/maximum-mean[c])/std[c];const start=performance.now(),output=await session.run({[session.inputNames[0]]:new ort.Tensor('float32',values,[1,3,320,320])}),prediction=output[session.outputNames[0]].data;let lo=Infinity,hi=-Infinity;for(let i=0;i<size;i++){lo=Math.min(lo,prediction[i]);hi=Math.max(hi,prediction[i]);}if(!Number.isFinite(lo)||!Number.isFinite(hi))throw new Error('模型输出包含无效值');const mask=new Uint8Array(size),span=hi-lo;for(let i=0;i<size;i++)mask[i]=span>1e-8?Math.round(Math.max(0,Math.min(1,(prediction[i]-lo)/span))*255):Math.round(Math.max(0,Math.min(1,prediction[i]))*255);parentPort.postMessage({type:'mask',mask:mask.buffer,inferenceMs:performance.now()-start},[mask.buffer]);}catch(error){parentPort.postMessage({type:'error',message:error.message||String(error)});}});
+})().catch(error=>{parentPort.postMessage({type:'error',message:error.message||String(error)});});

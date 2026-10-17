@@ -1,0 +1,83 @@
+{
+  "success": true,
+  "version": "0.8.0",
+  "packaged": true,
+  "createdAt": "2026-10-17T05:30:09.969Z",
+  "sourceHashes": {
+    "src/shared/text-style.js": "077d49385b3c3ab94c0528c035055e6ffc4e48ab9706e826342937f83fc0f1f6",
+    "src/main/text-render.cjs": "871485a9c28150297a185c63abe620dfa51bf8bab67bb4f27491bc578c763903",
+    "src/main/text-raster.html": "e974f50b040379f6762d7705fee55765eb5a798f2eaf02e6c3754b7dca1e4150",
+    "src/renderer/text-controls.js": "fe28c8c685155c85074e6481c36d2ae111c87f8c5e45aa2290a1319dccda3426",
+    "src/renderer/text-controls.css": "92be160a185550f71608bf8469ee7bed042bf07a4993f0168a131f31d58c4815"
+  },
+  "sourceChangedDuringRun": [],
+  "checks": [
+    {
+      "name": "Electron renders a transparent title/caption overlay and closes its owned window",
+      "evidence": {
+        "path": "<project-root>/work/phase10-text-packaged/run-1792214989152/text-overlay/text-overlay.mkv",
+        "frameCount": 30,
+        "events": 7,
+        "renderer": "shared-canvas",
+        "width": 320,
+        "height": 180,
+        "before": 1,
+        "after": 1
+      }
+    },
+    {
+      "name": "Every decoded FFV1 frame equals full-resolution preview Canvas RGBA including Chinese, overlap, rotation, spacing, background and font fallback",
+      "evidence": {
+        "checkedFrames": 30,
+        "pixels": 1728000,
+        "maxRgbaError": 0
+      }
+    },
+    {
+      "name": "Half-open frame quantized text intervals leave the first and final frames transparent",
+      "evidence": {
+        "transparentFrames": [
+          0,
+          1,
+          27,
+          28,
+          29
+        ],
+        "activeFrames": [
+          2,
+          3,
+          8,
+          16,
+          23,
+          25
+        ]
+      }
+    },
+    {
+      "name": "Cancel while rasterizing raises AbortError and destroys only the owned raster window",
+      "evidence": {
+        "canceled": true,
+        "name": "AbortError",
+        "message": "文字渲染已取消",
+        "windows": 1
+      }
+    },
+    {
+      "name": "Batch proofread validates atomically; literal replacement and whole-list shift apply only after confirmation",
+      "evidence": {
+        "singleUndoEntry": 1,
+        "firstText": "批量替换",
+        "shift": 0.2
+      }
+    },
+    {
+      "name": "Actual Inspector changes only selected text styles and reset retains global defaults",
+      "evidence": {
+        "singleCaptionFontSize": 32,
+        "otherCaptionFontSize": 16,
+        "resetStyle": {}
+      }
+    }
+  ],
+  "failures": []
+}

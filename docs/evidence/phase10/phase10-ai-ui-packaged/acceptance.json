@@ -1,0 +1,69 @@
+{
+  "success": true,
+  "version": "0.8.0",
+  "packaged": true,
+  "executables": {
+    "ffmpeg": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/ffmpeg.exe",
+    "ffprobe": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/ffprobe.exe"
+  },
+  "checks": [
+    {
+      "name": "AI button performs actual local PNG inference and one-transaction clip replacement preserving settings",
+      "evidence": {
+        "pixel": [
+          23,
+          68,
+          178,
+          255
+        ],
+        "assetId": "67e0a42f-6f1a-4aaa-8ba7-bf1e675ffd18"
+      }
+    },
+    {
+      "name": "AI asset replacement and import are undone and redone together"
+    },
+    {
+      "name": "Actual video inference enters editor as alpha WebM and browser preview shows underlying track",
+      "evidence": {
+        "hasAlpha": true,
+        "pixel": [
+          23,
+          68,
+          178,
+          255
+        ]
+      }
+    },
+    {
+      "name": "Final MP4 uses alpha-aware decoder and composites the lower blue track",
+      "evidence": {
+        "output": "<project-root>/work/phase10-ai-ui-packaged-1792215185276/composite.mp4",
+        "pixel": [
+          21,
+          67,
+          177
+        ]
+      }
+    },
+    {
+      "name": "AI IPC refuses untrusted asset paths"
+    }
+  ],
+  "errors": [],
+  "sourceHashes": {
+    "src/main/ai-matting.cjs": "e7127a1e13185b2720addbed96011e414100f4a2a49de29fe160dea542eb6ea9",
+    "src/main/ai-matting-worker.cjs": "a6feac9baf84e00d9dee19d4a6bf32fc17215d896c94cb517d1d62fa0a65e605",
+    "src/main/media.cjs": "5633bdcef5e90d50b27cfb40b190eb766c604109b0215c255e943471efb80468",
+    "src/main/color-space.cjs": "41347afccd4d8583c4c6765cfbded9a14dc47467bce09892f20fb47873c050cd",
+    "src/main/main.cjs": "0f266b9fb50dba5ffbad68d8c2f05cbe528df2c517b623418f22131ee599bf5c",
+    "src/main/editor-services.cjs": "7e1c67b69c3599481e27a107a3d9f2a18dda02f853d80a3b4b8a0cfec8c9e176",
+    "src/main/preload.cjs": "5dc9403e557f46e07361e700f67a03504560e2968fe6a5f3708af7af724e93d4",
+    "src/renderer/ai-controls.js": "33753d90a160f51a057ec4fb6dffc0b83064be2726f93ab99fb94b897f10dfd5",
+    "src/renderer/app.js": "2d99227347a672e43395be74ac50719c6882386d0ffec289155718bab1aa32b0",
+    "src/renderer/index.html": "db1166d36202e1deae6737efa90602628b03203b565af8852c436e5425007991",
+    "tools/ffmpeg.exe": "2ce797a0f88d7f067180338fb227f7b1928ea727bd9a4d7a1d022f7c52af71a3",
+    "tools/ffprobe.exe": "4303ec85855340689b1f8aa5d9c1dc06ef3e3090682de3034edc3fca2b0798d5"
+  },
+  "sourceStable": true,
+  "createdAt": "2026-10-17T05:34:03.963Z"
+}

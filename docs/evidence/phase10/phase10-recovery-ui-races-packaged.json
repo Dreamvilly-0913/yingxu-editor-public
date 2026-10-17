@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "version": "0.8.0",
+  "packaged": true,
+  "checks": [
+    "未处理旧恢复时编辑与新建均保留旧记录，不被空工程覆盖或删除",
+    "打开其它工程及演示项目仍保留旧恢复入口和原始内容",
+    "显式保存当前新工程不会清除尚未处理的旧恢复记录",
+    "用户明确忽略后才删除旧记录并重新启用当前工程自动暂存",
+    "延迟保存期间重复 Ctrl+S 只发起一次保存，界面及事件处理均阻止跨项目切换",
+    "异步保存绑定原快照，保存期间新编辑保持未保存并重新暂存",
+    "保存完成后切换新工程没有继承旧路径或已保存状态",
+    "撤销回已保存状态清除过期暂存，延迟队列不会把已撤销内容写回"
+  ],
+  "errors": [],
+  "sourceHashes": {
+    "src/main/main.cjs": "0f266b9fb50dba5ffbad68d8c2f05cbe528df2c517b623418f22131ee599bf5c",
+    "src/main/preload.cjs": "5dc9403e557f46e07361e700f67a03504560e2968fe6a5f3708af7af724e93d4",
+    "src/main/project-files.cjs": "9e90ec581eb41b46f82c003b46e4a7c9974d90804686cea3aa0a44ebd2f48c2e",
+    "src/shared/project.js": "9239874c5dc8203f286cd6b31243e0b48af89ccdd2547f0f9fe2912484907515",
+    "src/renderer/app.js": "2d99227347a672e43395be74ac50719c6882386d0ffec289155718bab1aa32b0"
+  },
+  "createdAt": "2026-10-17T05:34:26.193Z"
+}

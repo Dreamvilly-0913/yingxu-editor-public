@@ -1,0 +1,355 @@
+{
+  "schemaVersion": 1,
+  "id": "project-f82faa34-7ef9-4240-ab2b-72e1f66c2a7c",
+  "name": "音频、文字与视觉工作台",
+  "width": 1280,
+  "height": 720,
+  "fps": 30,
+  "videoTrackCount": 2,
+  "assets": [
+    {
+      "id": "v",
+      "name": "light.mp4",
+      "path": "light.mp4",
+      "kind": "video",
+      "duration": 4,
+      "width": 1280,
+      "height": 720,
+      "hasAudio": false,
+      "thumbnail": "",
+      "previewUrl": "",
+      "pathMode": "relative"
+    },
+    {
+      "id": "i",
+      "name": "texture.png",
+      "path": "texture.png",
+      "kind": "image",
+      "duration": 5,
+      "width": 1600,
+      "height": 900,
+      "hasAudio": false,
+      "thumbnail": "",
+      "previewUrl": "",
+      "pathMode": "relative"
+    },
+    {
+      "id": "a",
+      "name": "tone.wav",
+      "path": "tone.wav",
+      "kind": "audio",
+      "duration": 9,
+      "width": 0,
+      "height": 0,
+      "hasAudio": true,
+      "thumbnail": "",
+      "previewUrl": "",
+      "pathMode": "relative"
+    },
+    {
+      "id": "overlay-pattern",
+      "name": "texture-overlay.png",
+      "path": "texture-overlay.png",
+      "kind": "image",
+      "duration": 5,
+      "width": 320,
+      "height": 180,
+      "hasAudio": false,
+      "thumbnail": "",
+      "previewUrl": "",
+      "pathMode": "relative"
+    }
+  ],
+  "clips": [
+    {
+      "id": "clip-fad2acbd-6af9-44e6-a8db-ceda462e2527",
+      "assetId": "v",
+      "track": "video",
+      "start": 0.25,
+      "duration": 3.6474280321933965,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 1,
+      "speedCurve": [
+        {
+          "position": 0,
+          "speed": 0.8
+        },
+        {
+          "position": 0.5,
+          "speed": 1.15
+        },
+        {
+          "position": 1,
+          "speed": 1.4
+        }
+      ],
+      "advancedColor": {
+        "professional": {
+          "wheels": {
+            "offset": [
+              0.012,
+              -0.004,
+              0.009
+            ]
+          },
+          "bezier": {
+            "luma": [
+              {
+                "x": 0,
+                "y": 0
+              },
+              {
+                "x": 0.5,
+                "y": 0.55
+              },
+              {
+                "x": 1,
+                "y": 1
+              }
+            ]
+          }
+        }
+      },
+      "sourceDuration": 4
+    },
+    {
+      "id": "clip-763bd25d-e788-4aaa-b9fe-944112ddc2de",
+      "assetId": "i",
+      "track": "video",
+      "start": 5,
+      "duration": 2.8,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 1,
+      "color": {
+        "brightness": -0.1,
+        "contrast": 0.15,
+        "saturation": -0.2
+      }
+    },
+    {
+      "id": "clip-3cb620c6-d246-422c-9856-84365e11a174",
+      "assetId": "overlay-pattern",
+      "track": "video",
+      "start": 1,
+      "duration": 2.4,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 1,
+      "layer": 1,
+      "transform": {
+        "x": 0.26,
+        "y": 0.12,
+        "scale": 0.46,
+        "rotation": -5,
+        "opacity": 0.82
+      },
+      "mask": {
+        "type": "ellipse",
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "width": 0.8,
+        "height": 0.8,
+        "rotation": 0,
+        "feather": 0.08,
+        "invert": false,
+        "expansion": 0.02,
+        "roundness": 0.12
+      },
+      "visualEffects": {
+        "blendMode": "screen"
+      },
+      "maskAnimation": {
+        "keyframes": [
+          {
+            "time": 0,
+            "centerX": 0.4,
+            "centerY": 0.5,
+            "width": 0.6,
+            "height": 0.75,
+            "rotation": 0,
+            "feather": 0.08,
+            "expansion": 0.01,
+            "roundness": 0.12,
+            "easing": "linear"
+          },
+          {
+            "time": 2.4,
+            "centerX": 0.58,
+            "centerY": 0.5,
+            "width": 0.88,
+            "height": 0.9,
+            "rotation": 14,
+            "feather": 0.05,
+            "expansion": 0.04,
+            "roundness": 0.2,
+            "easing": "ease-in-out"
+          }
+        ]
+      }
+    },
+    {
+      "id": "clip-5d3165a7-266c-45c0-9cf8-69ce5201cf67",
+      "assetId": "a",
+      "track": "audio",
+      "start": 0.15,
+      "duration": 7.65,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 0.12,
+      "audioTrackId": "audio-1",
+      "audioFade": {
+        "in": 0.4,
+        "out": 0.6
+      },
+      "audioEffects": {
+        "denoise": 0.12,
+        "normalize": false,
+        "targetLufs": -16
+      }
+    },
+    {
+      "id": "clip-cff097af-0260-4c77-ac01-d15f1199d06f",
+      "assetId": "a",
+      "track": "audio",
+      "start": 4.8,
+      "duration": 2.4,
+      "sourceIn": 4.8,
+      "speed": 1,
+      "volume": 0.08,
+      "audioTrackId": "audio-2",
+      "audioFade": {
+        "in": 0.2,
+        "out": 0.4
+      }
+    }
+  ],
+  "subtitles": [
+    {
+      "id": "subtitle-67bb7c80-2762-46eb-a736-d4dafeec1a75",
+      "start": 0.5,
+      "end": 2.5,
+      "text": "选择第二音轨，试听静音、独听与降噪。",
+      "style": {
+        "fontSize": 28,
+        "color": "#ffffff",
+        "backgroundColor": "#0c1714",
+        "backgroundOpacity": 0.72,
+        "padding": 10,
+        "outlineWidth": 1
+      }
+    },
+    {
+      "id": "subtitle-549ebd84-3650-40c1-ae01-ebd1cfbeae12",
+      "start": 2.7,
+      "end": 4.4,
+      "text": "文字样式、曲线变速和蒙版动画进入实际成片。",
+      "style": {
+        "fontSize": 28,
+        "color": "#ffffff",
+        "backgroundColor": "#0c1714",
+        "backgroundOpacity": 0.72,
+        "padding": 10,
+        "outlineWidth": 1
+      }
+    },
+    {
+      "id": "subtitle-923df608-5fbb-4122-b51f-e25bed1425e1",
+      "start": 5.2,
+      "end": 7.7,
+      "text": "打开工作台，可继续体验抠像、补帧与防抖。",
+      "style": {
+        "fontSize": 28,
+        "color": "#ffffff",
+        "backgroundColor": "#0c1714",
+        "backgroundOpacity": 0.72,
+        "padding": 10,
+        "outlineWidth": 1
+      }
+    }
+  ],
+  "subtitleStyle": {
+    "fontSize": 48,
+    "color": "#ffffff"
+  },
+  "createdAt": "2026-10-17T05:45:02.036Z",
+  "updatedAt": "2026-10-17T05:45:02.318Z",
+  "magneticMain": false,
+  "audioTracks": [
+    {
+      "id": "audio-1",
+      "name": "音频 1",
+      "muted": false,
+      "solo": false,
+      "locked": false,
+      "gain": 1
+    },
+    {
+      "id": "audio-2",
+      "name": "配乐叠层",
+      "muted": false,
+      "solo": false,
+      "locked": false,
+      "gain": 0.6
+    }
+  ],
+  "texts": [
+    {
+      "id": "text-mvbz2oob-36639ta",
+      "start": 0.25,
+      "end": 3.5,
+      "text": "0.8 · 把素材变成作品",
+      "style": {
+        "fontFamily": "Microsoft YaHei",
+        "fontSize": 52,
+        "fontWeight": "bold",
+        "color": "#e8fff3",
+        "x": 0.5,
+        "y": 0.22,
+        "verticalAlign": "middle",
+        "letterSpacing": 2,
+        "backgroundColor": "#10251f",
+        "backgroundOpacity": 0.82,
+        "padding": 14,
+        "outlineWidth": 1,
+        "shadowOpacity": 0.6,
+        "shadowBlur": 8
+      }
+    },
+    {
+      "id": "text-mvbz2ooc-oy5ierm",
+      "start": 5.05,
+      "end": 7.75,
+      "text": "音频 · 文字 · 调色 · 合成",
+      "style": {
+        "fontSize": 44,
+        "color": "#fff1cd",
+        "x": 0.5,
+        "y": 0.35,
+        "verticalAlign": "middle",
+        "rotation": -2,
+        "outlineWidth": 2,
+        "backgroundColor": "#12201e",
+        "backgroundOpacity": 0.8,
+        "padding": 12
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "group-3257a578-43df-4d8f-9e70-9af30b4fd9bc",
+      "name": "编组",
+      "members": [
+        {
+          "type": "text",
+          "id": "text-mvbz2ooc-oy5ierm"
+        },
+        {
+          "type": "subtitle",
+          "id": "subtitle-923df608-5fbb-4122-b51f-e25bed1425e1"
+        }
+      ]
+    }
+  ]
+}

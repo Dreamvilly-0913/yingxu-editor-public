@@ -1,0 +1,211 @@
+{
+  "version": 1,
+  "created_at_utc": "2026-10-13T06:53:00.248204+00:00",
+  "goal": "核心剪辑优先，后续按模块扩展；全面逆向与全模块复现仍未完成",
+  "target_version": "11.4.1.14443",
+  "target_sha256": "092a5f2c499015f4d3cb318990efa6fcd517cde86c0b3fd39433eae3389c9916",
+  "method": "Independent Ghidra 12.1.4 selected-function analysis plus saved PE exports; no target execution",
+  "rea_evidence": false,
+  "new_entries": 6,
+  "completed": 6,
+  "facts": [
+    {
+      "id": "CORE01",
+      "module": "时间区间",
+      "observation": "TimeRange::patch_from_json 分别检测 start 和 duration 键，存在时更新 this+0x38 与 this+0x40 的64位值；缺键分支跳过对应更新。仅值变化后设置局部状态字段。",
+      "evidence": [
+        {
+          "file": "evidence/TimeRange_patch_from_json-0x180b57820.c",
+          "lines": [
+            90,
+            118
+          ],
+          "sha256": "1a2007384aedc902c5c8e5a67f4127f3f9af15d304a30f0c174e9454d8bef4c8"
+        }
+      ],
+      "crosschecks": {
+        "start_literal_va": "0x182ea11cc",
+        "duration_literal_va": "0x182ea11c0"
+      },
+      "inference": "支持独立的起点/时长字段与局部更新模型。",
+      "unknown": "时间单位、字段全部校验规则以及状态整数枚举未恢复。",
+      "implementation": "映序使用秒数 start/duration、sourceIn 与 speed；秒数及换算公式是独立设计，以测试验证。"
+    },
+    {
+      "id": "CORE02",
+      "module": "片段源区间",
+      "observation": "SegmentVideo 与 SegmentAudio 的 source_time_range getter 同址0x1801a80c0；机器码488d8138010000c3，返回this+0x138成员地址，导出类型为const shared_ptr<TimeRange>&。",
+      "evidence": [
+        {
+          "file": "evidence/Segment_source_time_range-0x1801a80c0.c",
+          "lines": [
+            69,
+            77
+          ],
+          "sha256": "8ac416d5480a6d7a7af1dbb027834a47c7939d8edd770d4fb98c706dbf6f92d4"
+        }
+      ],
+      "inference": "源区间是可独立引用的对象；它不同于实际编码文件。",
+      "unknown": "大量其它类getter因相同机器码共享地址，不能将成员类型推广到所有别名。未由此证明目标区间或分割算法。",
+      "implementation": "素材保存原文件信息；片段单独记录sourceIn和时间线start/duration，分割时按speed换算源入点。"
+    },
+    {
+      "id": "CORE03",
+      "module": "播放控制",
+      "observation": "Play/Pause分别构造不同回调表引用，在_Thrd_id及原子状态/计数控制区内调用虚表+0x10，然后降低计数并清理。",
+      "evidence": [
+        {
+          "file": "evidence/PlayerWin_Play-0x1815597e0.c",
+          "lines": [
+            25,
+            55
+          ],
+          "sha256": "4f0d4410596cd8f0516fcc66d83c467bc9d574fff0ebd3d4f91b4002e2400154"
+        },
+        {
+          "file": "evidence/PlayerWin_Pause-0x181559710.c",
+          "lines": [
+            25,
+            55
+          ],
+          "sha256": "13b408f6d02ab8cd3c596c86e87d187d1116f70023135b0c0f8bd7303c501e0c"
+        }
+      ],
+      "inference": "公开播放接口通过内部回调转交，不是单个标志赋值。",
+      "unknown": "回调目标、底层解码器状态机、精确同步保证未恢复；负偏移来自接口this语境，不能直接作为全类字段。",
+      "implementation": "独立预览控制器以时间线时钟同步video/image/audio，并按片段源区间定位。"
+    },
+    {
+      "id": "CORE04",
+      "module": "分割请求",
+      "observation": "VideoClient::splitVideo 调用内部0x1810565f0，再检查结果对象+0x4c；零或空的分支转交原结果，其它分支构造响应并复制此状态值。",
+      "evidence": [
+        {
+          "file": "evidence/VideoClient_splitVideo-0x1817f8800.c",
+          "lines": [
+            57,
+            119
+          ],
+          "sha256": "38fcf57f95aae0a3b7f8371b3ea7ac5dfff104b8f463e32bb27e4c17bb40c38b"
+        }
+      ],
+      "inference": "该入口是请求/响应适配层；实际片段变换在更低层。",
+      "unknown": "状态码业务含义、分割算法及原始请求布局未恢复。反编译参数也少于导出签名，不能据此重建完整ABI。",
+      "implementation": "映序自有不可变模型将一个片段拆为两段，原素材不变，撤销保留前一快照。"
+    },
+    {
+      "id": "CORE05",
+      "module": "导出入口",
+      "observation": "NewVEWrapper::export_start 先调用PlayerWin::Stop，准备关联对象，再依据ExportConfig+0xc的条件调用addWaterMark，最终转交0x18156cd50。导出签名含进度double回调及bool/Error*完成回调。",
+      "evidence": [
+        {
+          "file": "evidence/NewVEWrapper_export_start-0x1815ad700.c",
+          "lines": [
+            65,
+            75
+          ],
+          "sha256": "f784ef1fdcf9f9bc4a3927f6638c30d7c681d8d010a619f0e3a1926353eaaacb"
+        },
+        {
+          "file": "evidence/NewVEWrapper_export_start-0x1815ad700.c",
+          "lines": [
+            146,
+            176
+          ],
+          "sha256": "f784ef1fdcf9f9bc4a3927f6638c30d7c681d8d010a619f0e3a1926353eaaacb"
+        }
+      ],
+      "inference": "预览与导出具有不同生命周期；导出配置和回调是明确接口边界。",
+      "unknown": "底层编码参数、具体完成时机、条件字段正式名字均未恢复；代码中回调参数还有遗漏，不能声称完整调用约定已知。",
+      "implementation": "映序使用独立FFmpeg任务，进度事件/完成事件/取消，输出先到暂存路径，成功后发布到用户选择文件。"
+    },
+    {
+      "id": "CORE06",
+      "module": "工程持久化",
+      "observation": "前一轮已经核实保存前路径占位符处理、临时/备份复制方向和事务登记。",
+      "evidence": [],
+      "prior_record": "<research-root>/outputs/phase3-fileops-findings.json",
+      "inference": "素材引用与编辑状态可单独持久化，保存流程需考虑中断结果。",
+      "unknown": "剪映原生草稿编码和完整兼容协议未恢复。",
+      "implementation": "映序采用独立.yxproj JSON，素材相对路径；写入临时文件、sync、保留.bak再替换。没有声称原生草稿兼容。"
+    }
+  ],
+  "additional_symbol_inventory": {
+    "媒体信息": [
+      {
+        "name": "?get_duration@MaterialAudio@lvve@@QEBAAEB_JXZ",
+        "ordinal": 14557,
+        "rva": "0xfec30",
+        "va": "0x1800fec30"
+      },
+      {
+        "name": "?get_duration@MaterialVideo@lvve@@QEBAAEB_JXZ",
+        "ordinal": 14559,
+        "rva": "0xfe720",
+        "va": "0x1800fe720"
+      },
+      {
+        "name": "?get_height@MaterialVideo@lvve@@QEBAAEBHXZ",
+        "ordinal": 15327,
+        "rva": "0x8ecc70",
+        "va": "0x1808ecc70"
+      },
+      {
+        "name": "?get_path@MaterialAudio@lvve@@QEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ",
+        "ordinal": 17916,
+        "rva": "0x11ab20",
+        "va": "0x18011ab20"
+      },
+      {
+        "name": "?get_path@MaterialVideo@lvve@@QEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ",
+        "ordinal": 17937,
+        "rva": "0x117f60",
+        "va": "0x180117f60"
+      },
+      {
+        "name": "?get_width@MaterialVideo@lvve@@QEBAAEBHXZ",
+        "ordinal": 20279,
+        "rva": "0x1a44e0",
+        "va": "0x1801a44e0"
+      }
+    ],
+    "时间线": [
+      {
+        "name": "?get_segments@Track@lvve@@QEBAAEBV?$vector@V?$shared_ptr@VSegment@lvve@@@std@@V?$allocator@V?$shared_ptr@VSegment@lvve@@@std@@@2@@std@@XZ",
+        "ordinal": 18575,
+        "rva": "0x10f070",
+        "va": "0x18010f070"
+      },
+      {
+        "name": "?get_target_time_range@Segment@lvve@@UEBAAEBV?$shared_ptr@VTimeRange@lvve@@@std@@XZ",
+        "ordinal": 19582,
+        "rva": "0xffa40",
+        "va": "0x1800ffa40"
+      }
+    ],
+    "字幕文本": [
+      {
+        "name": "?get_content@MaterialText@lvve@@QEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ",
+        "ordinal": 14330,
+        "rva": "0x15afe0",
+        "va": "0x18015afe0"
+      },
+      {
+        "name": "?get_font_size@MaterialText@lvve@@QEBAAEBNXZ",
+        "ordinal": 15144,
+        "rva": "0x25b7a0",
+        "va": "0x18025b7a0"
+      },
+      {
+        "name": "?get_text_color@MaterialText@lvve@@QEBAAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ",
+        "ordinal": 19678,
+        "rva": "0x4e11d0",
+        "va": "0x1804e11d0"
+      }
+    ]
+  },
+  "symbol_inventory_limit": "这组仅证明导出接口存在，不能证明其内部实现、功能完整性或运行行为。",
+  "evidence_base_directory": "<project-root>/docs",
+  "prior_research": "<research-root>",
+  "source_repository_design": "Independent Electron/FFmpeg implementation; no Jianying binaries, private drafts or branded resources included."
+}

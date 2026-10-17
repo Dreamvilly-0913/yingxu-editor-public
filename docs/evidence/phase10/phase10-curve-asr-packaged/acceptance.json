@@ -1,0 +1,193 @@
+{
+  "createdAt": "2026-10-17T05:39:10.745Z",
+  "version": "0.8.0",
+  "packaged": true,
+  "success": true,
+  "method": "Real speech-en.wav asset, model speed curve 0.8→1.2→0.9, production transcribeProject preparing its actual 16k mono timeline WAV and bundled local Whisper. No transcription/media mocks. The real temporary WAV is copied by observing the recognizing progress boundary before the engine starts.",
+  "checks": [
+    "Three-point curve preserves original source span and changes output duration",
+    "Real production ASR timeline WAV is 16k mono PCM and matches nonlinear duration",
+    "Real local Whisper returns nonempty English cues with expected speech intent",
+    "All cue start/end times fit the edited output duration",
+    "Generated cues remain editable through the immutable project model",
+    "Project/source remain unchanged and owned ASR temporary directory is cleaned"
+  ],
+  "progress": [
+    {
+      "stage": "preparing",
+      "ratio": 0.01,
+      "message": "正在准备时间线音轨…"
+    },
+    {
+      "stage": "preparing",
+      "ratio": 0,
+      "message": "正在准备时间线音轨…"
+    },
+    {
+      "stage": "preparing",
+      "ratio": 0.07673946637424117,
+      "message": "正在准备时间线音轨…"
+    },
+    {
+      "stage": "preparing",
+      "ratio": 0.1533835555710111,
+      "message": "正在准备时间线音轨…"
+    },
+    {
+      "stage": "preparing",
+      "ratio": 0.1683,
+      "message": "正在准备时间线音轨…"
+    },
+    {
+      "stage": "preparing",
+      "ratio": 0.1683,
+      "message": "正在准备时间线音轨…"
+    },
+    {
+      "stage": "preparing",
+      "ratio": 0.17,
+      "message": "正在准备时间线音轨…"
+    },
+    {
+      "stage": "recognizing",
+      "ratio": 0.18,
+      "message": "正在本机检测人声并识别…"
+    },
+    {
+      "stage": "recognizing",
+      "ratio": 0.97,
+      "message": "正在本机识别语音…"
+    },
+    {
+      "stage": "completed",
+      "ratio": 1,
+      "message": "已识别 2 条字幕"
+    }
+  ],
+  "sourceHashes": {
+    "src/shared/project.js": "9239874c5dc8203f286cd6b31243e0b48af89ccdd2547f0f9fe2912484907515",
+    "src/shared/time-map.js": "4bfc94e0358bcc2eca7d8da0b950ffd23ff206d9904cace9c2378a4ffece3113",
+    "src/main/media.cjs": "5633bdcef5e90d50b27cfb40b190eb766c604109b0215c255e943471efb80468",
+    "src/main/transcription.cjs": "8e911bc493ea906dcd84af379ec686ed21aa9a4a56ed194bf910c38788e769a7",
+    "src/shared/audio-model.js": "89f0bd7da8e1c0d2a6214761c83fe35f460a83a5610c06cb4e06374f56d3cd5e",
+    "tools/ffmpeg.exe": "2ce797a0f88d7f067180338fb227f7b1928ea727bd9a4d7a1d022f7c52af71a3",
+    "tools/ffprobe.exe": "4303ec85855340689b1f8aa5d9c1dc06ef3e3090682de3034edc3fca2b0798d5",
+    "tools/asr/whisper-cli.exe": "19b976e037c02c0de712fa26096842d4ebafca03c976b12e8e6123215e7aab58",
+    "tools/asr/ggml-base.bin": "60ed5bc3dd14eea856493d334349b405782ddcaf0028d4b5df4088345fba2efe",
+    "tools/asr/ggml-silero-v6.2.0.bin": "2aa269b785eeb53a82983a20501ddf7c1d9c48e33ab63a41391ac6c9f7fb6987"
+  },
+  "input": {
+    "file": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/assets/asr-test/speech-en.wav",
+    "sha256": "0901a09f5de7a5104a182f35b261309867b1a62ac753f042714756321228fb41",
+    "sourceDuration": 5.685,
+    "speedCurve": [
+      {
+        "position": 0,
+        "speed": 0.8
+      },
+      {
+        "position": 0.5,
+        "speed": 1.2
+      },
+      {
+        "position": 1,
+        "speed": 0.9
+      }
+    ],
+    "outputDuration": 5.607124060974267,
+    "preservedSourceDuration": 5.685
+  },
+  "wav": {
+    "file": "<project-root>/outputs/phase10-curve-asr-packaged/曲线变速-真实识别输入.wav",
+    "sha256": "47c84ae3345217f270b619c93f3ff0368a25e02e9a90d0e41861b40f0788eb28",
+    "bytes": 179506,
+    "codec": "pcm_s16le",
+    "sampleRate": 16000,
+    "channels": 1,
+    "duration": 5.607125,
+    "durationError": 9.390257327268614e-7,
+    "metadata": {
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "pcm_s16le",
+          "codec_long_name": "PCM signed 16-bit little-endian",
+          "codec_type": "audio",
+          "codec_time_base": "1/16000",
+          "codec_tag_string": "[1][0][0][0]",
+          "codec_tag": "0x0001",
+          "sample_fmt": "s16",
+          "sample_rate": "16000",
+          "channels": 1,
+          "bits_per_sample": 16,
+          "r_frame_rate": "0/0",
+          "avg_frame_rate": "0/0",
+          "time_base": "1/16000",
+          "duration_ts": 89714,
+          "duration": "5.607125",
+          "bit_rate": "256000",
+          "disposition": {
+            "default": 0,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0
+          }
+        }
+      ],
+      "format": {
+        "filename": "<project-root>/outputs/phase10-curve-asr-packaged/曲线变速-真实识别输入.wav",
+        "nb_streams": 1,
+        "nb_programs": 0,
+        "format_name": "wav",
+        "format_long_name": "WAV / WAVE (Waveform Audio)",
+        "duration": "5.607125",
+        "size": "179506",
+        "bit_rate": "256111",
+        "probe_score": 99,
+        "tags": {
+          "encoder": "Lavf61.7.100"
+        }
+      }
+    }
+  },
+  "elapsedSeconds": 5.1458206,
+  "result": {
+    "cues": [
+      {
+        "start": 0.1,
+        "end": 3.07,
+        "text": "Welcome to the video editor, we can"
+      },
+      {
+        "start": 3.07,
+        "end": 4.7,
+        "text": "trim clips and add subtitles."
+      }
+    ],
+    "language": "en",
+    "engine": "whisper.cpp 1.9.4 (b5130)",
+    "model": "Whisper base · 多语言",
+    "duration": 5.607124060974267
+  },
+  "recognizedKeywords": [
+    "video",
+    "editor",
+    "clips",
+    "subtitles"
+  ],
+  "sourceStable": true,
+  "executables": {
+    "ffmpeg": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/ffmpeg.exe",
+    "ffprobe": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/ffprobe.exe",
+    "whisper": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/asr/whisper-cli.exe"
+  },
+  "finishedAt": "2026-10-17T05:39:17.165Z"
+}

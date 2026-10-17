@@ -1,0 +1,26 @@
+node_modules/
+work/
+outputs/
+*.log
+
+# Generated runtimes, weights and user data are bootstrapped, never committed.
+**/node_modules/
+tools/**/*.exe
+tools/**/*.dll
+tools/**/*.bin
+tools/**/*.onnx
+tools/**/*.zip
+tools/**/*.7z
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+.DS_Store
+
+# Original research evidence remains local; only our current acceptance is published.
+/docs/evidence/*
+!/docs/evidence/phase10/
+/docs/逆向证据与实现映射.html

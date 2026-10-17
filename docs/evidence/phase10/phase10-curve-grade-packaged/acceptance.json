@@ -1,0 +1,394 @@
+{
+  "success": true,
+  "version": "0.8.0",
+  "packaged": true,
+  "appRoot": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app",
+  "toolPaths": {
+    "ffmpeg": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/ffmpeg.exe",
+    "ffprobe": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/ffprobe.exe"
+  },
+  "toolHashes": {
+    "ffmpeg": "2ce797a0f88d7f067180338fb227f7b1928ea727bd9a4d7a1d022f7c52af71a3",
+    "ffprobe": "4303ec85855340689b1f8aa5d9c1dc06ef3e3090682de3034edc3fca2b0798d5"
+  },
+  "sourceStable": true,
+  "sourceHashesAfter": {
+    "src/shared/project.js": "9239874c5dc8203f286cd6b31243e0b48af89ccdd2547f0f9fe2912484907515",
+    "src/shared/time-map.js": "4bfc94e0358bcc2eca7d8da0b950ffd23ff206d9904cace9c2378a4ffece3113",
+    "src/shared/advanced-color.js": "b214725fec6b7c14b04d4d7ccd76a3c8dba484d22da0f62133a7cdcd064e14c1",
+    "src/main/media.cjs": "5633bdcef5e90d50b27cfb40b190eb766c604109b0215c255e943471efb80468",
+    "src/renderer/app.js": "2d99227347a672e43395be74ac50719c6882386d0ffec289155718bab1aa32b0",
+    "src/renderer/advanced-controls.js": "ae8522dfe1308d2d4ae7e902a74f98d8463247bc4a7430a5789d0f1be9d6c094",
+    "src/renderer/color-preview.js": "c139a44f84366ef5861a7c8e5a2f48d8e0fed82b907794c98cf80389a2a011ee"
+  },
+  "layoutOnly": false,
+  "checks": [
+    {
+      "name": "Curve preset preserves source span, computes nonlinear duration and locks constant speed",
+      "evidence": 3.6967849629863747
+    },
+    {
+      "name": "Custom speed control points change duration and persist"
+    },
+    {
+      "name": "Speed graph drag commits a single editable curve and undo/redo retains points"
+    },
+    {
+      "name": "Paused preview and original audio use the same nonlinear source time and instantaneous rate",
+      "evidence": [
+        {
+          "time": 0.2,
+          "expected": 0.10470875251741892,
+          "video": 0.104708,
+          "audio": 0.104708,
+          "rate": 0.5478152518370794,
+          "audioRate": 0.5478152518370794
+        },
+        {
+          "time": 0.8,
+          "expected": 0.48283701565094694,
+          "video": 0.482837,
+          "audio": 0.482837,
+          "rate": 0.7204875231970049,
+          "audioRate": 0.7204875231970049
+        },
+        {
+          "time": 1.2,
+          "expected": 0.7990314032347338,
+          "video": 0.799031,
+          "audio": 0.799031,
+          "rate": 0.8648776902871411,
+          "audioRate": 0.8648776902871411
+        }
+      ]
+    },
+    {
+      "name": "Curve playback keeps original audio synchronized and pauses it",
+      "evidence": {
+        "video": 2.169062,
+        "audio": 2.169062,
+        "rate": 1.4628943395230807,
+        "paused": true
+      }
+    },
+    {
+      "name": "Exposure, white balance, light tones, master/RGB curves and selective HSL save to the project",
+      "evidence": {
+        "exposureEV": 0.45,
+        "temperature": 0.2,
+        "tint": -0.1,
+        "highlights": -0.2,
+        "shadows": 0.15,
+        "whites": 0,
+        "blacks": 0,
+        "curves": {
+          "master": [
+            [
+              0,
+              0
+            ],
+            [
+              0.5,
+              0.56
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "red": [
+            [
+              0,
+              0
+            ],
+            [
+              0.5,
+              0.53
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "green": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "blue": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "hsl": {
+          "red": {
+            "hue": 0,
+            "saturation": 0,
+            "luminance": 0
+          },
+          "orange": {
+            "hue": 0.16666666666666666,
+            "saturation": 0.2,
+            "luminance": 0
+          },
+          "yellow": {
+            "hue": 0,
+            "saturation": 0,
+            "luminance": 0
+          },
+          "green": {
+            "hue": 0,
+            "saturation": 0,
+            "luminance": 0
+          },
+          "cyan": {
+            "hue": 0,
+            "saturation": 0,
+            "luminance": 0
+          },
+          "blue": {
+            "hue": 0,
+            "saturation": 0,
+            "luminance": 0
+          },
+          "purple": {
+            "hue": 0,
+            "saturation": 0,
+            "luminance": 0
+          },
+          "magenta": {
+            "hue": 0,
+            "saturation": 0,
+            "luminance": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "Save/reopen restores speed curve and advanced grade"
+    },
+    {
+      "name": "Curve-duration endpoint accepts a final keyframe without millisecond overflow"
+    },
+    {
+      "name": "Full and compact inspector layouts have no horizontal overflow"
+    },
+    {
+      "name": "Actual curved-speed graded MP4 has expected duration, original audio and explicit SDR tags",
+      "evidence": {
+        "duration": "3.460000"
+      }
+    },
+    {
+      "name": "Frame-aligned moving video: CPU/GPU grade roundoff and separately measured 4:2:0 export differences",
+      "evidence": [
+        {
+          "time": 0.2,
+          "mean": 3.4713307659392383,
+          "max": 124,
+          "largeFraction": 0.032520325203252036,
+          "cpuGpu": {
+            "mean": 0.005134788189987163,
+            "max": 1
+          },
+          "flatRegions": {
+            "neighborhoodRadius": 4,
+            "maxRawChannelDelta": 3,
+            "samples": 5274,
+            "mean": 0.9480470231323473,
+            "max": 10
+          },
+          "nonFlatRegions": {
+            "samples": 4074,
+            "mean": 6.7378497790868925,
+            "max": 124
+          }
+        },
+        {
+          "time": 0.8,
+          "mean": 3.740372272143774,
+          "max": 135,
+          "largeFraction": 0.03337612323491656,
+          "cpuGpu": {
+            "mean": 0.009520753102267864,
+            "max": 1
+          },
+          "flatRegions": {
+            "neighborhoodRadius": 4,
+            "maxRawChannelDelta": 3,
+            "samples": 4971,
+            "mean": 1.0138805069402534,
+            "max": 12
+          },
+          "nonFlatRegions": {
+            "samples": 4377,
+            "mean": 6.8368745716244,
+            "max": 135
+          }
+        },
+        {
+          "time": 1.2,
+          "mean": 3.8472400513478817,
+          "max": 124,
+          "largeFraction": 0.03712023962344887,
+          "cpuGpu": {
+            "mean": 0.00834403080872914,
+            "max": 1
+          },
+          "flatRegions": {
+            "neighborhoodRadius": 4,
+            "maxRawChannelDelta": 3,
+            "samples": 5136,
+            "mean": 1.02297507788162,
+            "max": 11
+          },
+          "nonFlatRegions": {
+            "samples": 4212,
+            "mean": 7.2910731244064575,
+            "max": 124
+          }
+        },
+        {
+          "time": 2,
+          "mean": 4.142918271287976,
+          "max": 169,
+          "largeFraction": 0.04503637141634574,
+          "cpuGpu": {
+            "mean": 0.009627727856225931,
+            "max": 1
+          },
+          "flatRegions": {
+            "neighborhoodRadius": 4,
+            "maxRawChannelDelta": 3,
+            "samples": 5136,
+            "mean": 1.0099299065420562,
+            "max": 11
+          },
+          "nonFlatRegions": {
+            "samples": 4212,
+            "mean": 7.963200379867047,
+            "max": 169
+          }
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "time": 0.2,
+      "mean": 3.4713307659392383,
+      "max": 124,
+      "largeFraction": 0.032520325203252036,
+      "cpuGpu": {
+        "mean": 0.005134788189987163,
+        "max": 1
+      },
+      "flatRegions": {
+        "neighborhoodRadius": 4,
+        "maxRawChannelDelta": 3,
+        "samples": 5274,
+        "mean": 0.9480470231323473,
+        "max": 10
+      },
+      "nonFlatRegions": {
+        "samples": 4074,
+        "mean": 6.7378497790868925,
+        "max": 124
+      }
+    },
+    {
+      "time": 0.8,
+      "mean": 3.740372272143774,
+      "max": 135,
+      "largeFraction": 0.03337612323491656,
+      "cpuGpu": {
+        "mean": 0.009520753102267864,
+        "max": 1
+      },
+      "flatRegions": {
+        "neighborhoodRadius": 4,
+        "maxRawChannelDelta": 3,
+        "samples": 4971,
+        "mean": 1.0138805069402534,
+        "max": 12
+      },
+      "nonFlatRegions": {
+        "samples": 4377,
+        "mean": 6.8368745716244,
+        "max": 135
+      }
+    },
+    {
+      "time": 1.2,
+      "mean": 3.8472400513478817,
+      "max": 124,
+      "largeFraction": 0.03712023962344887,
+      "cpuGpu": {
+        "mean": 0.00834403080872914,
+        "max": 1
+      },
+      "flatRegions": {
+        "neighborhoodRadius": 4,
+        "maxRawChannelDelta": 3,
+        "samples": 5136,
+        "mean": 1.02297507788162,
+        "max": 11
+      },
+      "nonFlatRegions": {
+        "samples": 4212,
+        "mean": 7.2910731244064575,
+        "max": 124
+      }
+    },
+    {
+      "time": 2,
+      "mean": 4.142918271287976,
+      "max": 169,
+      "largeFraction": 0.04503637141634574,
+      "cpuGpu": {
+        "mean": 0.009627727856225931,
+        "max": 1
+      },
+      "flatRegions": {
+        "neighborhoodRadius": 4,
+        "maxRawChannelDelta": 3,
+        "samples": 5136,
+        "mean": 1.0099299065420562,
+        "max": 11
+      },
+      "nonFlatRegions": {
+        "samples": 4212,
+        "mean": 7.963200379867047,
+        "max": 169
+      }
+    }
+  ],
+  "comparisonScope": {
+    "allFrameSampling": "Interior sample grid every 4 pixels; full range of sampled errors is retained, including saturated edges",
+    "flatSelection": "Raw browser-decoded input only: maximum channel difference <=3 to eight neighbors at radius 4; independent of exported differences",
+    "cpuGpu": "Independent CPU advanced processor on the exact browser-decoded input; final canvas before encoding",
+    "export": "H.264 CRF18 YUV420 full-range SDR; sampled edge maxima are not a bound for flat color patches and are not suppressed"
+  },
+  "errors": [],
+  "sourceHashes": {
+    "src/shared/project.js": "9239874c5dc8203f286cd6b31243e0b48af89ccdd2547f0f9fe2912484907515",
+    "src/shared/time-map.js": "4bfc94e0358bcc2eca7d8da0b950ffd23ff206d9904cace9c2378a4ffece3113",
+    "src/shared/advanced-color.js": "b214725fec6b7c14b04d4d7ccd76a3c8dba484d22da0f62133a7cdcd064e14c1",
+    "src/main/media.cjs": "5633bdcef5e90d50b27cfb40b190eb766c604109b0215c255e943471efb80468",
+    "src/renderer/app.js": "2d99227347a672e43395be74ac50719c6882386d0ffec289155718bab1aa32b0",
+    "src/renderer/advanced-controls.js": "ae8522dfe1308d2d4ae7e902a74f98d8463247bc4a7430a5789d0f1be9d6c094",
+    "src/renderer/color-preview.js": "c139a44f84366ef5861a7c8e5a2f48d8e0fed82b907794c98cf80389a2a011ee"
+  },
+  "createdAt": "2026-10-17T05:37:06.576Z"
+}

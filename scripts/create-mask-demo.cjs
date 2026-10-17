@@ -1,0 +1,14 @@
+"use strict";
+const fs=require('node:fs'),path=require('node:path');
+const M=require('../src/shared/project.js');const root=path.resolve(__dirname,'..'),dir=path.join(root,'assets/demo');
+let p=M.createProject('蒙版与缓动演示');p.width=1280;p.height=720;p.fps=30;
+const definitions=[['demo-light','light.mp4','video',4,1280,720,false],['demo-texture','texture.png','image',0,1600,900,false],['demo-tone','tone.wav','audio',9,0,0,true]];
+for(const [id,name,kind,duration,width,height,hasAudio] of definitions)p=M.addAsset(p,{id,name,path:path.join(dir,name),kind,duration,width,height,hasAudio,thumbnail:'',previewUrl:''});
+p=M.addClip(p,'demo-light');p=M.addClip(p,'demo-texture');const second=p.clips[1];p=M.updateClip(p,second.id,{duration:4,color:{brightness:-.1,contrast:.1,saturation:-.2}});p=M.setClipTransition(p,second.id,{type:'crossfade',duration:.6});
+const length=M.projectDuration(p);
+p=M.addClip(p,'demo-texture',0,{layer:1});const overlay=p.clips.at(-1);p=M.updateClip(p,overlay.id,{duration:length,mask:{type:'ellipse',centerX:.5,centerY:.5,width:.84,height:.9,rotation:15,feather:.12,invert:false},transform:{x:-.25,y:0,scale:.55,rotation:-10,opacity:.95},color:{brightness:.12,contrast:.2,saturation:.3}});
+p=M.setClipKeyframe(p,overlay.id,3,{x:.25,y:-.08,scale:.7,rotation:15,opacity:.95},{easing:'ease-in-out'});p=M.setClipKeyframe(p,overlay.id,length,{x:-.1,y:.02,scale:.48,rotation:-20,opacity:.75},{easing:'ease-out'});
+p=M.addClip(p,'demo-tone',0);p=M.updateClip(p,p.clips.at(-1).id,{duration:length,volume:.12,audioFade:{in:1,out:1}});
+p=M.addSubtitle(p,{start:.3,end:3.3,text:'柔边蒙版，让画面自然融入。'});p=M.addSubtitle(p,{start:3.7,end:length-.2,text:'缓入缓出，让移动更从容。'});p.subtitleStyle.fontSize=36;M.validateProject(p);
+p.assets=p.assets.map(({thumbnail,previewUrl,...a})=>({...a,path:path.basename(a.path),pathMode:'relative'}));
+fs.writeFileSync(path.join(dir,'蒙版与缓动演示.yxproj'),JSON.stringify(p,null,2));fs.writeFileSync(path.join(dir,'蒙版与缓动演示.srt'),M.toSrt(p.subtitles));console.log(JSON.stringify({project:p.name,duration:length,clips:p.clips.length}));

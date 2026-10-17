@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "id": "project-05f43699-5e9b-4500-a1ec-06ef00a68f3e",
+  "name": "多轨 · 转场 · 动画练习",
+  "width": 1280,
+  "height": 720,
+  "fps": 30,
+  "videoTrackCount": 3,
+  "assets": [
+    {
+      "id": "736a648c-8f90-4958-a005-208646a8765d",
+      "name": "light.mp4",
+      "path": "light.mp4",
+      "kind": "video",
+      "duration": 4,
+      "width": 1280,
+      "height": 720,
+      "hasAudio": true,
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "pathMode": "relative"
+    },
+    {
+      "id": "3768bc76-27d5-4025-a184-7ef46232c3cf",
+      "name": "texture.png",
+      "path": "texture.png",
+      "kind": "image",
+      "duration": 5,
+      "width": 1600,
+      "height": 900,
+      "hasAudio": false,
+      "videoCodec": "png",
+      "audioCodec": null,
+      "pathMode": "relative"
+    },
+    {
+      "id": "7cdf6beb-a55f-4ce1-be3b-a8fd654a266d",
+      "name": "speech-zh.wav",
+      "path": "..\\asr-test\\speech-zh.wav",
+      "kind": "audio",
+      "duration": 7.155875,
+      "width": 0,
+      "height": 0,
+      "hasAudio": true,
+      "videoCodec": null,
+      "audioCodec": "pcm_s16le",
+      "pathMode": "relative"
+    }
+  ],
+  "clips": [
+    {
+      "id": "clip-ded7b3b0-3dcd-40c5-b1ff-eb754987b31e",
+      "assetId": "736a648c-8f90-4958-a005-208646a8765d",
+      "track": "video",
+      "start": 0,
+      "duration": 4,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 0.08
+    },
+    {
+      "id": "clip-362bb5dd-a0e1-4acf-8849-e5c155b17cb4",
+      "assetId": "3768bc76-27d5-4025-a184-7ef46232c3cf",
+      "track": "video",
+      "start": 3.2,
+      "duration": 5,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 1,
+      "transition": {
+        "type": "crossfade",
+        "duration": 0.8
+      }
+    },
+    {
+      "id": "clip-b3c3ae70-f6f9-4225-beda-0c65dcfc94c5",
+      "assetId": "3768bc76-27d5-4025-a184-7ef46232c3cf",
+      "track": "video",
+      "start": 0.9,
+      "duration": 2.5,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 1,
+      "layer": 1,
+      "keyframes": [
+        {
+          "time": 0,
+          "x": -0.25,
+          "y": -0.18,
+          "scale": 0.28,
+          "rotation": -12,
+          "opacity": 0.6
+        },
+        {
+          "time": 1.2,
+          "x": 0.05,
+          "y": 0,
+          "scale": 0.45,
+          "rotation": 0,
+          "opacity": 1
+        },
+        {
+          "time": 2.5,
+          "x": 0.26,
+          "y": 0.18,
+          "scale": 0.32,
+          "rotation": 12,
+          "opacity": 0.8
+        }
+      ]
+    },
+    {
+      "id": "clip-bb87f72a-ec4e-43a7-b996-978d81554c68",
+      "assetId": "736a648c-8f90-4958-a005-208646a8765d",
+      "track": "video",
+      "start": 4.5,
+      "duration": 2.5,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 0,
+      "layer": 2,
+      "transform": {
+        "x": 0.2,
+        "y": -0.18,
+        "scale": 0.34,
+        "rotation": -8,
+        "opacity": 0.95
+      }
+    },
+    {
+      "id": "clip-1ccf3d3d-7f99-4a03-bf07-06f59726df01",
+      "assetId": "7cdf6beb-a55f-4ce1-be3b-a8fd654a266d",
+      "track": "audio",
+      "start": 0,
+      "duration": 7.155875,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 1
+    }
+  ],
+  "subtitles": [
+    {
+      "id": "subtitle-ed12c12b-b249-4bb4-b85d-cbfd93f5610a",
+      "start": 0.1,
+      "end": 3.5,
+      "text": "多轨画面 · 关键帧动画"
+    },
+    {
+      "id": "subtitle-16053702-298d-4bdf-b04e-eeaff64a2faf",
+      "start": 3.7,
+      "end": 7.8,
+      "text": "进入“字幕”可识别这段口播"
+    }
+  ],
+  "subtitleStyle": {
+    "fontSize": 34,
+    "color": "#ffffff"
+  },
+  "createdAt": "2026-10-13T07:33:46.812Z",
+  "updatedAt": "2026-10-13T07:33:47.715Z"
+}

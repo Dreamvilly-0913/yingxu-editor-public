@@ -1,0 +1,55 @@
+{
+  "success": true,
+  "version": "0.8.0",
+  "packaged": true,
+  "checks": [
+    {
+      "name": "Canceled save-as retains the active original path and leaves existing project unchanged"
+    },
+    {
+      "name": "Successful save-as changes only the active save path; failed write preserves that path"
+    },
+    {
+      "name": "Real open, explicit save and recovery preserve offline placeholders, edit parameters and stable IDs"
+    },
+    {
+      "name": "Forged offline paths cannot be persisted; used offline clips fail export and ASR before dialogs"
+    },
+    {
+      "name": "Cross-project clipboard regenerates IDs yet preserves authorized offline media on save/recovery; never-opened paths remain rejected"
+    },
+    {
+      "name": "Relink dialog cancellation and wrong media type leave the original offline records intact"
+    },
+    {
+      "name": "Successful relink preserves all clip values and permits saving either offline undo or online redo snapshots"
+    },
+    {
+      "name": "Unused offline library items do not block otherwise valid exports"
+    },
+    {
+      "name": "Archive writes fresh portable originals, leaves existing files untouched and preserves active save path",
+      "evidence": {
+        "path": "<project-root>/work/phase10-project-files-packaged/run-1792215185917/archives/文件管理验收-归档-20261017-053310/文件管理验收.yxproj",
+        "mediaCount": 1
+      }
+    },
+    {
+      "name": "Archived project reopens with media online after the original source is unavailable"
+    },
+    {
+      "name": "Corrupt project schema is rejected without changing active project path"
+    },
+    {
+      "name": "Canceled project hydration rejects the load, rather than producing an offline replacement"
+    }
+  ],
+  "errors": [],
+  "sourceHashes": {
+    "src/main/main.cjs": "0f266b9fb50dba5ffbad68d8c2f05cbe528df2c517b623418f22131ee599bf5c",
+    "src/main/preload.cjs": "5dc9403e557f46e07361e700f67a03504560e2968fe6a5f3708af7af724e93d4",
+    "src/main/project-files.cjs": "9e90ec581eb41b46f82c003b46e4a7c9974d90804686cea3aa0a44ebd2f48c2e",
+    "src/shared/project.js": "9239874c5dc8203f286cd6b31243e0b48af89ccdd2547f0f9fe2912484907515"
+  },
+  "createdAt": "2026-10-17T05:33:11.607Z"
+}

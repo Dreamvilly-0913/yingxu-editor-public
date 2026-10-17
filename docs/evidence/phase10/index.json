@@ -1,0 +1,172 @@
+{
+  "version": "0.8.0",
+  "createdAt": "2026-10-17T05:47:47.630Z",
+  "reports": 31,
+  "files": [
+    {
+      "path": "phase10-visual-packaged/acceptance.json",
+      "bytes": 5647,
+      "sha256": "7b45f4dea875c2786da580166a674a6bba93ebd98dee6e4b82b43bd289ec5944"
+    },
+    {
+      "path": "phase10-visual-controls-packaged/acceptance.json",
+      "bytes": 5896,
+      "sha256": "f029b07ef698dbb0a691bfa72d22db40b37c095c808ebcc13838d2f4f633183d"
+    },
+    {
+      "path": "phase10-blend-packaged/acceptance.json",
+      "bytes": 29385,
+      "sha256": "c93718ee63a3a95e703b910160755454a0b813ed9664738ac0b96c5b5f6288a1"
+    },
+    {
+      "path": "phase10-workflow-packaged/acceptance.json",
+      "bytes": 3975,
+      "sha256": "0bfb14a19bd54054dbdb534a79fe502125dc780f35ef2e5e42e5177ec3e8389f"
+    },
+    {
+      "path": "phase10-engine/packaged/acceptance.json",
+      "bytes": 3847,
+      "sha256": "2042420ca4e721e533b90d2b325be439d337981509541d26e27f570ec237dba5"
+    },
+    {
+      "path": "phase10-text-packaged/acceptance.json",
+      "bytes": 2582,
+      "sha256": "01d1c4e674e973d0b81d08c7fff7936fbb18ecbd62301915efb3b84093f836c7"
+    },
+    {
+      "path": "phase10-preprocess-packaged/acceptance.json",
+      "bytes": 4968,
+      "sha256": "35d270bb9d9566d5895c5d4dd1345b6c3b74b181aa2415d43ba1ed0cd9a68aab"
+    },
+    {
+      "path": "phase10-preprocess-ui-packaged/acceptance.json",
+      "bytes": 2493,
+      "sha256": "abc8608ac99d6398e4be8f5247a8a4aee1c6c64125b702c5fd0f6e26466cb8c7"
+    },
+    {
+      "path": "phase10-styled-export-packaged/acceptance.json",
+      "bytes": 3197,
+      "sha256": "e1fb1a892e00de8be386f80281680b0342ef947a88e78f3cac7ba2945fc22f8b"
+    },
+    {
+      "path": "phase10-timeline-ui-packaged/acceptance.json",
+      "bytes": 3055,
+      "sha256": "5461c6d4cf946cba3f54ca14771c9a3746a24a57f8584773ca3bd236574c50cc"
+    },
+    {
+      "path": "phase10-gesture-guards-packaged.json",
+      "bytes": 5517,
+      "sha256": "76ae0bd80ce50b91a900048b3e37a78220456030cb3e46b5d62b98146d604b41"
+    },
+    {
+      "path": "phase10-audio-ui-packaged/acceptance.json",
+      "bytes": 3407,
+      "sha256": "8d2095eac5a17bfdfaa41c66b3f4d07aee689d7a8f5ac3f1d9ff0594b768af0a"
+    },
+    {
+      "path": "phase10-ai-ui-packaged/acceptance.json",
+      "bytes": 2729,
+      "sha256": "3ab0c1043627bfbe9f4c79ebc51737932b5e476f5e1c1225401bb6018eb08dfb"
+    },
+    {
+      "path": "phase10-recording-packaged/acceptance.json",
+      "bytes": 2979,
+      "sha256": "295844f1b1a56fabe560d4ae3d9eb07f41286040e77d6721dc22ad7ee12b671a"
+    },
+    {
+      "path": "phase10-ai-packaged/acceptance.json",
+      "bytes": 4517,
+      "sha256": "eaf9acda04592db07e966c0e6280e17a3cb978a3b932198741bfeaa3c95836e4"
+    },
+    {
+      "path": "phase10-ai-runtime-packaged.json",
+      "bytes": 1781,
+      "sha256": "bf6643fb6e7be2adce115e39c271f58704371bc9f1ed603626ac5590ccfbc8c8"
+    },
+    {
+      "path": "phase10-project-files-packaged.json",
+      "bytes": 2278,
+      "sha256": "66308a1f46ce159a4828fd3c151a634b61b631452f66a42086758777c8b6b1f6"
+    },
+    {
+      "path": "phase10-recovery-packaged.json",
+      "bytes": 2497,
+      "sha256": "0ccb053073296e4f3d7fe45f7967654500c1f893befb93836a3c52875e657d86"
+    },
+    {
+      "path": "phase10-recovery-ui-races-packaged.json",
+      "bytes": 1355,
+      "sha256": "7cc666d756ada6ca2381bb80863bff2ffb4909a9f8d4caa025db60d9aacab7a5"
+    },
+    {
+      "path": "phase10-project-switch-guard-packaged.json",
+      "bytes": 1110,
+      "sha256": "dd7083bd1426d1f0adc31c40f52555fff3b90d3ad525aa8e7d878bba1e06f2a7"
+    },
+    {
+      "path": "phase10-curve-grade-packaged/acceptance.json",
+      "bytes": 11265,
+      "sha256": "a275d568bfbd38037d60fdbd30330998f1d4575f5225123c8df6f7802cc23dc1"
+    },
+    {
+      "path": "phase10-curve-asr-packaged/acceptance.json",
+      "bytes": 6647,
+      "sha256": "bd3cc65e609baf75eeca1dde52745abb625a3c5787393194013d205eb7b92d96"
+    },
+    {
+      "path": "phase10-mask-seek-packaged.json",
+      "bytes": 2275,
+      "sha256": "66170c007232f970a70c0eb5b359c246edf55b69b0ddd1a42da18dc51538c15b"
+    },
+    {
+      "path": "v8-packaged-acceptance.json",
+      "bytes": 1203,
+      "sha256": "81bc788b128193350b3e5ddb2f27f748e17a1c66624b49b874f2bfb7635cbdd1"
+    },
+    {
+      "path": "v8-advanced-packaged-acceptance.json",
+      "bytes": 1129,
+      "sha256": "a74e89c29ec90490cac929ff221d2923f6650fb47b6035197307528ae7e78d99"
+    },
+    {
+      "path": "phase10-legacy-ui-packaged-acceptance.json",
+      "bytes": 1856,
+      "sha256": "9db30091f1e16737174d0ca45cff37abc1dd0af06f363144e2ba41a08ede0421"
+    },
+    {
+      "path": "v8-bundled-demo-acceptance.json",
+      "bytes": 1416,
+      "sha256": "57bd47fc2b5f5f5a70ad6ef82a74fb28a940a9c2f08197b3082ddd138d4b0f49"
+    },
+    {
+      "path": "v8-media-lifecycle-packaged.json",
+      "bytes": 1458,
+      "sha256": "231c6a00fc2963467573ba488332f01cc24377058bc1311cc5ad9c2acb4b87ee"
+    },
+    {
+      "path": "v8-preview-reuse-acceptance-packaged.json",
+      "bytes": 13367,
+      "sha256": "70582ffcb8f3cac2b237d283e63ad08bf691afaf359e00777496cabceb0b991e"
+    },
+    {
+      "path": "phase10-legacy-color-packaged/acceptance.json",
+      "bytes": 242726,
+      "sha256": "53fb5b6ff43e57d3d05bad23902c5e3e4bc2ed46dc62cbc84e38732d5aa5b856"
+    },
+    {
+      "path": "phase10-delivery-demo.json",
+      "bytes": 8173,
+      "sha256": "43428e44e5fffd6af1f4e57c2a135c6e4fc28b43a4b99a03f35d8520a5685211"
+    },
+    {
+      "path": "映序0.8_工作台演示界面.png",
+      "bytes": 178053,
+      "sha256": "474a5b7e2105a2eb4682eafb16ef7b55706553d0faf77cf7e3c41c158cbab6f2"
+    },
+    {
+      "path": "phase10-delivery-demo-highres-attempt.json",
+      "bytes": 6872,
+      "sha256": "e1616ad4097a0d302b57302a8c31252a0fe2fa205b7f9ca1994e6d91df6411d7"
+    }
+  ]
+}

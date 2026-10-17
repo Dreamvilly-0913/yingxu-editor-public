@@ -1,0 +1,193 @@
+{
+  "goal": "按已验证行为构建独立Windows视频编辑器，优先完成核心剪辑闭环，再逐模块扩展",
+  "user_priority": [
+    "导入",
+    "时间线",
+    "预览",
+    "字幕",
+    "导出"
+  ],
+  "core_acceptance": [
+    {
+      "area": "导入",
+      "criteria": "本地视频/图片/音频可探测、缩略图、加入素材库，无网络依赖"
+    },
+    {
+      "area": "时间线",
+      "criteria": "分割/裁剪/排序/删除/恒定变速/音量/撤销重做；源区间不越界"
+    },
+    {
+      "area": "预览",
+      "criteria": "播放暂停、时间定位、视频与图片跨片段切换、字幕与音轨同步"
+    },
+    {
+      "area": "字幕",
+      "criteria": "手动编辑或UTF-8 SRT导入；时间与文字进入预览及实际成片"
+    },
+    {
+      "area": "导出",
+      "criteria": "真实H264/AAC MP4；分辨率/帧率/进度/取消；失败不覆盖既有输出"
+    },
+    {
+      "area": "工程",
+      "criteria": ".yxproj保存重开，素材相对路径、备份、未保存提示"
+    },
+    {
+      "area": "画面处理",
+      "criteria": "裁剪双镜像顺序与实际像素位置一致，调色进入预览/保存/导出，叠层透明填充仍可看见下层"
+    },
+    {
+      "area": "声音包络",
+      "criteria": "淡入出与独立线性RMS预期一致，分割切点连续，不破坏旧工程及转场音量"
+    },
+    {
+      "area": "与原证据比较",
+      "criteria": "区分原native隔离重放、原GLSL逐像素对照、映序UI和实际媒体验收；不以组件比较替代剪映完整GUI或端到端导出对照"
+    }
+  ],
+  "next_stages": [
+    {
+      "area": "剪辑精度与性能",
+      "todo": [
+        "逐帧同步、代理素材、长片与大量片段压力测试",
+        "拖动裁剪、吸附和复杂轨道策略",
+        "GPU加速及预览/导出字体与色彩一致性"
+      ]
+    },
+    {
+      "area": "多层画面",
+      "todo": [
+        "蒙版、非矩形裁剪、混合模式",
+        "其它转场与跨叠层转场",
+        "关键帧缓动曲线与曲线变速"
+      ]
+    },
+    {
+      "area": "视觉与声音",
+      "todo": [
+        "进阶调色、滤镜、可编辑音量关键帧、降噪",
+        "文字样式、动画与模板",
+        "长录音字幕分段、说话人和更高精度模型"
+      ]
+    },
+    {
+      "area": "高级素材与AI",
+      "todo": [
+        "素材管理和自有资源库",
+        "其它本地或授权AI服务",
+        "账号、网络与云端的独立实现和真实服务验收"
+      ]
+    }
+  ],
+  "completion_rule": "0.3.0完成本轮裁剪镜像、三项基础调色与线性声音淡入淡出，并用独立媒体验收和有限原始组件对照验证。全面剪映逆向和完整复现仍在进行；组件测试及测试数量不是全功能等价证明，也不是逆向完成率。",
+  "current_version": "0.3.0",
+  "verification_outputs": [
+    "phase5-media-acceptance.json",
+    "v2-desktop-acceptance.json",
+    "v2-packaged-acceptance.json",
+    "asr-acceptance.json",
+    "advanced-media-acceptance.json",
+    "task-race-acceptance.json",
+    "interaction-acceptance.json"
+  ],
+  "completed_previous_version": [
+    {
+      "area": "多视频轨",
+      "behavior": "1条连续主轨＋8条独立视频/图片叠层，轨道保存、起点定位、层级合成"
+    },
+    {
+      "area": "转场",
+      "behavior": "主轨相邻片段叠化/淡黑，音画转场与重叠时长，最长半个相邻较短片段"
+    },
+    {
+      "area": "关键帧",
+      "behavior": "位置、缩放、旋转、透明度线性插值，128帧/片段，分割连续性和变速时间调整"
+    },
+    {
+      "area": "自动字幕",
+      "behavior": "离线whisper.cpp base＋Silero，时间线音轨，中英/自动语言，结果校对、追加/替换、撤销、取消清理"
+    }
+  ],
+  "completed_this_version": [
+    {
+      "area": "画面裁剪与镜像",
+      "behavior": "视频/图片四边比例裁剪，水平/垂直独立镜像，至少保留宽高2%，随后完整适应画布并应用动画变换",
+      "native_evidence": "Crop四角归一化字段及居中裁剪入口；Flip独立布尔字段。映序使用独立四边裁去比例表示。"
+    },
+    {
+      "area": "基础调色",
+      "behavior": "亮度/对比度/饱和度[-100,100]，独立实时预览、65³ LUT实际导出；工程存储为[-1,1]",
+      "native_evidence": "FC/AmazingFeature_adjustColor的Lua参数映射及原始GLSL，在原shader真实GPU输出上比较。"
+    },
+    {
+      "area": "声音淡入淡出",
+      "behavior": "秒制线性包络，片段音量与转场相乘；分割保持连续，变速重排时间，修改淡入出重置保留包络；预览/MP4/ASR音轨一致使用",
+      "native_evidence": "MaterialAudioFade独立fade_type、fade_in_duration、fade_out_duration字段；原生时间单位和曲线枚举含义未知，秒制线性为独立设计。"
+    }
+  ],
+  "comparison_scope": {
+    "original_version": "11.4.1.14443",
+    "native_target_sha256": "092a5f2c499015f4d3cb318990efa6fcd517cde86c0b3fd39433eae3389c9916",
+    "native_functions_analyzed_this_version": 8,
+    "native_linear_replay": {
+      "status": "passed",
+      "isolated_function_bytes": 34,
+      "compared_values": 2560,
+      "max_absolute_error": 1.1102230246251565e-16,
+      "report": "evidence/phase5/native-linear-replay.json",
+      "limitation": "受测有效有序时间区间内比较；原函数可外插且相同时间端点出现NaN/Infinity，映序端点保持并验证有序关键帧。"
+    },
+    "original_glsl_vs_independent_cpu": {
+      "status": "passed",
+      "parameter_cases": 49,
+      "pixels_per_case": 32768,
+      "total_pixels": 1605632,
+      "max_rgb_byte_error": 1,
+      "report": "evidence/phase5/cpu-vs-original-shader.json"
+    },
+    "original_glsl_vs_preview": {
+      "status": "passed",
+      "parameter_cases": 49,
+      "total_pixels": 1605632,
+      "max_rgb_byte_error": 1,
+      "mean_rgb_byte_error": 4.152e-07,
+      "different_rgb_values": 2,
+      "alpha_orientation_probe": "97×63不对称RGBA，0/64/128/192/255透明度与上下方向逐值保留",
+      "report": "evidence/phase5/preview-vs-original-shader.json",
+      "limitation": "大于1280的预览缩放、协议视频采样与实际UI流程另行验收；这里不代替完整桌面测试。"
+    },
+    "original_glsl_vs_export": {
+      "status": "passed",
+      "parameter_cases": 6,
+      "isolated_lut_max_rgb_byte_error_range": [
+        1,
+        3
+      ],
+      "mp4_uniform_patch_max_rgb_byte_error_range": [
+        2,
+        4
+      ],
+      "mp4_full_frame_mean_rgb_byte_error_range": [
+        1.110382080078125,
+        9.376241048177084
+      ],
+      "report": "evidence/phase5/export-vs-original-shader.json",
+      "limitation": "完整帧保留编码色度损失；均匀色块统计排除了边界，不应替代全帧或原剪映整套导出的等价性。"
+    },
+    "not_tested": [
+      "剪映完整GUI操作及端到端导出一致性",
+      "剪映私有草稿读写兼容",
+      "所有调色功能、任意输入和全参数空间",
+      "其它机器、长片、大型工程压力表现"
+    ]
+  },
+  "code_and_media_tests": {
+    "old_regression_passed": 24,
+    "new_tests_passed": 6,
+    "skipped": 0,
+    "logs": [
+      "work/phase5-legacy-test.log",
+      "work/phase5-media-test.log"
+    ]
+  }
+}

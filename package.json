@@ -1,0 +1,23 @@
+{
+  "name": "yingxu-editor",
+  "productName": "映序剪辑",
+  "version": "0.8.0",
+  "private": true,
+  "description": "Local desktop timeline editor informed by verified architecture research",
+  "main": "src/main/main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test tests/*.test.cjs",
+    "demo": "node scripts/generate-demo.cjs",
+    "package": "node scripts/package.cjs",
+    "test:model": "node scripts/run-model-tests.cjs",
+    "setup:media": "node scripts/bootstrap-media.cjs --download",
+    "setup:asr": "node scripts/setup-asr.cjs",
+    "setup:ai": "node scripts/bootstrap-ai.cjs"
+  },
+  "devDependencies": {
+    "electron": "44.7.0",
+    "ffprobe-static": "3.1.0",
+    "playwright-core": "1.58.2"
+  }
+}

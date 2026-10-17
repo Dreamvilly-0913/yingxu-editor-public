@@ -1,0 +1,288 @@
+{
+  "schemaVersion": 1,
+  "id": "project-731469b7-1802-4e42-9faf-14b186328f88",
+  "name": "曲线变速与高级调色演示",
+  "width": 1280,
+  "height": 720,
+  "fps": 30,
+  "videoTrackCount": 2,
+  "assets": [
+    {
+      "id": "v",
+      "name": "light.mp4",
+      "path": "light.mp4",
+      "kind": "video",
+      "duration": 4,
+      "width": 1280,
+      "height": 720,
+      "hasAudio": false,
+      "pathMode": "relative"
+    },
+    {
+      "id": "i",
+      "name": "texture.png",
+      "path": "texture.png",
+      "kind": "image",
+      "duration": 5,
+      "width": 1600,
+      "height": 900,
+      "hasAudio": false,
+      "pathMode": "relative"
+    },
+    {
+      "id": "a",
+      "name": "tone.wav",
+      "path": "tone.wav",
+      "kind": "audio",
+      "duration": 9,
+      "width": 0,
+      "height": 0,
+      "hasAudio": true,
+      "pathMode": "relative"
+    }
+  ],
+  "clips": [
+    {
+      "id": "clip-31d4eca6-0083-4dba-b145-23ef9b4c9a4a",
+      "assetId": "v",
+      "track": "video",
+      "start": 0,
+      "duration": 4.939033168347407,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 1,
+      "speedCurve": [
+        {
+          "position": 0,
+          "speed": 1.5
+        },
+        {
+          "position": 0.25,
+          "speed": 1.5
+        },
+        {
+          "position": 0.45,
+          "speed": 0.35
+        },
+        {
+          "position": 0.6,
+          "speed": 0.35
+        },
+        {
+          "position": 0.8,
+          "speed": 1.5
+        },
+        {
+          "position": 1,
+          "speed": 1.5
+        }
+      ],
+      "advancedColor": {
+        "exposureEV": 0.18,
+        "temperature": 0.12,
+        "tint": -0.025,
+        "highlights": -0.14,
+        "shadows": 0.08,
+        "whites": 0,
+        "blacks": 0,
+        "curves": {
+          "master": [
+            [
+              0,
+              0
+            ],
+            [
+              0.25,
+              0.22
+            ],
+            [
+              0.7,
+              0.75
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "red": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "green": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "blue": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        "hsl": {
+          "red": {
+            "hue": 0,
+            "saturation": 0,
+            "luminance": 0
+          },
+          "orange": {
+            "hue": 0,
+            "saturation": 0.12,
+            "luminance": 0
+          },
+          "yellow": {
+            "hue": 0,
+            "saturation": 0,
+            "luminance": 0
+          },
+          "green": {
+            "hue": 0,
+            "saturation": 0,
+            "luminance": 0
+          },
+          "cyan": {
+            "hue": 0,
+            "saturation": 0,
+            "luminance": 0
+          },
+          "blue": {
+            "hue": 0,
+            "saturation": 0,
+            "luminance": 0
+          },
+          "purple": {
+            "hue": 0,
+            "saturation": 0,
+            "luminance": 0
+          },
+          "magenta": {
+            "hue": 0,
+            "saturation": 0,
+            "luminance": 0
+          }
+        }
+      },
+      "sourceDuration": 4
+    },
+    {
+      "id": "clip-7f96a044-e396-4fcf-9cb3-e53a0dae57ed",
+      "assetId": "i",
+      "track": "video",
+      "start": 0,
+      "duration": 4.939033168347407,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 1,
+      "layer": 1,
+      "transform": {
+        "x": -0.2,
+        "y": 0.04,
+        "scale": 0.48,
+        "rotation": -8,
+        "opacity": 0.65
+      },
+      "mask": {
+        "type": "ellipse",
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "width": 0.82,
+        "height": 0.9,
+        "rotation": 12,
+        "feather": 0.12,
+        "invert": false
+      },
+      "advancedColor": {
+        "temperature": 0.18,
+        "shadows": 0.1
+      },
+      "keyframes": [
+        {
+          "time": 4.939033168347407,
+          "x": 0.22,
+          "y": -0.08,
+          "scale": 0.55,
+          "rotation": 12,
+          "opacity": 0.7,
+          "easing": "ease-in-out"
+        }
+      ]
+    },
+    {
+      "id": "clip-9c0ac483-9b12-4645-9bde-a87891ec287e",
+      "assetId": "a",
+      "track": "audio",
+      "start": 0,
+      "duration": 4.939033168347407,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 0.12,
+      "speedCurve": [
+        {
+          "position": 0,
+          "speed": 1.5
+        },
+        {
+          "position": 0.25,
+          "speed": 1.5
+        },
+        {
+          "position": 0.45,
+          "speed": 0.35
+        },
+        {
+          "position": 0.6,
+          "speed": 0.35
+        },
+        {
+          "position": 0.8,
+          "speed": 1.5
+        },
+        {
+          "position": 1,
+          "speed": 1.5
+        }
+      ],
+      "audioFade": {
+        "in": 0.3,
+        "out": 0.4
+      },
+      "sourceDuration": 4
+    }
+  ],
+  "subtitles": [
+    {
+      "id": "subtitle-acf819a8-acad-4046-8348-348395215f81",
+      "start": 0.2,
+      "end": 2.3707359208067555,
+      "text": "让节奏慢下来，让色彩有层次。"
+    },
+    {
+      "id": "subtitle-025b6ed0-4847-432a-bc07-15b4b2dc150d",
+      "start": 2.6670779109076,
+      "end": 4.789033168347407,
+      "text": "曲线变速 · RGB 曲线 · 分色 HSL"
+    }
+  ],
+  "subtitleStyle": {
+    "fontSize": 34,
+    "color": "#ffffff"
+  },
+  "createdAt": "2026-10-15T09:55:48.251Z",
+  "updatedAt": "2026-10-15T09:55:48.268Z"
+}

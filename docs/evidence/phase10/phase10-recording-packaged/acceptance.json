@@ -1,0 +1,66 @@
+{
+  "success": true,
+  "version": "0.8.0",
+  "packaged": true,
+  "executables": {
+    "ffmpeg": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/ffmpeg.exe",
+    "ffprobe": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/ffprobe.exe"
+  },
+  "checks": [
+    {
+      "name": "User-started real MediaRecorder encodes known synthetic 440Hz stream, imports persistent audio and assigns unlocked target",
+      "evidence": {
+        "calls": 1,
+        "frequency": 439.8989898989899,
+        "rms": 0.07990882342846871,
+        "peak": 0.1141538918018341,
+        "start": 0.5,
+        "duration": 3.96,
+        "track": "audio-2",
+        "path": "<project-root>/work/phase10-recording-packaged-1792215628745/profile/recorded-sources/recording-c32d71b1-f035-468d-9b81-155c41573e94.wav",
+        "noHardwareMicrophoneUsed": true
+      }
+    },
+    {
+      "name": "Recording asset and clip insertion undo/redo as one transaction"
+    },
+    {
+      "name": "Cancel stops all capture tracks and adds no file asset or timeline operation"
+    },
+    {
+      "name": "Recording IPC rejects empty/wrong MIME/corrupt content and cleans failed file"
+    },
+    {
+      "name": "Actual getUserMedia accepts fake audio in editor main frame and denies camera and iframe",
+      "evidence": {
+        "labels": [
+          "Fake Default Audio Input"
+        ],
+        "audioTracks": 1,
+        "camera": "NotAllowedError",
+        "iframe": "NotAllowedError",
+        "chromiumFlags": [
+          "--use-fake-device-for-media-stream"
+        ],
+        "fakeUiFlag": false,
+        "noHardwareMicrophoneUsed": true
+      }
+    }
+  ],
+  "errors": [],
+  "sourceHashes": {
+    "src/main/audio-tools.cjs": "4f2de5ccb0320fb2c9c02d9c566c1b846f1e4831721ce1e15723e95de1cfa051",
+    "src/shared/project.js": "9239874c5dc8203f286cd6b31243e0b48af89ccdd2547f0f9fe2912484907515",
+    "src/shared/audio-model.js": "89f0bd7da8e1c0d2a6214761c83fe35f460a83a5610c06cb4e06374f56d3cd5e",
+    "src/main/main.cjs": "0f266b9fb50dba5ffbad68d8c2f05cbe528df2c517b623418f22131ee599bf5c",
+    "src/main/editor-services.cjs": "7e1c67b69c3599481e27a107a3d9f2a18dda02f853d80a3b4b8a0cfec8c9e176",
+    "src/main/preload.cjs": "5dc9403e557f46e07361e700f67a03504560e2968fe6a5f3708af7af724e93d4",
+    "src/renderer/recording-controls.js": "5c218c4994048102cfb1b7e19e5f1a368a75c076622b762cc57c666c27c64348",
+    "src/renderer/app.js": "2d99227347a672e43395be74ac50719c6882386d0ffec289155718bab1aa32b0",
+    "src/renderer/index.html": "db1166d36202e1deae6737efa90602628b03203b565af8852c436e5425007991",
+    "tools/ffmpeg.exe": "2ce797a0f88d7f067180338fb227f7b1928ea727bd9a4d7a1d022f7c52af71a3",
+    "tools/ffprobe.exe": "4303ec85855340689b1f8aa5d9c1dc06ef3e3090682de3034edc3fca2b0798d5"
+  },
+  "sourceStable": true,
+  "createdAt": "2026-10-17T05:41:11.918Z"
+}

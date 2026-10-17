@@ -1,0 +1,86 @@
+{
+  "success": true,
+  "version": "0.8.0",
+  "packaged": true,
+  "createdAt": "2026-10-17T05:34:25.386Z",
+  "sourceHashes": {
+    "src/shared/project.js": "9239874c5dc8203f286cd6b31243e0b48af89ccdd2547f0f9fe2912484907515",
+    "src/shared/text-style.js": "077d49385b3c3ab94c0528c035055e6ffc4e48ab9706e826342937f83fc0f1f6",
+    "src/shared/audio-model.js": "89f0bd7da8e1c0d2a6214761c83fe35f460a83a5610c06cb4e06374f56d3cd5e",
+    "src/renderer/app.js": "2d99227347a672e43395be74ac50719c6882386d0ffec289155718bab1aa32b0",
+    "src/renderer/timeline-editing.js": "7c3195b3cd83133617e0a51c70f7f9345a82ef8447e633c10bc9212a0b7177f9",
+    "src/renderer/workflow-controls.js": "dca1f67045d62ae6a727aac437c7167cceb71ebfa45aec5466258ecfaf9f45cb",
+    "src/renderer/index.html": "db1166d36202e1deae6737efa90602628b03203b565af8852c436e5425007991",
+    "src/main/main.cjs": "0f266b9fb50dba5ffbad68d8c2f05cbe528df2c517b623418f22131ee599bf5c"
+  },
+  "sourceChangedDuringRun": [],
+  "checks": [
+    {
+      "name": "Independent text supports real pointer move, a single undo, frozen copy/paste with new ID, and Ctrl+A",
+      "evidence": {
+        "moveDelta": 0.4,
+        "newTextId": "text-b85901a0-c143-42ed-98c4-13505dcbff23",
+        "copyAt": 3.2,
+        "selectAllItems": 5
+      }
+    },
+    {
+      "name": "Persistent text and caption groups click/select/move/copy/delete together, with one undo per gesture",
+      "evidence": {
+        "members": 2,
+        "pastedGroupNewId": "group-036e8429-12c0-4933-ab52-ab4d54899857",
+        "pastedMembers": [
+          {
+            "type": "subtitle",
+            "id": "subtitle-b8145367-628c-41ff-8c98-f91c293765b0"
+          },
+          {
+            "type": "text",
+            "id": "text-79fc1211-dbc1-4182-b84b-dfb2a25fef60"
+          }
+        ],
+        "deleteUndoRestored": true
+      }
+    },
+    {
+      "name": "Audio pointer movement changes the destination track and paints the draft on that track",
+      "evidence": {
+        "from": "audio-1",
+        "to": "audio-2",
+        "delta": 0.4,
+        "undoRestored": true
+      }
+    },
+    {
+      "name": "Locked source and destination audio tracks reject movement without dirtying the project or adding undo",
+      "evidence": {
+        "lockedSourceRejected": true,
+        "lockedDestinationRejected": true,
+        "noDirtyOrUndo": true
+      }
+    },
+    {
+      "name": "A mixed audio/title group keeps relative timing during pointer movement and remains an atomic undo transaction",
+      "evidence": {
+        "delta": 0.4,
+        "relativeOffset": 0.2,
+        "singleUndo": true
+      }
+    },
+    {
+      "name": "A group spanning original audio tracks preserves both tracks on horizontal moves and rejects flattening by a vertical drop",
+      "evidence": {
+        "originalTracks": [
+          "audio-1",
+          "audio-2"
+        ],
+        "horizontalDelta": 0.4,
+        "tracksPreserved": true,
+        "verticalFlattenRejected": true,
+        "noDirtyOrUndo": true
+      }
+    }
+  ],
+  "failures": [],
+  "pageErrors": []
+}

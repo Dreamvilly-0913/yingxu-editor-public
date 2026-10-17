@@ -1,0 +1,65 @@
+{
+  "feature": "离线自动字幕",
+  "engine": {
+    "name": "whisper.cpp",
+    "version": "1.9.4",
+    "build": "b5130",
+    "mode": "Windows x64 CPU",
+    "source": "https://github.com/ggml-org/whisper.cpp/releases/tag/b5130"
+  },
+  "model": {
+    "name": "Whisper base multilingual",
+    "bytes": 147951465,
+    "source": "https://huggingface.co/ggerganov/whisper.cpp/blob/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-base.bin",
+    "sha256": "60ed5bc3dd14eea856493d334349b405782ddcaf0028d4b5df4088345fba2efe"
+  },
+  "vad": {
+    "name": "Silero VAD 6.2.0",
+    "bytes": 885098,
+    "source": "https://huggingface.co/ggml-org/whisper-vad/blob/9ffd54a1e1ee413ddf265af9913beaf518d1639b/ggml-silero-v6.2.0.bin"
+  },
+  "pipeline": [
+    "由时间线导出单声道 16 kHz PCM WAV，包含裁剪、变速、开始时间、音量与转场淡化。",
+    "Silero 检测人声区间，Whisper 在本机识别并输出原时间线时间码。",
+    "根据毫秒偏移生成可编辑字幕，滤掉纯音乐等非语音标记，保持工程与原素材不变。",
+    "主界面应用返回字幕，可撤销；取消会结束该任务拥有的子进程并清理临时音轨与模型链接。"
+  ],
+  "privacy": "运行识别无需联网；本地音轨不上传。安装脚本只从固定公开官方地址下载引擎、模型与许可证。",
+  "languages": {
+    "auto": "自动检测（多语言）",
+    "zh": "中文",
+    "en": "英语"
+  },
+  "progress": "preparing 音轨准备：0–0.17；recognizing 人声检测和识别：0.18–0.97；completed：1。短音轨识别进度可能一次跳至完成。",
+  "windows_paths": "官方 CLI 的窄字符参数不能可靠读取中文绝对路径。本实现以 Unicode 工作目录启动进程，给 CLI 的文件参数均为 ASCII；同盘硬链接模型，跨盘复制模型，任务结束清理。模型原件不会被修改。",
+  "installation": {
+    "command": "node scripts/setup-asr.cjs",
+    "destination": "tools/asr",
+    "manifest": "tools/asr/manifest.json",
+    "licenses": "tools/asr/licenses",
+    "reproducibility": "版本、模型提交、所有下载 SHA256 均固定。安装程序校验官方 ZIP/LFS 哈希；打包包括运行文件和许可证。"
+  },
+  "tests": {
+    "command": "node --test tests/transcription.test.cjs",
+    "report": "outputs/asr-acceptance.json",
+    "fixtures": "assets/asr-test",
+    "coverage": [
+      "真实英文、中文口播",
+      "时间线延迟及变速后的时间码",
+      "自动检测语言",
+      "Windows 中文路径和跨盘工作目录",
+      "静音及原创纯音无对白幻觉",
+      "活动任务取消与独立临时目录清理",
+      "原素材和工程不变",
+      "缺少运行时、坏 JSON、不支持语言、预先取消的显式错误"
+    ]
+  },
+  "limitations": [
+    "base 是轻量多语言模型，专有名词、口音、噪声与重叠人声仍可能识别错误，用户可编辑校对。",
+    "中文实际测试将“映序”识别为“应序”；不声称达到商业语音服务精度。",
+    "VAD 降低无语音幻觉，当前通过的是静音和原创纯音测试，不能保证所有音乐与噪声都不产生误识别。",
+    "字幕时间码为模型估计，不是强制对齐结果；当前没有说话人分离、逐字高亮或自动翻译。",
+    "时间线将各条启用音轨混合识别；遮挡的视频画面仍可能有声音，音量设为零才静音。",
+    "在跨盘临时目录需要约 150 MB 附加临时空间；识别使用 CPU，本机测试短口播约 2–3 秒完成，长片耗时随硬件与音轨增长。"
+  ]
+}

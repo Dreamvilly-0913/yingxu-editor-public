@@ -1,0 +1,602 @@
+{
+  "success": true,
+  "packaged": true,
+  "version": "0.8.0",
+  "createdAt": "2026-10-17T05:32:41.269Z",
+  "scenario": "Open old and new sample projects with identical clip/asset IDs twice; seek five times per open; compare compositor source frames to direct shader output from current media and require the final composite surface",
+  "checks": [
+    {
+      "iteration": 0,
+      "project": "多轨与动画演示",
+      "targetTime": 2,
+      "time": 2,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": true,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "sourceRgbMean": 91.71448206018519
+    },
+    {
+      "iteration": 0,
+      "project": "多轨与动画演示",
+      "targetTime": 0.35,
+      "time": 0.35,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": false,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "sourceRgbMean": 91.04405381944444
+    },
+    {
+      "iteration": 0,
+      "project": "多轨与动画演示",
+      "targetTime": 3.1,
+      "time": 3.1,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": true,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "sourceRgbMean": 91.96310763888889
+    },
+    {
+      "iteration": 0,
+      "project": "多轨与动画演示",
+      "targetTime": 1.3,
+      "time": 1.3,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": true,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "sourceRgbMean": 91.51273148148148
+    },
+    {
+      "iteration": 0,
+      "project": "多轨与动画演示",
+      "targetTime": 2.6,
+      "time": 2.6,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": true,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "sourceRgbMean": 91.78902633101852
+    },
+    {
+      "iteration": 1,
+      "project": "调色与声音演示",
+      "targetTime": 2,
+      "time": 2,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": true,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "canvas": {
+        "width": 1280,
+        "height": 720,
+        "rgbMean": 107.92875361689815,
+        "maxDifferenceFromDirectRender": 0
+      }
+    },
+    {
+      "iteration": 1,
+      "project": "调色与声音演示",
+      "targetTime": 0.35,
+      "time": 0.35,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": false,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "canvas": {
+        "width": 1280,
+        "height": 720,
+        "rgbMean": 107.21691008391204,
+        "maxDifferenceFromDirectRender": 0
+      }
+    },
+    {
+      "iteration": 1,
+      "project": "调色与声音演示",
+      "targetTime": 3.1,
+      "time": 3.1,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": true,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "canvas": {
+        "width": 1280,
+        "height": 720,
+        "rgbMean": 108.26451280381944,
+        "maxDifferenceFromDirectRender": 0
+      }
+    },
+    {
+      "iteration": 1,
+      "project": "调色与声音演示",
+      "targetTime": 1.3,
+      "time": 1.3,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": true,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "canvas": {
+        "width": 1280,
+        "height": 720,
+        "rgbMean": 107.65370442708333,
+        "maxDifferenceFromDirectRender": 0
+      }
+    },
+    {
+      "iteration": 1,
+      "project": "调色与声音演示",
+      "targetTime": 2.6,
+      "time": 2.6,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": true,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "canvas": {
+        "width": 1280,
+        "height": 720,
+        "rgbMean": 108.08188874421296,
+        "maxDifferenceFromDirectRender": 0
+      }
+    },
+    {
+      "iteration": 2,
+      "project": "多轨与动画演示",
+      "targetTime": 2,
+      "time": 2,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": true,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "sourceRgbMean": 91.71448206018519
+    },
+    {
+      "iteration": 2,
+      "project": "多轨与动画演示",
+      "targetTime": 0.35,
+      "time": 0.35,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": false,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "sourceRgbMean": 91.04405381944444
+    },
+    {
+      "iteration": 2,
+      "project": "多轨与动画演示",
+      "targetTime": 3.1,
+      "time": 3.1,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": true,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "sourceRgbMean": 91.96310763888889
+    },
+    {
+      "iteration": 2,
+      "project": "多轨与动画演示",
+      "targetTime": 1.3,
+      "time": 1.3,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": true,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "sourceRgbMean": 91.51273148148148
+    },
+    {
+      "iteration": 2,
+      "project": "多轨与动画演示",
+      "targetTime": 2.6,
+      "time": 2.6,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": true,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "sourceRgbMean": 91.78902633101852
+    },
+    {
+      "iteration": 3,
+      "project": "调色与声音演示",
+      "targetTime": 2,
+      "time": 2,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": true,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "canvas": {
+        "width": 1280,
+        "height": 720,
+        "rgbMean": 107.92875361689815,
+        "maxDifferenceFromDirectRender": 0
+      }
+    },
+    {
+      "iteration": 3,
+      "project": "调色与声音演示",
+      "targetTime": 0.35,
+      "time": 0.35,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": false,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "canvas": {
+        "width": 1280,
+        "height": 720,
+        "rgbMean": 107.21691008391204,
+        "maxDifferenceFromDirectRender": 0
+      }
+    },
+    {
+      "iteration": 3,
+      "project": "调色与声音演示",
+      "targetTime": 3.1,
+      "time": 3.1,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": true,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "canvas": {
+        "width": 1280,
+        "height": 720,
+        "rgbMean": 108.26451280381944,
+        "maxDifferenceFromDirectRender": 0
+      }
+    },
+    {
+      "iteration": 3,
+      "project": "调色与声音演示",
+      "targetTime": 1.3,
+      "time": 1.3,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": true,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "canvas": {
+        "width": 1280,
+        "height": 720,
+        "rgbMean": 107.65370442708333,
+        "maxDifferenceFromDirectRender": 0
+      }
+    },
+    {
+      "iteration": 3,
+      "project": "调色与声音演示",
+      "targetTime": 2.6,
+      "time": 2.6,
+      "readyState": 4,
+      "seeking": false,
+      "seekable": [
+        [
+          0,
+          3.966667
+        ]
+      ],
+      "canvasVisible": true,
+      "mediaVisible": false,
+      "imageOverlayVisible": true,
+      "previewErrorVisible": false,
+      "compositeVisible": true,
+      "compositeSize": [
+        1280,
+        720
+      ],
+      "canvas": {
+        "width": 1280,
+        "height": 720,
+        "rgbMean": 108.08188874421296,
+        "maxDifferenceFromDirectRender": 0
+      }
+    }
+  ],
+  "rangeChecks": [
+    {
+      "iteration": 0,
+      "partialStatus": 206,
+      "partialLength": 157,
+      "contentRange": "bytes 101-257/1548341",
+      "headStatus": 200,
+      "headContentLength": 1548341,
+      "headBodyLength": 0,
+      "fullLength": 1548341
+    },
+    {
+      "iteration": 1,
+      "partialStatus": 206,
+      "partialLength": 157,
+      "contentRange": "bytes 101-257/1548341",
+      "headStatus": 200,
+      "headContentLength": 1548341,
+      "headBodyLength": 0,
+      "fullLength": 1548341
+    },
+    {
+      "iteration": 2,
+      "partialStatus": 206,
+      "partialLength": 157,
+      "contentRange": "bytes 101-257/1548341",
+      "headStatus": 200,
+      "headContentLength": 1548341,
+      "headBodyLength": 0,
+      "fullLength": 1548341
+    },
+    {
+      "iteration": 3,
+      "partialStatus": 206,
+      "partialLength": 157,
+      "contentRange": "bytes 101-257/1548341",
+      "headStatus": 200,
+      "headContentLength": 1548341,
+      "headBodyLength": 0,
+      "fullLength": 1548341
+    }
+  ],
+  "errors": [],
+  "failure": null,
+  "diagnostic": null,
+  "sourceHashes": [
+    {
+      "path": "src/renderer/app.js",
+      "sha256": "2d99227347a672e43395be74ac50719c6882386d0ffec289155718bab1aa32b0"
+    },
+    {
+      "path": "src/renderer/color-preview.js",
+      "sha256": "c139a44f84366ef5861a7c8e5a2f48d8e0fed82b907794c98cf80389a2a011ee"
+    },
+    {
+      "path": "src/main/main.cjs",
+      "sha256": "0f266b9fb50dba5ffbad68d8c2f05cbe528df2c517b623418f22131ee599bf5c"
+    },
+    {
+      "path": "src/main/media-protocol.cjs",
+      "sha256": "98a99e045211ca0343b481ac5dea0213950495609ad8a87558d92e7234899667"
+    }
+  ]
+}

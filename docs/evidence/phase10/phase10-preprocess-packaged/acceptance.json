@@ -1,0 +1,104 @@
+{
+  "success": true,
+  "version": "0.8.0",
+  "packaged": true,
+  "createdAt": "2026-10-17T05:29:05.207Z",
+  "sourceHashes": {
+    "src/main/media-preprocess.cjs": "2469b0873ef13ab1875823ffa0f4ceca075e82b4b5e43414a8dc049b12f218a7",
+    "src/renderer/preprocess-controls.js": "384bd49b4028ff3c0e6394d797832ce9b26a3aca127429295c26f84c4f3e9993",
+    "src/renderer/preprocess-controls.css": "e6e8eb0c3135eeb1c99a21602d1b0cb6ccf3906089c20017eea2a8691b48a903"
+  },
+  "sourceChangedDuringRun": [],
+  "checks": [
+    {
+      "name": "Bundled FFmpeg reports the five actual filters required by all preprocessing modes",
+      "evidence": {
+        "available": true,
+        "opticalFlow": true,
+        "stabilize": true,
+        "hdrToSdr": true,
+        "filters": [
+          "minterpolate",
+          "tonemap",
+          "vidstabdetect",
+          "vidstabtransform",
+          "zscale"
+        ]
+      }
+    },
+    {
+      "name": "Motion compensated interpolation creates the requested frame rate and frame count with retained audio and SDR tags",
+      "evidence": {
+        "path": "<project-root>/work/phase10-preprocess-packaged/run-1792214936952/preprocessed/optical-flow-bbb4f67d-8d53-4bdf-8ceb-c0de68036fef/converted.mp4",
+        "frames": 45,
+        "fps": "30/1",
+        "audio": true,
+        "sourceSha256": "e05b88411990bfb64e28408aaad9bf38ba858912ade689503752e38b68b2321a",
+        "outputHash": "6c5de74064c37a08d82bb479a22d697530946335a48097ec0910e61713666ec3"
+      }
+    },
+    {
+      "name": "Two-pass stabilization writes a real analysis transform, renders a new video and retains timing, dimensions and audio",
+      "evidence": {
+        "path": "<project-root>/work/phase10-preprocess-packaged/run-1792214936952/preprocessed/stabilize-5b2de3bf-397e-4b3e-8601-3cec8f5605dd/converted.mp4",
+        "frames": 18,
+        "transformBytes": 5654,
+        "audio": true
+      }
+    },
+    {
+      "name": "Stabilization reduces measured frame-to-frame motion in a static patterned camera shake fixture",
+      "evidence": {
+        "source": "<project-root>/work/phase10-preprocess-packaged/run-1792214936952/相机抖动.mp4",
+        "path": "<project-root>/work/phase10-preprocess-packaged/run-1792214936952/preprocessed/stabilize-f7704f75-56c1-45b4-b9cf-6c40fe32c29b/converted.mp4",
+        "beforeMeanAbsFrameDifference": 29.80162311422414,
+        "afterMeanAbsFrameDifference": 15.347863909841953,
+        "motionRatio": 0.515000939748027
+      }
+    },
+    {
+      "name": "smpte2084 explicitly tagged BT.2020 HDR converts to validated SDR working space and remains distinct from the source",
+      "evidence": {
+        "source": "<project-root>/work/phase10-preprocess-packaged/run-1792214936952/smpte2084.mp4",
+        "path": "<project-root>/work/phase10-preprocess-packaged/run-1792214936952/preprocessed/hdr-to-sdr-326c1cd3-0640-434f-b369-1d2af59f2c8a/converted.mp4",
+        "frames": 12,
+        "sourceHash": "5395fdbfba5c94624f882a42588af1475884c85b2869f1d98b4a0e78927bfc38",
+        "sourceTransfer": "smpte2084",
+        "targetTransfer": "iec61966-2-1",
+        "assumptions": [
+          "明确转换为 SDR；Hable 色调映射以 100 nit 为工作参考白，信号峰值 1000 nit。"
+        ]
+      }
+    },
+    {
+      "name": "arib-std-b67 explicitly tagged BT.2020 HDR converts to validated SDR working space and remains distinct from the source",
+      "evidence": {
+        "source": "<project-root>/work/phase10-preprocess-packaged/run-1792214936952/arib-std-b67.mp4",
+        "path": "<project-root>/work/phase10-preprocess-packaged/run-1792214936952/preprocessed/hdr-to-sdr-d0f7eead-d3ad-4d14-a514-5f60bd12ff0f/converted.mp4",
+        "frames": 12,
+        "sourceHash": "4080789a44cee91dd35c296cba72250ca54251e5f5616ccb05e328883ddd28c7",
+        "sourceTransfer": "arib-std-b67",
+        "targetTransfer": "iec61966-2-1",
+        "assumptions": [
+          "明确转换为 SDR；Hable 色调映射以 100 nit 为工作参考白，信号峰值 1000 nit。",
+          "HLG 转换使用 zscale 的标准 HLG 解释，不复现特定设备动态映射。"
+        ]
+      }
+    },
+    {
+      "name": "Cancellation stops the encoder and removes only its owned job while previous conversions remain",
+      "evidence": {
+        "canceled": true,
+        "previousJobsPreserved": 5,
+        "noPartialJob": true
+      }
+    },
+    {
+      "name": "Invalid mode or an SDR input passed to HDR conversion cannot mutate original files",
+      "evidence": {
+        "sourceHash": "e05b88411990bfb64e28408aaad9bf38ba858912ade689503752e38b68b2321a"
+      }
+    }
+  ],
+  "failures": []
+}

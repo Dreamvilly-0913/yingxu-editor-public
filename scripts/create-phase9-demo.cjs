@@ -1,0 +1,11 @@
+"use strict";
+const fs=require('node:fs'),path=require('node:path'),M=require('../src/shared/project.js');
+const root=path.resolve(__dirname,'..'),dir=path.join(root,'assets/demo'),reference=JSON.parse(fs.readFileSync(path.join(dir,'曲线变速与高级调色演示.yxproj'),'utf8'));
+let p=M.setMagneticMain(M.createProject('自由时间线与素材管理演示'),false);p.width=1280;p.height=720;p.fps=30;p.videoTrackCount=2;
+for(const a of reference.assets)p=M.addAsset(p,a);
+p=M.addClip(p,'i',.4);let c=p.clips.at(-1);p=M.updateClip(p,c.id,{duration:1.8,color:{brightness:.12,contrast:.1,saturation:-.1}});
+p=M.addClip(p,'v',3);c=p.clips.at(-1);p=M.updateClip(p,c.id,{sourceIn:.5,duration:2.4});p=M.updateClip(p,c.id,{speedCurve:[{position:0,speed:.8},{position:.5,speed:.5},{position:1,speed:1.4}]});
+p=M.addClip(p,'i',3.2,{layer:1});c=p.clips.at(-1);p=M.updateClip(p,c.id,{duration:1.9,transform:{x:.27,y:.2,scale:.28,rotation:-8,opacity:.8},mask:{type:'ellipse',centerX:.5,centerY:.5,width:.95,height:.9,rotation:0,feather:.15,invert:false}});
+p=M.addClip(p,'a',.15);c=p.clips.at(-1);p=M.updateClip(p,c.id,{duration:6.05,volume:.15,audioFade:{in:.3,out:.5}});
+for(const cue of [{start:.45,end:2.1,text:'拖动片段边缘修剪 · Alt 临时关闭吸附'},{start:2.3,end:2.9,text:'主轨磁吸已关闭，可保留空隙'},{start:3.3,end:5.8,text:'Shift / Ctrl 多选 · Ctrl C / V 复制粘贴'}])p=M.addSubtitle(p,cue);
+M.validateProject(p);const file=path.join(dir,'自由时间线与素材管理演示.yxproj');fs.writeFileSync(file,JSON.stringify(p,null,2));fs.writeFileSync(path.join(dir,'自由时间线与素材管理演示.srt'),M.toSrt(p.subtitles));console.log(JSON.stringify({file,duration:M.projectDuration(p),clips:p.clips.length,magneticMain:p.magneticMain}));

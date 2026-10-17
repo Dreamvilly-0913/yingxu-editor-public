@@ -1,0 +1,51 @@
+{
+  "success": true,
+  "version": "0.8.0",
+  "packaged": true,
+  "createdAt": "2026-10-17T05:31:36.560Z",
+  "sourceHashes": {
+    "src/main/media-preprocess.cjs": "2469b0873ef13ab1875823ffa0f4ceca075e82b4b5e43414a8dc049b12f218a7",
+    "src/main/editor-services.cjs": "7e1c67b69c3599481e27a107a3d9f2a18dda02f853d80a3b4b8a0cfec8c9e176",
+    "src/main/main.cjs": "0f266b9fb50dba5ffbad68d8c2f05cbe528df2c517b623418f22131ee599bf5c",
+    "src/main/preload.cjs": "5dc9403e557f46e07361e700f67a03504560e2968fe6a5f3708af7af724e93d4",
+    "src/renderer/preprocess-controls.js": "384bd49b4028ff3c0e6394d797832ce9b26a3aca127429295c26f84c4f3e9993",
+    "src/renderer/preprocess-controls.css": "e6e8eb0c3135eeb1c99a21602d1b0cb6ccf3906089c20017eea2a8691b48a903",
+    "src/renderer/workflow-controls.js": "dca1f67045d62ae6a727aac437c7167cceb71ebfa45aec5466258ecfaf9f45cb",
+    "src/renderer/app.js": "2d99227347a672e43395be74ac50719c6882386d0ffec289155718bab1aa32b0"
+  },
+  "sourceChangedDuringRun": [],
+  "checks": [
+    {
+      "name": "Motion interpolation button runs the desktop service and imports a new registered video asset without changing clips",
+      "evidence": {
+        "message": "已加入素材库：converted.mp4",
+        "assetId": "e74e20d0-528d-4dc5-b5b5-51c32499e59e",
+        "frames": 45,
+        "path": "profile\\processed-sources\\preprocessed\\optical-flow-57a1e795-72df-4dc7-9e2f-96acd37959a3\\converted.mp4"
+      }
+    },
+    {
+      "name": "Stabilization has a separate visible entry and imports a new source through actual safe IPC",
+      "evidence": {
+        "message": "已加入素材库：converted.mp4",
+        "assetId": "5aca5ec4-1d2e-4b7e-bde0-8b1f94bfcc22",
+        "frames": 18,
+        "path": "profile\\processed-sources\\preprocessed\\stabilize-724f104b-e8d0-462e-8c00-59b417e541cf\\converted.mp4"
+      }
+    },
+    {
+      "name": "HDR conversion selects the external PQ file before ordinary import and adds a validated SDR source",
+      "evidence": {
+        "message": "已加入素材库：converted.mp4",
+        "assetId": "6f0f06ec-91cb-4f8a-8300-fe6b6856a8b8",
+        "path": "profile\\processed-sources\\preprocessed\\hdr-to-sdr-f6d4e997-41fe-465e-9d29-6808838a4bbb\\converted.mp4",
+        "sourceHashes": {
+          "sdr": "b3ed5e30d7679917249f9c2d0912767b464b192851ffd0b313bce1840ae1452f",
+          "hdr": "5395fdbfba5c94624f882a42588af1475884c85b2869f1d98b4a0e78927bfc38"
+        }
+      }
+    }
+  ],
+  "failures": [],
+  "pageErrors": []
+}

@@ -1,0 +1,141 @@
+{
+  "engine": "whisper.cpp",
+  "version": "1.9.4",
+  "build": "b5130",
+  "platform": "win32-x64-cpu",
+  "model": "Whisper base multilingual",
+  "vad": "Silero VAD 6.2.0",
+  "sources": [
+    {
+      "name": "whisper-bin-x64.zip",
+      "kind": "archive",
+      "bytes": 8573270,
+      "sha256": "f9ec6c52a2e949b62ab51fa21d0d497958f9e41c3010c157c4e42932d5316f3c",
+      "url": "https://github.com/ggml-org/whisper.cpp/releases/download/b5130/whisper-bin-x64.zip"
+    },
+    {
+      "name": "ggml-base.bin",
+      "kind": "model",
+      "bytes": 147951465,
+      "sha256": "60ed5bc3dd14eea856493d334349b405782ddcaf0028d4b5df4088345fba2efe",
+      "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-base.bin"
+    },
+    {
+      "name": "ggml-silero-v6.2.0.bin",
+      "kind": "model",
+      "bytes": 885098,
+      "sha256": "2aa269b785eeb53a82983a20501ddf7c1d9c48e33ab63a41391ac6c9f7fb6987",
+      "url": "https://huggingface.co/ggml-org/whisper-vad/resolve/9ffd54a1e1ee413ddf265af9913beaf518d1639b/ggml-silero-v6.2.0.bin"
+    },
+    {
+      "name": "whisper.cpp-MIT.txt",
+      "kind": "license",
+      "sha256": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",
+      "url": "https://raw.githubusercontent.com/ggml-org/whisper.cpp/b5130/LICENSE"
+    },
+    {
+      "name": "silero-vad-MIT.txt",
+      "kind": "license",
+      "sha256": "2e63e9a38b6e8fc0c7bc37ce174caca1862870856c6daf5697cfb785e925520b",
+      "url": "https://raw.githubusercontent.com/snakers4/silero-vad/1e261b036686cd0017d500ee96acd1c4ba572a9d/LICENSE"
+    },
+    {
+      "name": "whisper-model-MIT.txt",
+      "kind": "license",
+      "sha256": "b5d65a59060e68c4ff940e1eddfa6f94b2d68fdf58ed7f4dd57721c997e35e9d",
+      "url": "https://raw.githubusercontent.com/openai/whisper/86098128c0b4f24f0e2aa2994de830614b474227/LICENSE"
+    }
+  ],
+  "files": [
+    {
+      "path": "ggml-base.bin",
+      "bytes": 147951465,
+      "sha256": "60ed5bc3dd14eea856493d334349b405782ddcaf0028d4b5df4088345fba2efe"
+    },
+    {
+      "path": "ggml-base.dll",
+      "bytes": 689664,
+      "sha256": "a5241b52206f61c9dfd6f0f53a8ef19076f9528ead2db1e039a66d7e03817bfc"
+    },
+    {
+      "path": "ggml-cpu-alderlake.dll",
+      "bytes": 864256,
+      "sha256": "5a5b11dcd38e321b13f85c95414940db9eab1132be3da6342f03dfb1d8e51bd5"
+    },
+    {
+      "path": "ggml-cpu-cannonlake.dll",
+      "bytes": 908288,
+      "sha256": "2c858781450b52eda95c381232cc65c9e19cbf621cc7b254d8c44fdbab77791e"
+    },
+    {
+      "path": "ggml-cpu-cascadelake.dll",
+      "bytes": 904704,
+      "sha256": "ddf49bb749b34800afcb3d6224544966a05c5d00f1d0b6565bee9f3b010dd53c"
+    },
+    {
+      "path": "ggml-cpu-haswell.dll",
+      "bytes": 866304,
+      "sha256": "6b772e094b8976e22b4c043be86a1a8deda4b50511dc803a693b652c51b24944"
+    },
+    {
+      "path": "ggml-cpu-icelake.dll",
+      "bytes": 904704,
+      "sha256": "bbd87ea5920edc401054848071ad2ef8c96bbf8007c4e4cd0ea82ba9b9e3bd10"
+    },
+    {
+      "path": "ggml-cpu-sandybridge.dll",
+      "bytes": 860672,
+      "sha256": "de2ad5f84c7dfa557d515b3678d6452ce0216590268b2ca79cc537fe87cf239d"
+    },
+    {
+      "path": "ggml-cpu-skylakex.dll",
+      "bytes": 908288,
+      "sha256": "9fa3f9d984ca42d568181dd345072299db2978b328800343218c2c7f000b7152"
+    },
+    {
+      "path": "ggml-cpu-sse42.dll",
+      "bytes": 846848,
+      "sha256": "740fc769ef433985dfdb24a609a42d5acf188abda52287a4d89b89b567507c19"
+    },
+    {
+      "path": "ggml-cpu-x64.dll",
+      "bytes": 850432,
+      "sha256": "43ccf32b9b70aa4c47d0a12ac2ed3c241e0045571acdad565ecd9d1f99ffc08b"
+    },
+    {
+      "path": "ggml-silero-v6.2.0.bin",
+      "bytes": 885098,
+      "sha256": "2aa269b785eeb53a82983a20501ddf7c1d9c48e33ab63a41391ac6c9f7fb6987"
+    },
+    {
+      "path": "ggml.dll",
+      "bytes": 62464,
+      "sha256": "c6e88687d6aa0238f2e834a87958f38d2dc96075a6a7bf6fb8b9cd728a0faed2"
+    },
+    {
+      "path": "licenses/silero-vad-MIT.txt",
+      "bytes": 1075,
+      "sha256": "2e63e9a38b6e8fc0c7bc37ce174caca1862870856c6daf5697cfb785e925520b"
+    },
+    {
+      "path": "licenses/whisper-model-MIT.txt",
+      "bytes": 1063,
+      "sha256": "b5d65a59060e68c4ff940e1eddfa6f94b2d68fdf58ed7f4dd57721c997e35e9d"
+    },
+    {
+      "path": "licenses/whisper.cpp-MIT.txt",
+      "bytes": 1078,
+      "sha256": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d"
+    },
+    {
+      "path": "whisper-cli.exe",
+      "bytes": 479232,
+      "sha256": "19b976e037c02c0de712fa26096842d4ebafca03c976b12e8e6123215e7aab58"
+    },
+    {
+      "path": "whisper.dll",
+      "bytes": 1368576,
+      "sha256": "b7bb4ba92bd36b8afe0c00059ca6a0f69c6767193bfb5f0761e9ed27b1087803"
+    }
+  ]
+}

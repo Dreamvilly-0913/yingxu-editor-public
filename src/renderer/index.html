@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: yingxu-media:; media-src 'self' blob: yingxu-media:; connect-src 'self' yingxu-media:; object-src 'none'; base-uri 'self'">
+<title>映序 · 视频编辑器</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="timeline-editing.css">
+<link rel="stylesheet" href="audio-controls.css">
+<link rel="stylesheet" href="text-controls.css">
+<link rel="stylesheet" href="visual-controls.css">
+<link rel="stylesheet" href="preprocess-controls.css">
+<link rel="stylesheet" href="workflow-controls.css">
+<link rel="stylesheet" href="ai-controls.css">
+<link rel="stylesheet" href="recording-controls.css">
+<script defer src="../shared/time-map.js"></script>
+<script defer src="../shared/advanced-color.js"></script>
+<script defer src="../shared/audio-model.js"></script>
+<script defer src="../shared/text-style.js"></script>
+<script defer src="../shared/visual-effects.js"></script>
+<script defer src="../shared/project.js"></script>
+<script defer src="color-preview.js"></script>
+<script defer src="advanced-controls.js"></script>
+<script defer src="timeline-editing.js"></script>
+<script defer src="audio-controls.js"></script>
+<script defer src="text-controls.js"></script>
+<script defer src="visual-controls.js"></script>
+<script defer src="preprocess-controls.js"></script>
+<script defer src="workflow-controls.js"></script>
+<script defer src="ai-controls.js"></script>
+<script defer src="recording-controls.js"></script>
+<script defer src="app.js"></script>
+</head>
+<body>
+<div class="app-shell">
+<header class="topbar">
+  <div class="brand" title="映序 · 本地视频编辑器"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M5 4h8v8H5zM17 4h8v8h-8zM5 16h8v10H5z" fill="currentColor"/><path d="m17 16 10 5-10 5z" fill="currentColor"/></svg><span>映序</span><span class="brand-divider"></span></div>
+  <div class="project-heading"><input id="projectName" aria-label="项目名称" value="未命名项目" maxlength="100"><span id="dirtyDot" class="dirty-dot" title="有未保存的修改" hidden></span><span class="local-tag">本地项目</span></div>
+  <div class="project-actions"><button id="newProject" class="quiet" title="新建项目">新建</button><button id="openProject" class="quiet" title="打开项目">打开</button><button id="saveProject" class="quiet" title="保存项目 · Ctrl S"><span data-icon="save"></span>保存</button><button id="projectTools" class="quiet" title="素材重链接、另存为与归档">工程</button><span class="toolbar-divider"></span><button id="openDemo" class="quiet demo-button">打开演示</button><button id="openExport" class="primary"><span data-icon="export"></span>导出视频</button></div>
+</header>
+<div class="app-notices"><div id="offlineBanner" class="offline-banner" hidden><span id="offlineMessage"></span><button id="manageOffline" class="secondary compact">定位素材</button></div><div id="recoveryBanner" class="recovery-banner" role="status" hidden><span id="recoveryMessage"></span><div><button id="restoreRecovery" class="secondary compact">恢复暂存</button><button id="ignoreRecovery" class="quiet compact">忽略</button></div></div><div id="desktopNotice" class="desktop-notice" hidden>请通过映序桌面应用启动，以使用本地素材、项目保存和视频导出。</div></div>
+<main class="workbench">
+  <aside class="library panel">
+    <div class="library-tabs" role="tablist" aria-label="资源类型"><button class="tab active" id="mediaTab" role="tab" aria-selected="true">素材<span id="assetCount">0</span></button><button class="tab" id="subtitleTab" role="tab" aria-selected="false">字幕<span id="subtitleCount">0</span></button></div>
+    <div id="mediaLibrary" class="library-body">
+      <div class="library-toolbar"><button id="importMedia" class="import-button"><span data-icon="plus"></span>导入素材</button><button class="icon-button" id="toggleAssetView" title="切换素材显示方式" aria-label="切换素材显示方式"><span data-icon="grid"></span></button></div>
+      <input id="assetSearch" class="media-search" type="search" placeholder="搜索素材名称" aria-label="搜索素材名称"><div class="filters" aria-label="筛选素材"><button data-filter="all" class="active">全部</button><button data-filter="video">视频</button><button data-filter="audio">音频</button><button data-filter="image">图片</button></div>
+      <div id="assetList" class="asset-list"></div>
+      <div class="library-footer"><span data-icon="drag"></span>双击素材添加 · 拖入时间线</div>
+    </div>
+    <div id="subtitleLibrary" class="library-body" hidden><div class="library-toolbar"><button id="addSubtitleLibrary" class="import-button"><span data-icon="plus"></span>添加字幕</button><button id="importSrt" class="quiet compact">导入 SRT</button><button id="exportSrt" class="quiet compact" disabled>导出 SRT</button></div><div class="subtitle-recognition"><button id="autoSubtitle" class="secondary"><span data-icon="text"></span>自动识别字幕</button><span>本地处理 · 可继续编辑文字与时间</span></div><div id="subtitleList" class="subtitle-list"></div><div class="library-footer">选择字幕，在右侧编辑文字与时间</div></div>
+  </aside>
+  <section class="viewer panel" aria-label="视频预览">
+    <div class="panel-title"><h2>播放器</h2><div class="viewer-meta"><span id="canvasFormat">1920 × 1080</span><span class="meta-dot">·</span><span id="frameRate">30 fps</span></div></div>
+    <div id="previewArea" class="preview-area"><div id="previewStage" class="preview-stage"><video id="previewVideo" preload="auto" playsinline></video><img id="previewImage" alt="当前图片片段" hidden><div id="previewEmpty" class="preview-empty"><div class="preview-symbol"><span data-icon="film"></span></div><strong>预览窗口</strong><span>添加素材到时间线，开始剪辑</span></div><div id="previewError" class="preview-error" hidden></div><div id="previewSubtitle" class="preview-subtitle" hidden></div></div><div class="viewer-corner" id="viewerCorner">适应窗口</div></div>
+    <div class="transport"><div class="timecode"><span id="currentTime">00:00:00:00</span><span class="time-slash">/</span><span id="totalTime">00:00:00:00</span></div><div class="playback-controls"><button id="previousFrame" class="icon-button" title="上一帧 · ←" aria-label="上一帧"><span data-icon="previous"></span></button><button id="playPause" class="play-button" title="播放 / 暂停 · 空格" aria-label="播放"><span data-icon="play"></span></button><button id="nextFrame" class="icon-button" title="下一帧 · →" aria-label="下一帧"><span data-icon="next"></span></button></div><div class="preview-tools"><button id="goStart" class="quiet compact" title="回到开头 · Home">回到开头</button></div></div>
+  </section>
+  <aside class="inspector panel"><div class="panel-title"><h2>属性</h2><span class="selection-tag" id="selectionTag">项目</span></div><div id="inspectorBody" class="inspector-body"></div><div class="inspector-footer"><span class="status-light"></span><span id="projectFormatLabel">横屏 · 16:9</span><button id="projectSettings" class="quiet compact">画布设置</button></div></aside>
+</main>
+<section class="timeline panel" aria-label="剪辑时间线">
+  <div class="timeline-toolbar"><div class="edit-actions"><button id="undo" class="icon-button" title="撤销 · Ctrl Z" aria-label="撤销"><span data-icon="undo"></span></button><button id="redo" class="icon-button" title="重做 · Ctrl Shift Z" aria-label="重做"><span data-icon="redo"></span></button><span class="toolbar-divider"></span><button id="splitClip" class="tool-button" title="在播放头处分割 · S"><span data-icon="split"></span><span>分割</span></button><button id="removeSelection" class="icon-button" title="删除选中 · Delete" aria-label="删除选中"><span data-icon="trash"></span></button><span class="toolbar-divider"></span><button id="moveLeft" class="icon-button" title="片段向前移动" aria-label="片段向前移动"><span data-icon="left"></span></button><button id="moveRight" class="icon-button" title="片段向后移动" aria-label="片段向后移动"><span data-icon="right"></span></button><span class="toolbar-divider"></span><button id="addVideoTrack" class="tool-button" title="新增可独立定位的视频叠层"><span data-icon="plus"></span><span>视频轨</span></button><button id="addSubtitleTimeline" class="tool-button"><span data-icon="text"></span><span>添加字幕</span></button></div><div class="timeline-controls"><span id="timelineLength">0 个片段</span><button id="zoomOut" class="icon-button small" aria-label="缩小时间线" title="缩小"><span data-icon="minus"></span></button><input id="timelineZoom" type="range" min="12" max="160" value="58" aria-label="时间线缩放"><button id="zoomIn" class="icon-button small" aria-label="放大时间线" title="放大"><span data-icon="plus"></span></button><button id="fitTimeline" class="quiet compact" title="适应整个项目">适应</button></div></div>
+  <div class="timeline-edit-bar"><button id="copyTimeline" title="复制选中项 · Ctrl C">复制</button><button id="pasteTimeline" title="粘贴到播放头 · Ctrl V">粘贴</button><span class="toolbar-divider"></span><button id="toggleMagnetic" aria-pressed="true" title="开启时主轨自动衔接，关闭可保留空隙">主轨磁吸</button><button id="toggleSnap" aria-pressed="true">边缘吸附</button><span id="selectionSummary" class="selection-summary">Shift / Ctrl 多选 · 拖空白处框选</span></div>
+  <div class="timeline-body"><div id="trackLabels" class="track-labels"><div class="ruler-label">时间线</div><div class="track-label video-label"><span data-icon="film"></span><span>视频</span><small>01</small></div><div class="track-label audio-label"><span data-icon="audio"></span><span>音频</span><small>02</small></div><div class="track-label subtitle-label"><span data-icon="text"></span><span>字幕</span><small>03</small></div></div><div id="timelineScroll" class="timeline-scroll"><div id="timelineContent" class="timeline-content"><div id="timelineRuler" class="timeline-ruler"></div><div id="overlayTracks"></div><div id="videoTrack" class="track video-track" data-track="video" data-layer="0"></div><div id="audioTrack" class="track audio-track" data-track="audio"></div><div id="subtitleTrack" class="track subtitle-track" data-track="subtitle"></div><div id="playhead" class="playhead"><span class="playhead-head"></span><span class="playhead-line"></span></div></div></div></div>
+</section>
+<footer class="statusbar"><div><span id="engineDot" class="status-light muted"></span><span id="statusMessage">正在连接桌面引擎…</span><button id="cancelImport" class="quiet compact" hidden>取消准备</button></div><div class="status-shortcuts"><span>空格 播放</span><span>S 分割</span><span>Ctrl S 保存</span><span id="projectSaveState">尚未保存</span></div></footer>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<dialog id="exportDialog" class="export-dialog"><div class="dialog-heading"><div><span class="eyebrow">映序 · 视频输出</span><h2 id="exportHeading">导出视频</h2></div><button id="closeExport" class="icon-button" aria-label="关闭导出窗口"><span data-icon="close"></span></button></div><div id="exportForm"><p class="dialog-description">输出为 MP4 视频，保存到你选择的位置。</p><label class="field full">画布预设<select id="resolutionPreset"><option value="1920x1080">横屏 · 1920 × 1080</option><option value="1080x1920">竖屏 · 1080 × 1920</option><option value="1080x1080">方形 · 1080 × 1080</option><option value="1280x720">横屏 · 1280 × 720</option><option value="custom">自定义尺寸</option></select></label><div class="form-grid"><label class="field">宽度<input id="exportWidth" type="number" min="64" max="7680" step="2" value="1920"></label><label class="field">高度<input id="exportHeight" type="number" min="64" max="7680" step="2" value="1080"></label><label class="field">帧率<select id="exportFps"><option>24</option><option>25</option><option selected>30</option><option>50</option><option>60</option></select></label><div class="field"><span>预计时长</span><strong id="exportDuration" class="export-duration">00:00</strong></div></div><div id="exportAvailability" class="export-availability"></div><div class="dialog-actions"><button id="applyCanvas" class="secondary">应用画布设置</button><button id="startExport" class="primary"><span data-icon="export"></span>选择位置并导出</button></div></div><div id="exportProgressPanel" hidden><div class="export-progress-title"><span id="exportStatus">准备导出…</span><strong id="exportPercent">0%</strong></div><progress id="exportProgress" max="1" value="0"></progress><p id="exportDetail" class="export-detail">正在准备视频</p><div class="dialog-actions"><button id="cancelExport" class="secondary">取消导出</button><button id="revealExport" class="primary" hidden><span data-icon="folder"></span>打开所在文件夹</button><button id="exportAgain" class="secondary" hidden>返回设置</button></div></div></dialog>
+<dialog id="asrDialog" class="export-dialog asr-dialog"><div class="dialog-heading"><div><span class="eyebrow">映序 · 本地语音识别</span><h2>自动字幕</h2></div><button id="closeAsr" class="icon-button" aria-label="关闭自动字幕窗口"><span data-icon="close"></span></button></div><p class="dialog-description">识别时间线中的声音，生成可编辑字幕。音频在本机处理；请在完成后校对人名、标点和时间。</p><div id="asrSetup"><div class="form-grid"><label class="field">语音语言<select id="asrLanguage"><option value="auto">自动检测</option><option value="zh">中文</option><option value="en">英语</option></select></label><label class="field">写入方式<select id="asrMode"><option value="replace">替换现有字幕</option><option value="append">追加到现有字幕</option></select></label></div><p id="asrAvailability" class="export-availability">正在检查本地识别模型…</p><div class="dialog-actions"><button id="startAsr" class="primary">开始识别</button></div></div><div id="asrProgressPanel" hidden><div class="export-progress-title"><span id="asrStatus">准备识别</span><strong id="asrPercent">0%</strong></div><progress id="asrProgress" max="1" value="0"></progress><p id="asrDetail" class="export-detail"></p><div id="asrCues" class="asr-cues"></div><div class="dialog-actions"><button id="cancelAsr" class="secondary">取消识别</button><button id="retryAsr" class="secondary" hidden>返回设置</button><button id="applyAsr" class="primary" hidden>写入字幕</button></div></div></dialog>
+<dialog id="projectToolsDialog" class="export-dialog project-tools-dialog"><div class="dialog-heading"><div><span class="eyebrow">映序 · 工程与素材</span><h2>工程管理</h2></div><button id="closeProjectTools" class="icon-button" aria-label="关闭工程管理"><span data-icon="close"></span></button></div><p class="dialog-description">缺失素材会保留片段、曲线、字幕和动画。重新定位后即可继续预览与导出。</p><div class="project-tools-actions"><button id="saveProjectAs" class="secondary">另存为工程</button><button id="archiveProject" class="secondary">归档工程与原素材</button><button id="relinkAll" class="primary">批量定位缺失素材</button></div><p id="projectToolsNote" class="project-tools-note"></p><div id="mediaStatusList" class="media-status-list"></div></dialog>
+</body>
+</html>

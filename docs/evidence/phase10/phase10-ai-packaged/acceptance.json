@@ -1,0 +1,112 @@
+{
+  "success": true,
+  "version": "0.8.0",
+  "packaged": true,
+  "executables": {
+    "ffmpeg": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/ffmpeg.exe",
+    "ffprobe": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/ffprobe.exe"
+  },
+  "checks": [
+    {
+      "name": "Real ONNX image inference preserves every RGB byte and produces foreground/background alpha",
+      "evidence": {
+        "path": "<project-root>/work/phase10-ai-packaged-1792214964598/cutout.png",
+        "kind": "image",
+        "hasAlpha": true,
+        "width": 400,
+        "height": 267,
+        "duration": 0,
+        "fps": 0,
+        "frames": 1,
+        "model": "U2NetP",
+        "videoMode": "independent-frames",
+        "elapsedSeconds": 2.03,
+        "alpha": {
+          "transparentFraction": 0.6911142322097378,
+          "opaqueFraction": 0.24073033707865168,
+          "min": 0,
+          "max": 255
+        },
+        "maxRgbDifference": 0,
+        "sourceUnchanged": true
+      }
+    },
+    {
+      "name": "Existing image alpha is multiplied and never restored to opaque",
+      "evidence": {
+        "transparentFraction": 0.699438202247191,
+        "opaqueFraction": 0,
+        "min": 0,
+        "max": 128
+      }
+    },
+    {
+      "name": "Independent-frame ONNX video produces actual VP9 alpha and retains audible source stream",
+      "evidence": {
+        "path": "<project-root>/work/phase10-ai-packaged-1792214964598/transparent-portrait.webm",
+        "kind": "video",
+        "hasAlpha": true,
+        "width": 400,
+        "height": 268,
+        "duration": 1.508,
+        "fps": 6,
+        "frames": 9,
+        "model": "U2NetP",
+        "videoMode": "independent-frames",
+        "elapsedSeconds": 5.91,
+        "alpha": {
+          "transparentFraction": 0.6721175373134328,
+          "opaqueFraction": 0.26115671641791044,
+          "min": 0,
+          "max": 255
+        },
+        "sourceUnchanged": true,
+        "audioCodec": "opus",
+        "color": {
+          "matrix": "bt709",
+          "range": "pc",
+          "transfer": "iec61966-2-1"
+        }
+      }
+    },
+    {
+      "name": "Opaque subject RGB survives SDR matrix conversion and VP9 compression",
+      "evidence": {
+        "opaqueChannels": 83988,
+        "meanDifference": 1.327999237986379,
+        "maxDifference": 9
+      }
+    },
+    {
+      "name": "Cancel during actual inference leaves no output, scratch job or partial and preserves source",
+      "evidence": {
+        "canceledAtFrame": 2
+      }
+    },
+    {
+      "name": "Existing destination and source-overwrite attempts reject without changing either file"
+    }
+  ],
+  "sourceHashes": {
+    "src/main/ai-matting.cjs": "e7127a1e13185b2720addbed96011e414100f4a2a49de29fe160dea542eb6ea9",
+    "src/main/ai-matting-worker.cjs": "a6feac9baf84e00d9dee19d4a6bf32fc17215d896c94cb517d1d62fa0a65e605",
+    "tools/ai/model-manifest.json": "cf94e90bb53ef39a8ba1cd38c71479fdcedf8a50bf59a3d4c7b5d19b57016df9",
+    "tools/ai/runtime/package-lock.json": "503ba8574d77772f626198ff33037cc22fbecb866e34b9872c49869456476be8",
+    "tools/ffmpeg.exe": "2ce797a0f88d7f067180338fb227f7b1928ea727bd9a4d7a1d022f7c52af71a3",
+    "tools/ffprobe.exe": "4303ec85855340689b1f8aa5d9c1dc06ef3e3090682de3034edc3fca2b0798d5",
+    "tools/ai/u2netp.onnx": "309c8469258dda742793dce0ebea8e6dd393174f89934733ecc8b14c76f4ddd8",
+    "tools/ai/runtime/node_modules/onnxruntime-node/bin/napi-v6/win32/x64/onnxruntime_binding.node": "ddd428464069b84414d34ec1796c7c2a69c33a976e4b0390692629e394f92fa1",
+    "tools/ai/runtime/node_modules/onnxruntime-node/bin/napi-v6/win32/x64/onnxruntime.dll": "508c362f5673483dd3a086379c392795b2e42d10d5e6f3f90ebd7ac21c97af67"
+  },
+  "sourceStable": true,
+  "fixture": {
+    "url": "https://raw.githubusercontent.com/xuebinqin/U-2-Net/master/test_data/test_images/girl.png",
+    "sha256": "b0b1984957a3a5257788c4395fda0f5f9ca2a33fcc256e71a2f2b6c5cba8702d",
+    "purpose": "official upstream test photograph, ignored work fixture, no identity or marketing claim"
+  },
+  "limitations": [
+    "CPU independent-frame salient-object segmentation at 320x320; no temporal tracking or perfect hair/transparent-object matting",
+    "VP9 output is YUV420 lossy RGB, transparency retained; new input assets, original unchanged"
+  ],
+  "createdAt": "2026-10-17T05:29:40.229Z"
+}

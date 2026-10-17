@@ -1,0 +1,35 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs/promises'),path=require('node:path'),{spawnSync}=require('node:child_process'),{createHash}=require('node:crypto');
+const M=require('../src/shared/project.js'),Media=require('../src/main/media.cjs'),Color=require('../src/main/color-space.cjs');
+test('ambiguous video metadata has explicit assumptions and unsupported HDR never silently retags',()=>{
+ const plan=Color.policy({kind:'video',sourceColor:{matrix:'bt709',range:'tv',primaries:'unknown',transfer:'unknown',pixelFormat:'yuv420p'}});
+ assert.equal(plan.source.matrix,'bt709');assert.equal(plan.source.primaries,'bt709');assert.equal(plan.status,'assumed');assert.equal(plan.assumptions.length,2);
+ const explicit=Color.policy({kind:'video',sourceColor:{matrix:'smpte170m',range:'pc',primaries:'smpte170m',transfer:'iec61966-2-1'}});assert.equal(explicit.source.transfer,'iec61966-2-1');assert.equal(explicit.source.range,'pc');assert.equal(explicit.assumptions.length,0);assert.equal(explicit.source.matrix,'smpte170m');assert.equal(explicit.declared.primaries,'smpte170m');assert.equal(explicit.source.primaries,'bt709');
+ for(const transfer of ['smpte2084','arib-std-b67'])assert.throws(()=>Color.policy({kind:'video',sourceColor:{matrix:'bt709',primaries:'bt709',range:'tv',transfer}}),{code:'COLOR_UNSUPPORTED'});
+ assert.throws(()=>Color.policy({kind:'video',sourceColor:{matrix:'bt2020nc',primaries:'bt2020',range:'tv',transfer:'bt709'}}),{code:'COLOR_UNSUPPORTED'});
+});
+test('actual proxy/export retains one color space, reuses and invalidates cache, ignores forged preview paths, and cleans cancellation', {timeout:180000},async()=>{
+ const ffmpeg=process.env.FFMPEG_PATH||require('../scripts/test-env.cjs').ffmpeg(),ffprobe=process.env.FFPROBE_PATH||require('ffprobe-static').path,base=path.resolve(__dirname,'../work');await fs.mkdir(base,{recursive:true});const dir=await fs.mkdtemp(path.join(base,'phase6-color-test-'));
+ const opts={ffmpeg,ffprobe,workDir:path.join(dir,'export'),cacheDir:path.join(dir,'cache')};
+ const run=(args)=>{const r=spawnSync(ffmpeg,['-hide_banner','-loglevel','error','-nostdin','-y',...args],{windowsHide:true,timeout:45000,maxBuffer:16e6});assert.equal(r.status,0,r.stderr?.toString());return r.stdout;};
+ const probe=file=>JSON.parse(spawnSync(ffprobe,['-v','error','-show_streams','-of','json',file],{windowsHide:true}).stdout).streams.find(s=>s.codec_type==='video');
+ const frame=file=>run(['-i',file,'-ss','0.2','-frames:v','1','-pix_fmt','rgb24','-f','rawvideo','pipe:1']);
+ const pixels=file=>{const b=frame(file);return [40,120,200,280].map(x=>[...b.slice((90*320+x)*3,(90*320+x)*3+3)]);};
+ const hash=async f=>createHash('sha256').update(await fs.readFile(f)).digest('hex');
+ try {
+  const ppm=path.join(dir,'chart.ppm'),raw=Buffer.alloc(320*180*3),colors=[[230,20,20],[20,230,20],[32,32,32],[128,128,128]];for(let y=0;y<180;y++)for(let x=0;x<320;x++)for(let k=0;k<3;k++)raw[(y*320+x)*3+k]=colors[Math.floor(x/80)][k];await fs.writeFile(ppm,Buffer.concat([Buffer.from('P6\n320 180\n255\n'),raw]));
+  const source=path.join(dir,'partial709.mp4');run(['-loop','1','-i',ppm,'-t','1','-vf','scale=out_color_matrix=bt709','-c:v','libx264','-pix_fmt','yuv420p','-colorspace','bt709','-color_primaries','bt709','-color_trc','bt709',source]);const originalHash=await hash(source);
+  const a=await Media.probeMedia(source,opts);assert.equal(a.colorStatus,'assumed');assert.ok(a.colorAssumptions.length);assert.equal(a.path,source);Color.verifyWorking(probe(a.previewPath));assert.equal((await fs.stat(a.previewPath)).size>0,true);
+  const proxyStat=await fs.stat(a.previewPath),again=await Media.probeMedia(source,opts);assert.equal(again.previewPath,a.previewPath);assert.equal((await fs.stat(again.previewPath)).mtimeMs,proxyStat.mtimeMs);
+  let p=M.createProject('color regression');p.width=320;p.height=180;p=M.addAsset(p,{...a,previewPath:path.join(dir,'must-not-read.mp4')});p=M.addClip(p,a.id);const output=path.join(dir,'export.mp4');await Media.exportProject(p,output,opts);Color.verifyWorking(probe(output));const actual=pixels(output),expected=pixels(a.previewPath);for(let i=0;i<expected.length;i++)for(let k=0;k<3;k++)assert.ok(Math.abs(actual[i][k]-expected[i][k])<=4,`proxy/export RGB ${actual[i]} / ${expected[i]}`);assert.ok(Math.abs(expected[2][0]-32)<=3,'verified SDR display compatibility preserves encoded BT709 gray instead of applying an extra gamma');assert.equal(a.workingPolicy.id,'sdr-display-compatibility');assert.equal(a.sourceColor.transfer,'unknown');assert.equal(await hash(source),originalHash);
+  const roundTrip=await Media.probeMedia(output,opts);Color.verifyWorking(probe(roundTrip.previewPath));assert.deepEqual(pixels(roundTrip.previewPath),actual,'own exported sRGB/full video reopens without another color conversion');
+  // Image input is already display RGB, so the same dark gray must not get a second transfer conversion.
+  const png=path.join(dir,'chart.png');run(['-i',ppm,'-frames:v','1',png]);const image=await Media.probeMedia(png,opts);let still=M.createProject('sRGB image');still.width=320;still.height=180;still=M.addAsset(still,image);still=M.addClip(still,image.id);still=M.updateClip(still,still.clips[0].id,{duration:.5});const imageOutput=path.join(dir,'image.mp4');await Media.exportProject(still,imageOutput,opts);assert.ok(Math.abs(pixels(imageOutput)[2][0]-32)<=2,'sRGB image keeps sRGB numbers');
+  // No cacheDir still uses the same policy in export scratch and deletes that scratch after completion.
+  const noCache=path.join(dir,'no-cache.mp4');await Media.exportProject(p,noCache,{ffmpeg,ffprobe,workDir:opts.workDir});assert.deepEqual(pixels(noCache),actual);assert.deepEqual(await fs.readdir(opts.workDir),[]);
+  const sourceStat=await fs.stat(source);await fs.utimes(source,sourceStat.atime,new Date(sourceStat.mtimeMs+2000));const changed=await Media.probeMedia(source,opts);assert.notEqual(changed.previewPath,a.previewPath,'changed source identity invalidates proxy');assert.equal(await hash(source),originalHash);
+  const tenBit=path.join(dir,'sdr10.mp4');run(['-loop','1','-i',ppm,'-t','0.25','-vf','scale=out_color_matrix=bt709,setparams=colorspace=bt709:color_primaries=bt709:color_trc=iec61966-2-1:range=limited','-c:v','libx264','-pix_fmt','yuv420p10le',tenBit]);const highDepth=await Media.probeMedia(tenBit,opts);assert.equal(highDepth.sourceColor.bitDepth,10);Color.verifyWorking(probe(highDepth.previewPath));
+  const controller=new AbortController(),cancelCache=path.join(dir,'cancel'),events=[];await assert.rejects(Media.probeMedia(source,{...opts,cacheDir:cancelCache,signal:controller.signal,onProgress:x=>{events.push(x);if(events.length>=2)controller.abort();}}),e=>e.name==='AbortError');assert.ok(events.length>=2);assert.deepEqual(await fs.readdir(path.join(cancelCache,'color-work')),[],'aborted child leaves no partial proxy or manifest');
+ } finally {await fs.rm(dir,{recursive:true,force:true});}
+});
+

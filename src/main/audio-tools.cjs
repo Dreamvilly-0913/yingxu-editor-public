@@ -1,0 +1,35 @@
+/* Bounded source audio analysis and non-destructive original-sound extraction. */
+'use strict';
+const fs=require('node:fs/promises'),path=require('node:path'),crypto=require('node:crypto'),{spawn}=require('node:child_process');
+const Audio=require('../shared/audio-model.js');
+function abort(signal){if(signal?.aborted){const e=new Error('声音处理已取消');e.name='AbortError';throw e;}}
+function execute(executable,args,{signal,onData,capture=false,maxBytes=512*1024}={}){
+ abort(signal);return new Promise((resolve,reject)=>{const child=spawn(executable,args,{windowsHide:true,stdio:['ignore','pipe','pipe']});let stderr='',stdout=[],bytes=0,ended=false,problem;
+ const stop=()=>{problem=new Error('声音处理已取消');problem.name='AbortError';child.kill();};signal?.addEventListener('abort',stop,{once:true});
+ child.stdout.on('data',data=>{if(problem)return;try{onData?.(data);if(capture){bytes+=data.length;if(bytes>maxBytes)throw new Error('声音工具返回数据过大');stdout.push(data);}}catch(e){problem=e;child.kill();}});
+ child.stderr.on('data',data=>{stderr=(stderr+data.toString()).slice(-12000);});
+ const finish=(error)=>{if(ended)return;ended=true;signal?.removeEventListener('abort',stop);if(problem||error)reject(problem||error);else resolve({stdout:Buffer.concat(stdout),stderr});};
+ child.on('error',e=>finish(e));child.on('close',code=>finish(code===0?null:new Error('声音处理失败：'+stderr.trim().slice(-1600))));
+ });
+}
+async function source(file,{ffprobe='ffprobe',signal}={}){if(typeof file!=='string'||!path.isAbsolute(file))throw new Error('声音源必须为绝对文件路径');const resolved=await fs.realpath(file),stat=await fs.stat(resolved);if(!stat.isFile())throw new Error('声音源不是文件');const result=await execute(ffprobe,['-v','error','-show_streams','-show_format','-of','json',resolved],{signal,capture:true});let data;try{data=JSON.parse(result.stdout.toString('utf8'));}catch{throw new Error('无法读取声音信息');}const stream=data.streams?.find(s=>s.codec_type==='audio');if(!stream)throw new Error('素材不包含音频');const duration=Math.max(...[data.format?.duration,stream.duration].map(Number).filter(n=>Number.isFinite(n)&&n>0));if(!(duration>0))throw new Error('无法确定声音时长');return {path:resolved,stat,duration,stream};}
+function key(info,tag){return crypto.createHash('sha256').update(JSON.stringify([tag,info.path.toLowerCase(),info.stat.size,info.stat.mtimeMs,info.duration])).digest('hex');}
+async function waveform(file,{ffmpeg='ffmpeg',ffprobe='ffprobe',cacheDir,signal,bins=512}={}){
+ if(!Number.isInteger(bins)||bins<32||bins>2048)throw new Error('波形分段数必须为 32–2048');const info=await source(file,{ffprobe,signal}),fingerprint=key(info,'wave-stereo-48k-v2-'+bins),cache=cacheDir?path.join(cacheDir,'waveforms',fingerprint+'.json'):null;
+ if(cache){try{const cached=JSON.parse(await fs.readFile(cache,'utf8'));if(cached.key===fingerprint&&cached.peaks?.length===bins&&cached.rms?.length===bins)return cached;}catch{}}
+ const rate=48000,peaks=new Array(bins).fill(0),squares=new Array(bins).fill(0),counts=new Array(bins).fill(0);let pending=Buffer.alloc(0),frames=0,totalSquares=0,maximum=0;
+ await execute(ffmpeg,['-v','error','-nostdin','-i',info.path,'-map','0:a:0','-vn','-ar',String(rate),'-ac','2','-c:a','pcm_f32le','-f','f32le','pipe:1'],{signal,onData:data=>{const chunk=pending.length?Buffer.concat([pending,data]):data,end=chunk.length-chunk.length%8;for(let i=0;i<end;i+=8){const a=chunk.readFloatLE(i),b=chunk.readFloatLE(i+4),peak=Math.max(Math.abs(a),Math.abs(b)),square=(a*a+b*b)/2,bin=Math.min(bins-1,Math.floor(frames/rate/info.duration*bins));if(!Number.isFinite(peak)||!Number.isFinite(square))throw new Error('声音中存在非有限采样');peaks[bin]=Math.max(peaks[bin],peak);squares[bin]+=square;counts[bin]++;totalSquares+=square;maximum=Math.max(maximum,peak);frames++;}pending=Buffer.from(chunk.subarray(end));}});
+ abort(signal);if(!frames)throw new Error('没有可分析的声音采样');const rms=squares.map((v,i)=>counts[i]?Math.sqrt(v/counts[i]):0),level=Math.sqrt(totalSquares/frames),result={version:1,key:fingerprint,duration:info.duration,decodedDuration:frames/rate,bins,sampleRate:rate,measurement:'sample-peak-rms-dbfs',peaks,rms,peak:maximum,rmsAmplitude:level,peakDbfs:Audio.dbfs(maximum),rmsDbfs:Audio.dbfs(level)};
+ if(cache){await fs.mkdir(path.dirname(cache),{recursive:true});const temp=cache+'.'+crypto.randomUUID()+'.writing';try{await fs.writeFile(temp,JSON.stringify(result));abort(signal);await fs.rename(temp,cache);}finally{await fs.rm(temp,{force:true}).catch(()=>{});}}
+ return result;
+}
+async function extractSourceAudio(file,{ffmpeg='ffmpeg',ffprobe='ffprobe',cacheDir,signal}={}){
+ if(typeof cacheDir!=='string'||!path.isAbsolute(cacheDir))throw new Error('请配置声音素材保存目录');const info=await source(file,{ffprobe,signal}),directory=path.join(cacheDir,'separated-originals'),output=path.join(directory,key(info,'original-48k-stereo-v1')+'.wav');await fs.mkdir(directory,{recursive:true});
+ try{const cached=await source(output,{ffprobe,signal});if(cached.stream.codec_name==='pcm_s16le'&&Number(cached.stream.sample_rate)===48000&&cached.stream.channels===2&&Math.abs(cached.duration-info.duration)<.1)return {path:output,duration:cached.duration,cached:true};}catch(e){if(e.name==='AbortError')throw e;}
+ const temp=path.join(directory,'.'+crypto.randomUUID()+'.partial.wav');try{await execute(ffmpeg,['-v','error','-nostdin','-y','-i',info.path,'-map','0:a:0','-vn','-af','aresample=48000:async=1:first_pts=0,apad,atrim=duration='+info.duration,'-ar','48000','-ac','2','-c:a','pcm_s16le','-map_metadata','-1','-f','wav',temp],{signal});const result=await source(temp,{ffprobe,signal});if(result.stream.codec_name!=='pcm_s16le'||Math.abs(result.duration-info.duration)>.1)throw new Error('分离原声校验失败');abort(signal);await fs.rename(temp,output);return {path:output,duration:result.duration,cached:false};}finally{await fs.rm(temp,{force:true}).catch(()=>{});}
+}
+async function materializeRecording(input,output,{ffmpeg='ffmpeg',ffprobe='ffprobe',signal}={}){
+ abort(signal);if(typeof input!=='string'||!path.isAbsolute(input)||typeof output!=='string'||!path.isAbsolute(output)||path.extname(output).toLowerCase()!=='.wav')throw new Error('录音转换需使用绝对路径与 WAV 输出');const original=await fs.realpath(input);if(original.toLowerCase()===path.resolve(output).toLowerCase())throw new Error('不能覆盖录音源');if(await fs.stat(output).then(()=>true,e=>{if(e.code==='ENOENT')return false;throw e;}))throw new Error('录音输出已存在');await fs.mkdir(path.dirname(output),{recursive:true});const temporary=path.join(path.dirname(output),'.recording-'+crypto.randomUUID()+'.partial.wav');
+ try{await execute(ffmpeg,['-v','error','-nostdin','-y','-i',original,'-map','0:a:0','-vn','-t','301','-ar','48000','-ac','2','-c:a','pcm_s16le','-map_metadata','-1','-f','wav',temporary],{signal});const result=await source(temporary,{ffprobe,signal});if(result.duration>300)throw new Error('录音时长超过 5 分钟');abort(signal);await fs.rename(temporary,output);return {path:output,duration:result.duration,sampleRate:48000,channels:2};}finally{await fs.rm(temporary,{force:true}).catch(()=>{});}
+}
+module.exports={waveform,extractSourceAudio,materializeRecording,processingFilter:Audio.processingFilter};

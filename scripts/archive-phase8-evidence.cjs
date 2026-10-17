@@ -1,0 +1,11 @@
+"use strict";
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..'),out=path.join(root,'outputs'),dest=path.join(root,'docs/evidence/phase8');
+const reports=['phase8-performance.json','phase8-speed-video/acceptance.json','phase8-speed-audio-product.json','phase8-advanced-color-gpu-packaged/acceptance.json','phase8-advanced-color-media-packaged/acceptance.json','phase8-curve-asr-packaged/acceptance.json','phase8-ui-packaged/acceptance.json','phase8-legacy-ui-packaged-acceptance.json','phase8-mask-seek-packaged.json','phase8-recovery-packaged.json','phase8-recovery-ui-races-packaged.json','phase8-project-switch-guard-packaged.json','v6-packaged-acceptance.json','v6-advanced-packaged-acceptance.json','v6-bundled-demo-acceptance.json','v6-media-lifecycle-packaged.json','v6-preview-reuse-acceptance-packaged.json','phase8-legacy-color-packaged/acceptance.json','phase8-delivery-demos.json','phase8-golden-demo-comparison.json','phase8-comparison-page/acceptance.json'];
+// Diagnostics can be appended explicitly, preserving the submitted evidence list.
+const extra=process.argv.slice(2);reports.push(...extra.filter(name=>name.endsWith('.json')));
+const files=[...reports,...extra.filter(name=>!name.endsWith('.json'))];
+for(const folder of ['phase8-ui-packaged','phase8-comparison-page'])for(const name of fs.readdirSync(path.join(out,folder)))if(name.endsWith('.png'))files.push(folder+'/'+name);
+const index=[];
+for(const name of files){const source=path.join(out,name),target=path.join(dest,name);assert.ok(source.startsWith(out+path.sep));assert.ok(target.startsWith(dest+path.sep));if(name.endsWith('.json'))assert.equal(JSON.parse(fs.readFileSync(source,'utf8')).success,true,name);fs.mkdirSync(path.dirname(target),{recursive:true});fs.copyFileSync(source,target);index.push({path:name,bytes:fs.statSync(target).size,sha256:crypto.createHash('sha256').update(fs.readFileSync(target)).digest('hex')});}
+fs.writeFileSync(path.join(dest,'index.json'),JSON.stringify({version:'0.6.0',createdAt:new Date().toISOString(),reports:reports.length,files:index},null,2));console.log(JSON.stringify({reports:reports.length,files:index.length,dest}));

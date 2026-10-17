@@ -1,0 +1,50 @@
+{
+  "phase": "0.4 color pipeline and application comparison",
+  "requested": [
+    "优先逆向查清并解决预览与导出色差",
+    "继续功能复现",
+    "实际原软件端到端编辑与导出对照"
+  ],
+  "status": "completed_current_phase",
+  "questions": [
+    {
+      "question": "输入码流中matrix、primaries、transfer、range实际写了什么",
+      "status": "verified_current_scope",
+      "note": "已有0.3测试自称BT709但SPS部分字段unspecified，需保留旧结果并纠正解释"
+    },
+    {
+      "question": "浏览器、GPU、canvas与FFmpeg各阶段如何变换色彩",
+      "status": "verified_current_scope"
+    },
+    {
+      "question": "原剪映预览与导出的真实色彩链路和输出metadata",
+      "status": "verified_current_scope"
+    },
+    {
+      "question": "统一映序解码、工作空间、编码及标记后重复同输入比较",
+      "status": "verified_current_scope"
+    },
+    {
+      "question": "自制素材在剪映和映序完整操作、预览、导出的功能一致性",
+      "status": "verified_current_scope"
+    }
+  ],
+  "comparison_rule": "预览与导出必须在同一明确色彩域比较，拆分压缩、插值、色度采样的误差；不以改参考或扩大阈值作为修复，不把局部通过视为全软件完成",
+  "original_version": "11.4.1.14443",
+  "replica_baseline": "0.3.0",
+  "timestamp": "2026-10-13T09:25:47.828737+00:00",
+  "replica_current": "0.4.0",
+  "new_findings": [
+    "原GUI三项调色控件范围为±50，模型归一化参数仍±1；已修正显示换算",
+    "剪映实际709 SDR路径保留编码RGB亮度，不执行严格709→sRGB亮度变换；规范化策略正在以整机证据校正",
+    "自导出回导入触发FFmpeg colorspace identity异常，已定位并修复",
+    "奇数尺寸colorspace不直接支持，正验证pad→真转换→crop还原"
+  ],
+  "completedAt": "2026-10-13T10:22:41.103650+00:00",
+  "deliveredVersion": "0.4.0",
+  "remainingScope": [
+    "全软件所有功能复刻未完成",
+    "HDR与任意ICC图片、跨设备和长片尚未验证",
+    "两个软件实际屏幕ICC处理不同，不宣称屏幕逐像素一致"
+  ]
+}

@@ -1,0 +1,22 @@
+"use strict";
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..'),version=require('../package.json').version;assert.equal(version,'0.4.0');
+const out=path.join(root,'outputs'),bundle=path.join(out,`映序剪辑-${version}-win-x64`),app=path.join(bundle,'resources/app'),manifestFile=path.join(bundle,'build-manifest.json');
+const sha=file=>crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+function sourceEntries(dir,list=[]){for(const f of fs.readdirSync(dir,{withFileTypes:true})){const file=path.join(dir,f.name);if(f.isDirectory())sourceEntries(file,list);else list.push(file);}return list;}
+if(process.argv.includes('--sync-docs')){
+ for(const file of sourceEntries(path.join(root,'src')))assert.equal(sha(file),sha(path.join(app,path.relative(root,file))),'Never silently replace tested product code');
+ fs.cpSync(path.join(root,'docs'),path.join(app,'docs'),{recursive:true});
+ const guide=fs.readFileSync(path.join(root,'README_继续项目.md'),'utf8').replace(/\(docs\//g,'(resources/app/docs/').replace(/运行 `outputs\/映序剪辑-[^`]+`，或双击项目根目录 `启动映序剪辑.cmd`。/,'运行本目录内的 `映序剪辑.exe`。');fs.writeFileSync(path.join(bundle,'使用说明.md'),guide);
+ const old=JSON.parse(fs.readFileSync(manifestFile,'utf8')),files=sourceEntries(bundle).filter(file=>file!==manifestFile).map(file=>({path:path.relative(bundle,file),bytes:fs.statSync(file).size,sha256:sha(file)}));
+ fs.writeFileSync(manifestFile,JSON.stringify({...old,finalizedAt:new Date().toISOString(),files},null,2));console.log(JSON.stringify({synchronizedDocumentation:true,files:files.length,bytes:files.reduce((a,f)=>a+f.bytes,0)}));
+}else{
+ const manifest=JSON.parse(fs.readFileSync(manifestFile,'utf8'));for(const f of manifest.files){const file=path.join(bundle,f.path);assert.equal(fs.statSync(file).size,f.bytes,f.path);assert.equal(sha(file),f.sha256,f.path);}
+ let matched=0;for(const folder of ['src','assets','docs'])for(const file of sourceEntries(path.join(root,folder))){assert.equal(sha(file),sha(path.join(app,path.relative(root,file))),file);matched++;}
+ const reports=['v4-packaged-acceptance.json','v4-advanced-packaged-acceptance.json','v4-bundled-demo-acceptance.json','v4-media-lifecycle-packaged.json','v4-preview-reuse-acceptance-packaged.json','phase6-color-packaged/acceptance.json','phase6-original-comparison-packaged/acceptance.json','phase6-color-compatibility.json','phase6-odd-preview.json','phase6-empty-visual-packaged/acceptance.json','phase6-comparison-assets/page-verification.json'];
+ const tests=reports.map(name=>{const file=path.join(out,name),data=JSON.parse(fs.readFileSync(file,'utf8'));assert.equal(data.success,true,name);if(data.version)assert.equal(data.version,version,name);if(data.packaged!==undefined)assert.equal(data.packaged,true,name);if(data.sourceHashes){const entries=Array.isArray(data.sourceHashes)?data.sourceHashes:Object.entries(data.sourceHashes).map(([path,sha256])=>({path,sha256}));for(const entry of entries){const relative=entry.path||entry.file;const digest=entry.sha256||entry.hash;assert.equal(sha(path.join(app,relative)),digest,name+': '+relative);}}
+ return{name,sha256:sha(file),checks:data.checks?.length,scenarios:data.scenarios?.length,cases:data.cases?.length};});
+ const log=fs.readFileSync(path.join(root,'work/unit-v4.log'),'utf8');assert.match(log,/pass 33/);assert.match(log,/fail 0/);
+ const colors=JSON.parse(fs.readFileSync(path.join(out,'phase6-color-packaged/acceptance.json'),'utf8'));const frames=colors.scenarios.flatMap(s=>s.frames);const compare=JSON.parse(fs.readFileSync(path.join(out,'phase6-original-comparison-packaged/acceptance.json'),'utf8'));
+ const result={success:true,version,finalizedAt:new Date().toISOString(),package:bundle,verifiedPackageFiles:manifest.files.length,bytes:manifest.files.reduce((a,f)=>a+f.bytes,0),matchedSourceAssetDocumentFiles:matched,unitTests:{passed:33,failed:0,log:'work/unit-v4.log'},tests,colorScenes:colors.scenarios.length,colorSampleFrames:frames.length,previewExportDisplayMax:Math.max(...frames.map(f=>f.previewExportDelta.max)),originalComparisonCases:compare.cases.length,comparisonPage:path.join(out,'0.4.0-色彩与整机对比.html'),limitations:['SDR601/709与受测sRGB图片；HDR/广色域/任意ICC图片未完成','原应用四场景整机及九组调色采样，不代表全功能等价','显示器ICC空间截图和文件工作RGB分开比较，两个软件的屏幕显示不保证完全相同','65³ LUT、H264 4:2:0、字体及缩放边缘存在近似/编码损失','长片、多机压力、曲线变速/蒙版/复杂特效/其余AI尚未完成']};fs.writeFileSync(path.join(out,'final-acceptance-v0.4.0.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result));
+}

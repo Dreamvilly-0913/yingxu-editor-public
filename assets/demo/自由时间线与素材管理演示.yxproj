@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "id": "project-22aa43c4-4a19-46d2-8f2e-0afaaedc1f0d",
+  "name": "自由时间线与素材管理演示",
+  "width": 1280,
+  "height": 720,
+  "fps": 30,
+  "videoTrackCount": 2,
+  "assets": [
+    {
+      "id": "v",
+      "name": "light.mp4",
+      "path": "light.mp4",
+      "kind": "video",
+      "duration": 4,
+      "width": 1280,
+      "height": 720,
+      "hasAudio": false,
+      "thumbnail": "",
+      "previewUrl": "",
+      "pathMode": "relative"
+    },
+    {
+      "id": "i",
+      "name": "texture.png",
+      "path": "texture.png",
+      "kind": "image",
+      "duration": 5,
+      "width": 1600,
+      "height": 900,
+      "hasAudio": false,
+      "thumbnail": "",
+      "previewUrl": "",
+      "pathMode": "relative"
+    },
+    {
+      "id": "a",
+      "name": "tone.wav",
+      "path": "tone.wav",
+      "kind": "audio",
+      "duration": 9,
+      "width": 0,
+      "height": 0,
+      "hasAudio": true,
+      "thumbnail": "",
+      "previewUrl": "",
+      "pathMode": "relative"
+    }
+  ],
+  "clips": [
+    {
+      "id": "clip-89909804-feff-43f7-a698-dd23dd6ac1eb",
+      "assetId": "i",
+      "track": "video",
+      "start": 0.4,
+      "duration": 1.8,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 1,
+      "color": {
+        "brightness": 0.12,
+        "contrast": 0.1,
+        "saturation": -0.1
+      }
+    },
+    {
+      "id": "clip-b2406aa3-186c-4cd7-a3ce-97730d6b3787",
+      "assetId": "v",
+      "track": "video",
+      "start": 3,
+      "duration": 3.25284040655782,
+      "sourceIn": 0.5,
+      "speed": 1,
+      "volume": 1,
+      "speedCurve": [
+        {
+          "position": 0,
+          "speed": 0.8
+        },
+        {
+          "position": 0.5,
+          "speed": 0.5
+        },
+        {
+          "position": 1,
+          "speed": 1.4
+        }
+      ],
+      "sourceDuration": 2.4
+    },
+    {
+      "id": "clip-29d51d31-5e30-42f3-b588-6dcdfea916ff",
+      "assetId": "i",
+      "track": "video",
+      "start": 3.2,
+      "duration": 1.9,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 1,
+      "layer": 1,
+      "transform": {
+        "x": 0.27,
+        "y": 0.2,
+        "scale": 0.28,
+        "rotation": -8,
+        "opacity": 0.8
+      },
+      "mask": {
+        "type": "ellipse",
+        "centerX": 0.5,
+        "centerY": 0.5,
+        "width": 0.95,
+        "height": 0.9,
+        "rotation": 0,
+        "feather": 0.15,
+        "invert": false
+      }
+    },
+    {
+      "id": "clip-abeed226-0bb0-4e32-af5d-b96c930a8510",
+      "assetId": "a",
+      "track": "audio",
+      "start": 0.15,
+      "duration": 6.05,
+      "sourceIn": 0,
+      "speed": 1,
+      "volume": 0.15,
+      "audioFade": {
+        "in": 0.3,
+        "out": 0.5
+      }
+    }
+  ],
+  "subtitles": [
+    {
+      "id": "subtitle-684faef7-28ac-4a6c-a896-371166c123ba",
+      "start": 0.45,
+      "end": 2.1,
+      "text": "拖动片段边缘修剪 · Alt 临时关闭吸附"
+    },
+    {
+      "id": "subtitle-a00cdea0-b49d-4645-a73e-e2ae3424c9a1",
+      "start": 2.3,
+      "end": 2.9,
+      "text": "主轨磁吸已关闭，可保留空隙"
+    },
+    {
+      "id": "subtitle-fc658653-e9ae-4ee3-9b18-6fb87ab0f348",
+      "start": 3.3,
+      "end": 5.8,
+      "text": "Shift / Ctrl 多选 · Ctrl C / V 复制粘贴"
+    }
+  ],
+  "subtitleStyle": {
+    "fontSize": 48,
+    "color": "#ffffff"
+  },
+  "createdAt": "2026-10-15T17:08:34.481Z",
+  "updatedAt": "2026-10-15T17:08:34.496Z",
+  "magneticMain": false
+}

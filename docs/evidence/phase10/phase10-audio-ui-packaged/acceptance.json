@@ -1,0 +1,85 @@
+{
+  "success": true,
+  "version": "0.8.0",
+  "packaged": true,
+  "executables": {
+    "ffmpeg": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/ffmpeg.exe",
+    "ffprobe": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/ffprobe.exe"
+  },
+  "checks": [
+    {
+      "name": "Real imported video/audio show source waveforms in timeline",
+      "evidence": {
+        "canvases": 2
+      }
+    },
+    {
+      "name": "Workbench creates a second independent track and persists assignment, boost, solo and mute",
+      "evidence": {
+        "tracks": [
+          {
+            "id": "audio-1",
+            "name": "音频 1",
+            "muted": true,
+            "solo": false,
+            "locked": false,
+            "gain": 1
+          },
+          {
+            "id": "audio-2",
+            "name": "音频 2",
+            "muted": false,
+            "solo": true,
+            "locked": false,
+            "gain": 1.5
+          }
+        ]
+      }
+    },
+    {
+      "name": "Locked track prevents delete and effects editing; unlock permits real DSP settings and source meters",
+      "evidence": {
+        "effects": {
+          "denoise": 0.7,
+          "normalize": true,
+          "targetLufs": -18
+        }
+      }
+    },
+    {
+      "name": "Preview master and export audio use byte-identical 48k stereo DSP/mix PCM",
+      "evidence": {
+        "bytes": 480000,
+        "pcmSha256": "74a07663a9ab6a53559d5c5091fda46a33e251ba5eb394a113c05e2af4b9a6e9",
+        "masterKey": "196173fd4fca5ddd2963e706cb059bbed1719e4f60ce4c36ddc13881321cee63"
+      }
+    },
+    {
+      "name": "Timeline plays prepared master without a renderer media error"
+    },
+    {
+      "name": "Actual source-audio extraction adds a persistent WAV and is one undo/redo transaction",
+      "evidence": {
+        "detachedId": "clip-ad6e74d3-1b77-4752-bfae-02c52c46137a",
+        "path": "profile\\source-audio\\separated-originals\\22467487d99a3275dd67c43c6070603eccdc705e24fe0703e6f6d3aa93cd79ca.wav"
+      }
+    }
+  ],
+  "errors": [],
+  "sourceHashes": {
+    "src/shared/project.js": "9239874c5dc8203f286cd6b31243e0b48af89ccdd2547f0f9fe2912484907515",
+    "src/shared/audio-model.js": "89f0bd7da8e1c0d2a6214761c83fe35f460a83a5610c06cb4e06374f56d3cd5e",
+    "src/main/media.cjs": "5633bdcef5e90d50b27cfb40b190eb766c604109b0215c255e943471efb80468",
+    "src/main/audio-tools.cjs": "4f2de5ccb0320fb2c9c02d9c566c1b846f1e4831721ce1e15723e95de1cfa051",
+    "src/main/main.cjs": "0f266b9fb50dba5ffbad68d8c2f05cbe528df2c517b623418f22131ee599bf5c",
+    "src/main/editor-services.cjs": "7e1c67b69c3599481e27a107a3d9f2a18dda02f853d80a3b4b8a0cfec8c9e176",
+    "src/main/preload.cjs": "5dc9403e557f46e07361e700f67a03504560e2968fe6a5f3708af7af724e93d4",
+    "src/renderer/audio-controls.js": "9b35a6fc6a93e2617fec92e6304a810e2f54030e394b743ca50504758f5eda46",
+    "src/renderer/app.js": "2d99227347a672e43395be74ac50719c6882386d0ffec289155718bab1aa32b0",
+    "src/renderer/index.html": "db1166d36202e1deae6737efa90602628b03203b565af8852c436e5425007991",
+    "tools/ffmpeg.exe": "2ce797a0f88d7f067180338fb227f7b1928ea727bd9a4d7a1d022f7c52af71a3",
+    "tools/ffprobe.exe": "4303ec85855340689b1f8aa5d9c1dc06ef3e3090682de3034edc3fca2b0798d5"
+  },
+  "sourceStable": true,
+  "createdAt": "2026-10-17T05:40:34.932Z"
+}

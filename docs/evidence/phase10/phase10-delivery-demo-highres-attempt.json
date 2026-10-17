@@ -1,0 +1,96 @@
+{
+  "success": false,
+  "version": "0.8.0",
+  "packaged": true,
+  "createdAt": "2026-10-17T05:43:56.423Z",
+  "sourceHashes": {
+    "src/main/ai-matting-worker.cjs": "a6feac9baf84e00d9dee19d4a6bf32fc17215d896c94cb517d1d62fa0a65e605",
+    "src/main/ai-matting.cjs": "e7127a1e13185b2720addbed96011e414100f4a2a49de29fe160dea542eb6ea9",
+    "src/main/audio-tools.cjs": "7344a4da7603aba4c5d358162cf08e2dc7c98cd7278f23ad59a74d03bd0874e4",
+    "src/main/cache-manager.cjs": "00abd5f9062c57b49c4c6347f5fcc1de0e0a7b3ada22cfec4d56bbc86ff5c70c",
+    "src/main/color-space.cjs": "41347afccd4d8583c4c6765cfbded9a14dc47467bce09892f20fb47873c050cd",
+    "src/main/editor-services.cjs": "7e1c67b69c3599481e27a107a3d9f2a18dda02f853d80a3b4b8a0cfec8c9e176",
+    "src/main/export-options.cjs": "c973822bd7ded7125f461637d0b6841f1eef2fca77d8ae80fc75b94c822dcb96",
+    "src/main/main.cjs": "0f266b9fb50dba5ffbad68d8c2f05cbe528df2c517b623418f22131ee599bf5c",
+    "src/main/media-preprocess.cjs": "2469b0873ef13ab1875823ffa0f4ceca075e82b4b5e43414a8dc049b12f218a7",
+    "src/main/media-protocol.cjs": "98a99e045211ca0343b481ac5dea0213950495609ad8a87558d92e7234899667",
+    "src/main/media.cjs": "5633bdcef5e90d50b27cfb40b190eb766c604109b0215c255e943471efb80468",
+    "src/main/preload.cjs": "5dc9403e557f46e07361e700f67a03504560e2968fe6a5f3708af7af724e93d4",
+    "src/main/project-files.cjs": "9e90ec581eb41b46f82c003b46e4a7c9974d90804686cea3aa0a44ebd2f48c2e",
+    "src/main/text-raster.html": "e974f50b040379f6762d7705fee55765eb5a798f2eaf02e6c3754b7dca1e4150",
+    "src/main/text-render.cjs": "871485a9c28150297a185c63abe620dfa51bf8bab67bb4f27491bc578c763903",
+    "src/main/transcription.cjs": "8e911bc493ea906dcd84af379ec686ed21aa9a4a56ed194bf910c38788e769a7",
+    "src/main/visual-tools.cjs": "d2d698c1b7f5223916c30b92917887d8027b643090bf90296b055c4c05a7fd68",
+    "src/renderer/advanced-controls.js": "ae8522dfe1308d2d4ae7e902a74f98d8463247bc4a7430a5789d0f1be9d6c094",
+    "src/renderer/ai-controls.css": "7b518318bd3bb6ab53c6f62597e3619c75434514624789338a2029f5de3c3531",
+    "src/renderer/ai-controls.js": "33753d90a160f51a057ec4fb6dffc0b83064be2726f93ab99fb94b897f10dfd5",
+    "src/renderer/app.js": "2d99227347a672e43395be74ac50719c6882386d0ffec289155718bab1aa32b0",
+    "src/renderer/audio-controls.css": "9fb00efefaf2794790db0629464cf25af6629c8f9565d6af97cbfc867bf6d28d",
+    "src/renderer/audio-controls.js": "9b35a6fc6a93e2617fec92e6304a810e2f54030e394b743ca50504758f5eda46",
+    "src/renderer/color-preview.js": "c139a44f84366ef5861a7c8e5a2f48d8e0fed82b907794c98cf80389a2a011ee",
+    "src/renderer/index.html": "db1166d36202e1deae6737efa90602628b03203b565af8852c436e5425007991",
+    "src/renderer/preprocess-controls.css": "e6e8eb0c3135eeb1c99a21602d1b0cb6ccf3906089c20017eea2a8691b48a903",
+    "src/renderer/preprocess-controls.js": "384bd49b4028ff3c0e6394d797832ce9b26a3aca127429295c26f84c4f3e9993",
+    "src/renderer/recording-controls.css": "1925c2d37816481c27ff11c159bb6ebce013c0703da3165a23f3d39fb879887a",
+    "src/renderer/recording-controls.js": "5c218c4994048102cfb1b7e19e5f1a368a75c076622b762cc57c666c27c64348",
+    "src/renderer/styles.css": "d9a347dfe2e43905b2a25e25fc7013c86a9a2bd4df278a6e76ae3e6a22897e8c",
+    "src/renderer/text-controls.css": "92be160a185550f71608bf8469ee7bed042bf07a4993f0168a131f31d58c4815",
+    "src/renderer/text-controls.js": "fe28c8c685155c85074e6481c36d2ae111c87f8c5e45aa2290a1319dccda3426",
+    "src/renderer/timeline-editing.css": "9fbf2962cfef30e9c5414ca4014f79d0a56469cca09488c7c4d364787336a7cf",
+    "src/renderer/timeline-editing.js": "7c3195b3cd83133617e0a51c70f7f9345a82ef8447e633c10bc9212a0b7177f9",
+    "src/renderer/visual-controls.css": "afd2ef99a245e07235799e1132c6a04924545bf6be567f32c9f24540a192cf7b",
+    "src/renderer/visual-controls.js": "b4eec69595b0d702e4e49d960aa31d2dfb0d203fdd8c2d227d460146a357d131",
+    "src/renderer/workflow-controls.css": "392bbe0308a5164457c650c68a7de68b5f2757a62e65cc651f8a2472d8aa371d",
+    "src/renderer/workflow-controls.js": "dca1f67045d62ae6a727aac437c7167cceb71ebfa45aec5466258ecfaf9f45cb",
+    "src/shared/advanced-color.js": "b214725fec6b7c14b04d4d7ccd76a3c8dba484d22da0f62133a7cdcd064e14c1",
+    "src/shared/audio-model.js": "89f0bd7da8e1c0d2a6214761c83fe35f460a83a5610c06cb4e06374f56d3cd5e",
+    "src/shared/project.js": "9239874c5dc8203f286cd6b31243e0b48af89ccdd2547f0f9fe2912484907515",
+    "src/shared/text-style.js": "077d49385b3c3ab94c0528c035055e6ffc4e48ab9706e826342937f83fc0f1f6",
+    "src/shared/time-map.js": "4bfc94e0358bcc2eca7d8da0b950ffd23ff206d9904cace9c2378a4ffece3113",
+    "src/shared/visual-effects.js": "3c8e53fa5035b00ff71fdf2bb8f480df64828fdceff142ee70cb6ec7d336793f"
+  },
+  "sourceChangedDuringRun": [
+    "src/main/audio-tools.cjs"
+  ],
+  "checks": [
+    {
+      "name": "Shipped original sample opens in the real desktop with five clips, two audio tracks and two styled titles"
+    },
+    {
+      "name": "Real bundled window previews the original sample without a media error",
+      "screenshot": "<project-root>/outputs/映序0.8_工作台演示界面.png"
+    }
+  ],
+  "failures": [
+    "page.waitForFunction: Timeout 600000ms exceeded.\n    at <project-root>/scripts/phase10-demo-render.cjs:11:303"
+  ],
+  "pageErrors": [],
+  "toolPaths": {
+    "ffmpeg": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/ffmpeg.exe",
+    "ffprobe": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/tools/ffprobe.exe"
+  },
+  "toolHashes": {
+    "ffmpeg": "2ce797a0f88d7f067180338fb227f7b1928ea727bd9a4d7a1d022f7c52af71a3",
+    "ffprobe": "4303ec85855340689b1f8aa5d9c1dc06ef3e3090682de3034edc3fca2b0798d5"
+  },
+  "input": {
+    "path": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/assets/demo/音频文字与视觉工作台演示.yxproj",
+    "sha256": "27982a54060cb25e2feb76609d40212138a72473a4e18445a641501ca2920ced"
+  },
+  "output": null,
+  "assets": [
+    {
+      "path": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/assets/demo/light.mp4",
+      "sha256": "004162e8277f4042519fb6d8e3f54d04d9e34c6e026a72e2365a1ce786148eba"
+    },
+    {
+      "path": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/assets/demo/texture.png",
+      "sha256": "0c59a18cd982422c981fbdfd1a70eb5ca4e1a00c783a774e66b32b991eea9f55"
+    },
+    {
+      "path": "<project-root>/outputs/映序剪辑-0.8.0-win-x64/resources/app/assets/demo/tone.wav",
+      "sha256": "5fb66871b36caa428c9105f971ec03f14a6881c371929c40717e1546ed15eab3"
+    }
+  ],
+  "validation": {}
+}

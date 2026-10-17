@@ -1,0 +1,64 @@
+{
+  "success": true,
+  "version": "0.8.0",
+  "packaged": true,
+  "checks": [
+    {
+      "name": "Automatic recovery is atomic, source-relative and separate from explicit project save",
+      "evidence": {
+        "file": "<project-root>/work/phase10-recovery-packaged/profile-1792215209188/recovery.yxproj.json",
+        "originalProjectHash": "7f0542424a224b986a22b8e876780ee293d7c53df21bc00b166cf495d3bd36c6"
+      }
+    },
+    {
+      "name": "Queued save/clear operations preserve invocation order"
+    },
+    {
+      "name": "Recovery rejects unregistered media paths and keeps the prior snapshot"
+    },
+    {
+      "name": "Second instance exits without overwriting the active process recovery"
+    },
+    {
+      "name": "New Electron process offers real UI restore, reauthorizes media, and preserves mask/easing",
+      "evidence": {
+        "clipCount": 1,
+        "assetCount": 1
+      }
+    },
+    {
+      "name": "Real UTF-8 SRT file sorts times and round-trips multiline Chinese/emoji",
+      "evidence": {
+        "path": "<project-root>/work/phase10-recovery-packaged/中文-字幕.srt",
+        "cues": 2
+      }
+    },
+    {
+      "name": "SRT rejects ambiguous blank paragraphs without changing project or output"
+    },
+    {
+      "name": "Canceled and empty subtitle exports do not write files; removed historical source folders do not block SRT"
+    },
+    {
+      "name": "Missing-source recovery restores an editable offline placeholder with stable ID and all mask/easing data"
+    },
+    {
+      "name": "Offline recovery survives automatic saving and another real process restart without losing source/edit records"
+    },
+    {
+      "name": "Corrupt recovery can be explicitly ignored; automatic saving resumes"
+    },
+    {
+      "name": "Successful UI save clears pending recovery and cancels its debounce"
+    }
+  ],
+  "errors": [],
+  "sourceHashes": {
+    "src/main/main.cjs": "0f266b9fb50dba5ffbad68d8c2f05cbe528df2c517b623418f22131ee599bf5c",
+    "src/main/preload.cjs": "5dc9403e557f46e07361e700f67a03504560e2968fe6a5f3708af7af724e93d4",
+    "src/main/project-files.cjs": "9e90ec581eb41b46f82c003b46e4a7c9974d90804686cea3aa0a44ebd2f48c2e",
+    "src/shared/project.js": "9239874c5dc8203f286cd6b31243e0b48af89ccdd2547f0f9fe2912484907515",
+    "src/renderer/app.js": "2d99227347a672e43395be74ac50719c6882386d0ffec289155718bab1aa32b0"
+  },
+  "createdAt": "2026-10-17T05:33:51.981Z"
+}

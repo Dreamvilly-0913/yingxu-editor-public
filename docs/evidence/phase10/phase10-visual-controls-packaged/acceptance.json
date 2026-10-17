@@ -1,0 +1,246 @@
+{
+  "version": "0.8.0",
+  "packaged": true,
+  "createdAt": "2026-10-17T05:28:55.117Z",
+  "sourceHashes": {
+    "src/shared/advanced-color.js": "b214725fec6b7c14b04d4d7ccd76a3c8dba484d22da0f62133a7cdcd064e14c1",
+    "src/shared/visual-effects.js": "3c8e53fa5035b00ff71fdf2bb8f480df64828fdceff142ee70cb6ec7d336793f",
+    "src/renderer/visual-controls.js": "b4eec69595b0d702e4e49d960aa31d2dfb0d203fdd8c2d227d460146a357d131",
+    "src/renderer/visual-controls.css": "afd2ef99a245e07235799e1132c6a04924545bf6be567f32c9f24540a192cf7b"
+  },
+  "checks": [
+    {
+      "name": "Bezier anchors and independent numeric handles commit real curve data",
+      "evidence": {
+        "points": [
+          {
+            "x": 0,
+            "y": 0,
+            "out": [
+              0.16666666666666666,
+              0.16666666666666666
+            ]
+          },
+          {
+            "x": 0.5,
+            "y": 0.67,
+            "in": [
+              0.33333333333333326,
+              0.25
+            ],
+            "out": [
+              0.6666666666666667,
+              0.8366666666666669
+            ]
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "in": [
+              0.8333333333333334,
+              0.8333333333333334
+            ]
+          }
+        ]
+      },
+      "pass": true
+    },
+    {
+      "name": "Bezier pointer handle drag commits exactly one edit",
+      "evidence": {
+        "out": [
+          0.3188486581661015,
+          0.2542675352933114
+        ]
+      },
+      "pass": true
+    },
+    {
+      "name": "Color wheel gestures and independent RGB values both update actual grading",
+      "evidence": {
+        "wheels": {
+          "lift": [
+            0,
+            0,
+            0
+          ],
+          "gamma": [
+            0,
+            0,
+            0
+          ],
+          "gain": [
+            0.4000016738575831,
+            -0.026795756171903884,
+            -0.37320591768567923
+          ],
+          "offset": [
+            0,
+            0,
+            0.2
+          ]
+        }
+      },
+      "pass": true
+    },
+    {
+      "name": "Tonal ranges and six-dimensional HSL qualifiers commit validated parameters",
+      "evidence": {
+        "balance": {
+          "shadows": [
+            0.15,
+            0,
+            0
+          ],
+          "midtones": [
+            0,
+            0,
+            0
+          ],
+          "highlights": [
+            0,
+            0,
+            0
+          ],
+          "shadowRange": [
+            0,
+            0.35
+          ],
+          "highlightRange": [
+            0.6,
+            1
+          ]
+        },
+        "hsl6": {
+          "hue": 0.16666666666666666,
+          "saturation": 0,
+          "luminance": 0,
+          "hueRange": [
+            0,
+            0.4
+          ],
+          "saturationRange": [
+            0,
+            1
+          ],
+          "luminanceRange": [
+            0,
+            1
+          ],
+          "softness": 0.1
+        }
+      },
+      "pass": true
+    },
+    {
+      "name": "Cube import and intensity keep parsed LUT data inside the project",
+      "evidence": {
+        "lut": {
+          "dimension": 1,
+          "size": 2,
+          "data": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          "domainMin": [
+            0,
+            0,
+            0
+          ],
+          "domainMax": [
+            1,
+            1,
+            1
+          ],
+          "intensity": 0.45,
+          "title": "Own UI LUT"
+        }
+      },
+      "pass": true
+    },
+    {
+      "name": "Blend mode and green-screen/despill/edge controls use actual shared effects fields",
+      "evidence": {
+        "blendMode": "screen",
+        "chromaKey": {
+          "color": [
+            0,
+            1,
+            0
+          ],
+          "threshold": 0.18,
+          "softness": 0.12,
+          "spill": 0.8,
+          "edgeSoftness": 2
+        }
+      },
+      "pass": true
+    },
+    {
+      "name": "Expanded rounded masks and complete animated poses are editable at the playhead",
+      "evidence": {
+        "mask": {
+          "type": "rectangle",
+          "centerX": 0.5,
+          "centerY": 0.5,
+          "width": 0.7,
+          "height": 0.7,
+          "feather": 0.05,
+          "expansion": 0.15,
+          "roundness": 0.7
+        },
+        "animation": {
+          "keyframes": [
+            {
+              "time": 0,
+              "easing": "linear",
+              "centerX": 0.5,
+              "centerY": 0.5,
+              "width": 0.7,
+              "height": 0.7,
+              "rotation": 0,
+              "feather": 0.05,
+              "expansion": 0.15,
+              "roundness": 0.7
+            },
+            {
+              "time": 1.5,
+              "easing": "ease-in-out",
+              "centerX": 0.5,
+              "centerY": 0.5,
+              "width": 0.7,
+              "height": 0.7,
+              "rotation": 0,
+              "feather": 0.05,
+              "expansion": 0.3,
+              "roundness": 0.7
+            }
+          ]
+        }
+      },
+      "pass": true
+    },
+    {
+      "name": "Escape and project identity changes cancel captured visual drafts without edits",
+      "evidence": {
+        "updates": 22
+      },
+      "pass": true
+    }
+  ],
+  "pageErrors": [],
+  "success": true,
+  "updates": 22,
+  "sourceHashesAfter": {
+    "src/shared/advanced-color.js": "b214725fec6b7c14b04d4d7ccd76a3c8dba484d22da0f62133a7cdcd064e14c1",
+    "src/shared/visual-effects.js": "3c8e53fa5035b00ff71fdf2bb8f480df64828fdceff142ee70cb6ec7d336793f",
+    "src/renderer/visual-controls.js": "b4eec69595b0d702e4e49d960aa31d2dfb0d203fdd8c2d227d460146a357d131",
+    "src/renderer/visual-controls.css": "afd2ef99a245e07235799e1132c6a04924545bf6be567f32c9f24540a192cf7b"
+  },
+  "sourceStable": true,
+  "finishedAt": "2026-10-17T05:29:46.142Z"
+}
